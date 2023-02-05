@@ -1,9 +1,10 @@
 ﻿using final_project.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace final_project.Data.Persistence
 {
-    public class EcommerceDbContext : DbContext
+    public class EcommerceDbContext : IdentityDbContext<User, Role, int>
     {
         public EcommerceDbContext()
         {
