@@ -1,7 +1,11 @@
+using final_project.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.AddPersistence();
 
 var app = builder.Build();
 
