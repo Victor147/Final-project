@@ -1,7 +1,7 @@
 ﻿@model RegisterModel
 
 @{
-    ViewData["Title"] = "Sign up";
+    ViewData["Title"] = "Sign up page";
 }
 
 @* TODO: style the form *@
@@ -53,14 +53,14 @@
                         <span asp-validation-for="Password"></span>
                     </p>
                     <label asp-for="Password" for="password"></label>
-                    <input type="text" asp-for="Password" id="password" class="form-control">
+                    <input type="password" asp-for="Password" id="password" class="form-control">
                 </div>
                 <div class="form-group">
                     <p>
                         <span asp-validation-for="RepeatPassword"></span>
                     </p>
                     <label asp-for="RepeatPassword" for="repeatPassword"></label>
-                    <input type="text" asp-for="RepeatPassword" id="repeatPassword" class="form-control">
+                    <input type="password" asp-for="RepeatPassword" id="repeatPassword" class="form-control">
                 </div>
                 <div class="">
                     <span>Already have an account?</span>

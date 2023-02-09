@@ -1,4 +1,5 @@
-﻿using final_project.Data.Persistence;
+﻿using final_project.Data.Initialization;
+using final_project.Data.Persistence;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,9 @@ namespace final_project.Extensions
             using var scope = app.Services.CreateScope();
             var db = scope.ServiceProvider.GetService<EcommerceDbContext>();
             db!.Database.EnsureCreated();
+
+            var dataInitializer = scope.ServiceProvider.GetService<DataInitializer>();
+            dataInitializer!.Seed().Wait();
         }
     }
 }

@@ -1,3 +1,4 @@
+using final_project.Controllers;
 using final_project.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.AddPersistence();
+builder.AddDependencyInjection();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddAutoMapper(typeof(HomeController));
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.CheckConsentNeeded = context => true;
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+});
+
+builder.AddSecurity();
 
 var app = builder.Build();
 

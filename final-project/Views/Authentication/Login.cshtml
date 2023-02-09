@@ -1,18 +1,51 @@
-﻿@* @model TModel *@
+﻿@model LoginModel
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Login page";
 }
 
-<!DOCTYPE html>
+@* TODO: implement 'forgot password' page and make the design *@
 
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <form method="post" asp-action="Login">
+                <h2 class="text-center">Ecommerce app</h2>
+                <h6 class="text-center">Login</h6>
+                <div class="form-group">
+                    <p>
+                        <span asp-validation-for="Username"></span>
+                    </p>
+                    <label asp-for="Username" for="username"></label>
+                    <input type="text" asp-for="Username" id="username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <p>
+                        <span asp-validation-for="Password"></span>
+                    </p>
+                    <label asp-for="Password" form="password"></label>
+                    <input type="password" asp-for="Password" id="password" class="form-control">
+                </div>
+                <div class="form-group">
+                    <p>
+                        <span asp-validation-for="RememberMe"></span>
+                    </p>
+                    <label asp-for="RememberMe" for="rememberMe"></label>
+                    <input type="checkbox" asp-for="RememberMe" id="rememberMe">
+                </div>
+                <div>
+                    <a href="#">Forgot password?</a>
+                </div>
+                <div>
+                    <span>New to Ecommerce app</span>
+                    <a asp-controller="Authentication" asp-action="Register">Sign up here</a>
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+        <div class="col-4"></div>
+    </div>
 </div>
-</body>
-</html>
