@@ -2,6 +2,7 @@
 using final_project.Data.Persistence;
 using final_project.Helpers.Cloudinary;
 using final_project.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace final_project.Services.ProductService;
 
@@ -28,14 +29,18 @@ public class ProductService : IProductService
         await _context.SaveChangesAsync();
     }
 
-    public Task<ProductModel> ReadProductAsync(int id)
+    public async Task<Product> ReadProductAsync(int id)
     {
-        throw new NotImplementedException();
+        var product = await _context.Products.FindAsync(id);
+        
+        return product;
     }
 
-    public Task<IEnumerable<Product>> GetAllProductsAsync()
+    public async Task<IEnumerable<Product>> GetAllProductsAsync()
     {
-        throw new NotImplementedException();
+        var products = await _context.Products.ToListAsync();
+
+        return products;
     }
 
     public Task UpdateProductAsync(Product product)

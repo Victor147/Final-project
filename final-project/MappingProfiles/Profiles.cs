@@ -9,5 +9,6 @@ public class Profiles : Profile
     public Profiles()
     {
         CreateMap<RegisterModel, User>();
+        CreateMap<Product, ProductModel>();
     }
 }
