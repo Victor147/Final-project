@@ -1,4 +1,6 @@
-﻿namespace final_project.Data.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace final_project.Data.Entities
 {
     public class Product : Entity<int>
     {
@@ -11,5 +13,8 @@
         public decimal Price { get; set; }
 
         public string Image { get; set; }
+
+        [NotMapped]
+        public IEnumerable<OrderDetail> OrderDetails { get; set; }
     }
 }

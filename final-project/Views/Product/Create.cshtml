@@ -1,4 +1,4 @@
-﻿@model ProductModel
+﻿@model final_project.Models.ProductModel
 
 @{
     ViewData["Title"] = "Create product page";
@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-4"></div>
         <div class="col-4">
-            <form method="post" enctype="multipart/form-data" asp-controller="Product" asp-action="Create">
+            <form method="post" enctype="multipart/form-data" asp-controller="Product" asp-action="CreateProduct">
                 <h2 class="text-center">Create product</h2>
                 <div class="from-group">
                     <label for="name">Product name: </label>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="from-group my-3">
                     <label for="price">Product price: </label>
-                    <input type="number" min="0.0" step="0.1" asp-for="Price" id="price" class="form-control" placeholder="Enter product price"/>
+                    <input type="number" min="0.00" step="0.01" asp-for="Price" id="price" class="form-control" placeholder="Enter product price"/>
                 </div>
                 <div class="from-group my-3">
                     <label for="image">Product image: </label>

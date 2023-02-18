@@ -10,6 +10,6 @@
 
         public int UserId { get; set; }
 
-        public IEnumerable<Product> Products { get; set; }
+        public IEnumerable<OrderDetail> Details { get; set; }
     }
 }
