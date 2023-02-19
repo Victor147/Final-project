@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Net;
+using AutoMapper;
 using final_project.Data.Entities;
 using final_project.Models;
 using final_project.Services.ProductService;
@@ -41,22 +42,57 @@ public class ProductController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateProduct([FromForm] ProductModel model)
     {
         await _productService.CreateProductAsync(model);
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("Index", "Product");
     }
 
     [HttpGet]
-    public IActionResult Update(Product product)
+    public async Task<IActionResult> Read(int id)
     {
-        var viewModel = _mapper.Map<ProductViewModel>(product);
-        return View(viewModel);
+        Product product = await _productService.ReadProductAsync(id);
+        ProductViewModel productVM = _mapper.Map<ProductViewModel>(product);
+
+        return View(productVM);
     }
-    
-    // [HttpPost]
-    // public async Task<IActionResult> UpdateProduct([FromForm] )
 
+    [HttpGet]
+    public async Task<IActionResult> Update(int id)
+    {
+        Product product = await _productService.ReadProductAsync(id);
+        UpdateProductModel productVM = _mapper.Map<UpdateProductModel>(product);
 
-    
+        return View(productVM);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> UpdateProduct([FromForm] UpdateProductModel model)
+    {
+        ProductModel productModel = _mapper.Map<ProductModel>(model);
+        int id = model.Id;
+
+        await _productService.UpdateProductAsync(id, productModel);
+        return RedirectToAction("Index", "Product");
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
+    {
+        Product product = await _productService.ReadProductAsync(id);
+        ProductViewModel productVM = _mapper.Map<ProductViewModel>(product);
+
+        return View(productVM);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteProduct(ProductViewModel productViewModel)
+    {
+        await _productService.DeleteProductAsync(productViewModel.Id);
+        
+        return RedirectToAction("Index", "Product");
+    }
 }

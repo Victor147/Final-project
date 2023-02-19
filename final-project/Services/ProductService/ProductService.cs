@@ -42,14 +42,26 @@ public class ProductService : IProductService
 
         return products;
     }
+    
 
-    public Task UpdateProductAsync(Product product)
+    public async Task UpdateProductAsync(int id, ProductModel model)
     {
-        throw new NotImplementedException();
+        var result = await _uploader.UploadImageAsync(model.Image.Name, model.Image);
+        
+        var fromDb = await ReadProductAsync(id);
+        fromDb.Name = model.Name;
+        fromDb.Description = model.Description;
+        fromDb.Stock = model.Stock;
+        fromDb.Price = model.Price;
+        fromDb.Image = result.Uri.ToString();
+
+        _context.Products.Update(fromDb);
+        await _context.SaveChangesAsync();
     }
 
-    public Task DeleteProductAsync(int id)
+    public async Task DeleteProductAsync(int id)
     {
-        throw new NotImplementedException();
+        _context.Products.Remove(await ReadProductAsync(id));
+        await _context.SaveChangesAsync();
     }
 }

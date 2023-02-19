@@ -8,6 +8,6 @@ public interface IProductService
     Task CreateProductAsync(ProductModel model);
     Task<Product> ReadProductAsync(int id);
     Task<IEnumerable<Product>> GetAllProductsAsync();
-    Task UpdateProductAsync(Product product);
+    Task UpdateProductAsync(int id, ProductModel model);
     Task DeleteProductAsync(int id);
 }

@@ -13,5 +13,11 @@ public class Profiles : Profile
         //CreateMap<Product, ProductModel>();
         CreateMap<ProductModel, Product>();
         CreateMap<Product, ProductViewModel>();
+        CreateMap<Product, UpdateProductModel>();
+        CreateMap<UpdateProductModel, ProductModel>()
+            .ForMember(
+                dest => dest.Image,
+                opt => opt.MapFrom(src => src.File)
+                );
     }
 }

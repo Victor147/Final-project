@@ -1,48 +1,42 @@
-﻿@model final_project.Models.UpdateProductModel
+﻿@model final_project.ViewModels.ProductViewModel
 
 @{
-    ViewData["Title"] = "Update product page";
+    ViewData["Title"] = "Delete product page";
 }
 
 <div class="container">
     <div class="row">
         <div class="col-4"></div>
         <div class="col-4">
-            <h2>Update product</h2>
-            <form method="post" enctype="multipart/form-data" asp-controller="Product" asp-action="UpdateProduct">
+            <h2>Delete product</h2>
+            <form method="post" asp-controller="Product" asp-action="DeleteProduct">
                 <div class="form-group my-3">
                     <label for="id" asp-for="Id">Product id: </label>
                     <input type="number" asp-for="Id" id="id" class="form-control" value="@Model.Id" readonly="readonly">
                 </div>
                 <div class="form-group my-3">
                     <label for="name" asp-for="Name">Product name: </label>
-                    <input type="text" asp-for="Name" id="name" class="form-control" value="@Model.Name">
+                    <input type="text" asp-for="Name" id="name" class="form-control" value="@Model.Name"  readonly="readonly">
                 </div>
                 <div class="form-group my-3">
                     <label for="description" asp-for="Description">Product description: </label>
-                    <input type="text" asp-for="Description" id="description" class="form-control" value="@Model.Description">
+                    <input type="text" asp-for="Description" id="description" class="form-control" value="@Model.Description"  readonly="readonly">
                 </div>
                 <div class="form-group my-3">
                     <label for="stock" asp-for="Stock">Product stock: </label>
-                    <input type="number" min="0" asp-for="Stock" id="stock" class="form-control" value="@Model.Stock">
+                    <input type="number" min="0" asp-for="Stock" id="stock" class="form-control" value="@Model.Stock"  readonly="readonly">
                 </div>
                 <div class="form-group my-3">
                     <label for="price" asp-for="Price">Product price: </label>
-                    <input type="number" min="0" step="any" asp-for="Price" id="price" class="form-control" value="@Model.Price">
+                    <input type="number" min="0" step="any" asp-for="Price" id="price" class="form-control" value="@Model.Price"  readonly="readonly">
                 </div>
                 <div class="form-group my-3">
                     <div>
-                        <a href="@Model.Image">Product image</a>
+                        <a href="@Model.Image"  readonly="readonly">Product image</a>
                     </div>
-
-                    <label for="image" asp-for="File">Select new image: </label>
-                    <input type="file" accept="image/*" asp-for="File" id="image" class="form-control" placeholder="Enter product image">
-
-                    @* TODO: fix image width and use the following to display it / make this everywhere *@
-                    @* <img src="@Model.Image" alt=""/> *@
                 </div>
                 <div class="form-group my-3">
-                    <input type="submit" class="btn btn-primary form-control" value="Update">
+                    <input type="submit" class="btn btn-danger form-control" value="Delete">
                 </div>
             </form>
             <div class="form-group">

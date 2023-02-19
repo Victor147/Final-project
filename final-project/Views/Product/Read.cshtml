@@ -1,0 +1,54 @@
+﻿@model final_project.ViewModels.ProductViewModel
+
+@{
+    ViewData["Title"] = "Details product page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <h2>Details page</h2>
+            <div class="form-group">
+                <label>
+                    <strong>Id: </strong>
+                </label>
+                <span>@Html.DisplayFor(item => Model.Id)</span>
+            </div>
+            <div class="form-group">
+                <label>
+                    <strong>Name: </strong>
+                </label>
+                <span>@Html.DisplayFor(item => Model.Name)</span>
+            </div>
+            <div class="form-group">
+                <label>
+                    <strong>Description: </strong>
+                </label>
+                <span>@Html.DisplayFor(item => Model.Description)</span>
+            </div>
+            <div class="form-group">
+                <label>
+                    <strong>Stock: </strong>
+                </label>
+                <span>@Html.DisplayFor(item => Model.Stock)</span>
+            </div>
+            <div class="form-group">
+                <label>
+                    <strong>Price: </strong>
+                </label>
+                <span>@Html.DisplayFor(item => Model.Price)</span>
+            </div>
+            <div class="form-group">
+                <label>
+                    <strong>Image: </strong>
+                </label>
+                <span><a href="@Html.DisplayFor(item => Model.Image)">Image</a></span>
+            </div>
+            <div class="form-group">
+                <a class="btn btn-primary" href="/Product/Index">Go back to list</a>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
