@@ -1,4 +1,6 @@
-﻿namespace final_project.Models;
+﻿using final_project.Data.Entities;
+
+namespace final_project.Models;
 
 public class ProductModel
 {
@@ -11,4 +13,8 @@ public class ProductModel
     public decimal Price { get; set; }
     
     public IFormFile Image { get; set; }
+    
+    public int ManufacturerId { get; set; }
+
+    public IEnumerable<Manufacturer> Manufacturers { get; set; }
 }

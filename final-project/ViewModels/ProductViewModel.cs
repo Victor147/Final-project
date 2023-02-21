@@ -1,4 +1,6 @@
-﻿namespace final_project.ViewModels;
+﻿using final_project.Data.Entities;
+
+namespace final_project.ViewModels;
 
 public class ProductViewModel
 {
@@ -12,4 +14,11 @@ public class ProductViewModel
     public decimal Price { get; set; }
     
     public string Image { get; set; }
+    
+    public Manufacturer Manufacturer { get; set; }
+    
+    
+    public int ManufacturerId { get; set; }
+
+    public IEnumerable<Manufacturer> Manufacturers { get; set; }
 }

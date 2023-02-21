@@ -23,7 +23,7 @@ public class ProductService : IProductService
         var product = new Product
         {
             Name = model.Name, Description = model.Description, Stock = model.Stock,
-            Price = model.Price, Image = result.Uri.ToString()
+            Price = model.Price, Image = result.Uri.ToString(), ManufacturerId = model.ManufacturerId
         };
         _context.Products.Add(product);
         await _context.SaveChangesAsync();
@@ -38,7 +38,7 @@ public class ProductService : IProductService
 
     public async Task<IEnumerable<Product>> GetAllProductsAsync()
     {
-        var products = await _context.Products.ToListAsync();
+        var products = await _context.Products.Include(p => p.Manufacturer).ToListAsync();
 
         return products;
     }
@@ -54,6 +54,7 @@ public class ProductService : IProductService
         fromDb.Stock = model.Stock;
         fromDb.Price = model.Price;
         fromDb.Image = result.Uri.ToString();
+        fromDb.ManufacturerId = model.ManufacturerId;
 
         _context.Products.Update(fromDb);
         await _context.SaveChangesAsync();

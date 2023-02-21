@@ -1,10 +1,9 @@
-﻿using System.Net;
-using AutoMapper;
+﻿using AutoMapper;
 using final_project.Data.Entities;
 using final_project.Models;
+using final_project.Services.ManufacturerService;
 using final_project.Services.ProductService;
 using final_project.ViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace final_project.Controllers;
@@ -13,11 +12,13 @@ public class ProductController : Controller
 {
     private readonly IMapper _mapper;
     private readonly IProductService _productService;
+    private readonly IManufacturerService _manufacturerService;
 
-    public ProductController(IMapper mapper, IProductService productService)
+    public ProductController(IMapper mapper, IProductService productService, IManufacturerService manufacturerService)
     {
         _mapper = mapper;
         _productService = productService;
+        _manufacturerService = manufacturerService;
     }
 
     [HttpGet]
@@ -36,9 +37,13 @@ public class ProductController : Controller
     }
     
     [HttpGet]
-    public IActionResult Create()
+    public async Task<IActionResult> Create()
     {
-        return View();
+        ProductModel model = new ProductModel
+        {
+            Manufacturers = await _manufacturerService.GetAllManufacturersAsync()
+        };
+        return View(model);
     }
 
     [HttpPost]
@@ -54,6 +59,7 @@ public class ProductController : Controller
     {
         Product product = await _productService.ReadProductAsync(id);
         ProductViewModel productVm = _mapper.Map<ProductViewModel>(product);
+        productVm.Manufacturer = await _manufacturerService.ReadManufacturerAsync(product.ManufacturerId);
 
         return View(productVm);
     }
@@ -63,6 +69,7 @@ public class ProductController : Controller
     {
         Product product = await _productService.ReadProductAsync(id);
         UpdateProductModel productVm = _mapper.Map<UpdateProductModel>(product);
+        productVm.Manufacturers = await _manufacturerService.GetAllManufacturersAsync();
 
         return View(productVm);
     }
@@ -82,9 +89,10 @@ public class ProductController : Controller
     public async Task<IActionResult> Delete(int id)
     {
         Product product = await _productService.ReadProductAsync(id);
-        ProductViewModel productVM = _mapper.Map<ProductViewModel>(product);
+        ProductViewModel productVm = _mapper.Map<ProductViewModel>(product);
+        productVm.Manufacturer = await _manufacturerService.ReadManufacturerAsync(product.ManufacturerId);
 
-        return View(productVM);
+        return View(productVm);
     }
 
     [HttpPost]

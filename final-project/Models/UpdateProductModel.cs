@@ -1,4 +1,4 @@
-﻿using final_project.ViewModels;
+﻿using final_project.Data.Entities;
 
 namespace final_project.Models;
 
@@ -17,4 +17,8 @@ public class UpdateProductModel
     public string Image { get; set; }
     
     public IFormFile File { get; set; }
+    
+    public int ManufacturerId { get; set; }
+
+    public IEnumerable<Manufacturer> Manufacturers { get; set; }
 }

@@ -17,6 +17,7 @@
                     <th>Stock</th>
                     <th>Price</th>
                     <th>Image</th>
+                    <th>Manufacturer</th>
                     <th></th>
                 </tr>
                 @foreach (var product in Model)
@@ -27,6 +28,7 @@
                         <td>@Html.DisplayFor(item => product.Stock)</td>
                         <td>@Html.DisplayFor(item => product.Price)</td>
                         <td><a href="@Html.DisplayFor(item => product.Image)">Image</a></td>
+                        <td>@Html.DisplayFor(item => product.Manufacturer.Name)</td>
                         <td><a href="/Product/Read/@product.Id">Read</a> | <a href="/Product/Update/@product.Id">Update</a> | <a href="/Product/Delete/@product.Id">Delete</a></td>
                     </tr>
                 }
