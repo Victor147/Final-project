@@ -1,0 +1,27 @@
+﻿@model final_project.ViewModels.ManufacturerViewModel
+
+@{
+    ViewData["Title"] = "Details manufacturer page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <h2>Details page</h2>
+            <div class="form-group my-3">
+                    <label for="id" asp-for="Id">Manufacturer id: </label>
+                    <input type="number" asp-for="Id" id="id" class="form-control" value="@Model.Id" readonly="readonly">
+                </div>
+                <div class="form-group my-3">
+                    <label for="name" asp-for="Name">Manufacturer name: </label>
+                    <input type="text" asp-for="Name" id="name" class="form-control" value="@Model.Name"  readonly="readonly">
+                </div>
+            <div class="form-group">
+                <a class="btn btn-primary" href="/Manufacturer/Index">Go back to list</a>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+

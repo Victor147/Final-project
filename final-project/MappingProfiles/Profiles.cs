@@ -19,5 +19,6 @@ public class Profiles : Profile
                 dest => dest.Image,
                 opt => opt.MapFrom(src => src.File)
                 );
+        CreateMap<Manufacturer, ManufacturerViewModel>();
     }
 }

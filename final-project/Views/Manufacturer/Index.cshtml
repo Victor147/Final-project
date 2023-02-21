@@ -1,0 +1,29 @@
+﻿@model IEnumerable<final_project.ViewModels.ManufacturerViewModel>
+
+@{
+    ViewData["Title"] = "All Manufacturers";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <h2 class="text-center">All manufacturer listed</h2>
+            <div><a href="/Manufacturer/Create">Create new</a></div>
+            <table class="table text-center">
+                <tr>
+                    <th>Name</th>
+                    <th></th>
+                </tr>
+                @foreach (var manufacturer in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(item => manufacturer.Name)</td>
+                        <td><a href="/Manufacturer/Read/@manufacturer.Id">Read</a> | <a href="/Manufacturer/Update/@manufacturer.Id">Update</a> | <a href="/Manufacturer/Delete/@manufacturer.Id">Delete</a></td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>

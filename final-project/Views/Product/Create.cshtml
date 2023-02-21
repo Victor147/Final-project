@@ -26,7 +26,7 @@
                 </div>
                 <div class="from-group my-3">
                     <label for="price">Product price: </label>
-                    <input type="number" min="0" step=".01" asp-for="Price" id="price" class="form-control"placeholder="Enter product price"/>
+                    <input type="number" inputmode="decimal" min="0" step=".01" asp-for="Price" id="price" class="form-control" formnovalidate placeholder="Enter product price"/>
                 </div>
                 <div class="from-group my-3">
                     <label for="image">Product image: </label>

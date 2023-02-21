@@ -53,18 +53,18 @@ public class ProductController : Controller
     public async Task<IActionResult> Read(int id)
     {
         Product product = await _productService.ReadProductAsync(id);
-        ProductViewModel productVM = _mapper.Map<ProductViewModel>(product);
+        ProductViewModel productVm = _mapper.Map<ProductViewModel>(product);
 
-        return View(productVM);
+        return View(productVm);
     }
 
     [HttpGet]
     public async Task<IActionResult> Update(int id)
     {
         Product product = await _productService.ReadProductAsync(id);
-        UpdateProductModel productVM = _mapper.Map<UpdateProductModel>(product);
+        UpdateProductModel productVm = _mapper.Map<UpdateProductModel>(product);
 
-        return View(productVM);
+        return View(productVm);
     }
 
     [HttpPost]
@@ -89,7 +89,7 @@ public class ProductController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteProduct(ProductViewModel productViewModel)
+    public async Task<IActionResult> DeleteProduct([FromForm]ProductViewModel productViewModel)
     {
         await _productService.DeleteProductAsync(productViewModel.Id);
         
