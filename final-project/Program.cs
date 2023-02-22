@@ -33,6 +33,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSecurity();
 
 app.UseAuthorization();
 
@@ -40,5 +41,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.EnsureDBCreated();
+app.EnsureDbCreated();
 app.Run();

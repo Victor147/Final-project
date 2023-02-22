@@ -17,7 +17,7 @@ namespace final_project.Extensions
             opt.UseSqlServer(connectionStringBuilder.ConnectionString));
         }
 
-        public static void EnsureDBCreated(this WebApplication app)
+        public static void EnsureDbCreated(this WebApplication app)
         {
             using var scope = app.Services.CreateScope();
             var db = scope.ServiceProvider.GetService<EcommerceDbContext>();

@@ -1,7 +1,6 @@
 ﻿using final_project.Data.Initialization;
 using final_project.Data.Persistence;
 using final_project.Helpers.Cloudinary;
-using final_project.Models;
 using final_project.Services.ManufacturerService;
 using final_project.Services.ProductService;
 

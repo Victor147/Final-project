@@ -1,5 +1,4 @@
 ﻿using CloudinaryDotNet;
-using Microsoft.AspNetCore.SignalR.Protocol;
 
 namespace final_project.Extensions;
 

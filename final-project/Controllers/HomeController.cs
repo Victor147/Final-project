@@ -1,5 +1,4 @@
-﻿using final_project.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using final_project.ViewModels;
 

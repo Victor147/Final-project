@@ -18,5 +18,5 @@ public class LoginModel
     [DisplayName("Remember me: ")] 
     public bool RememberMe { get; set; } = false;
 
-    public string? Message { get; set; } = String.Empty;
+    public string? Message { get; set; } = string.Empty;
 }
