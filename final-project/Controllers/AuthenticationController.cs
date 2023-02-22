@@ -24,7 +24,7 @@ public class AuthenticationController : Controller
 
     [HttpGet]
     [AllowAnonymous]
-    public async Task<IActionResult> Register()
+    public IActionResult Register()
     {
         return View();
     }
@@ -65,7 +65,7 @@ public class AuthenticationController : Controller
 
     [HttpGet]
     [AllowAnonymous]
-    public async Task<IActionResult> Login()
+    public IActionResult Login()
     {
         return View();
     }

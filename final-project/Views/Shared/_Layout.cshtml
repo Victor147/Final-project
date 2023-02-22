@@ -31,6 +31,22 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Manufacturer" asp-action="Index">Manufacturers</a>
                     </li>
+                    @if (!Context.User.Identity!.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Register">Register</a>
+                        </li>
+                    }
+                    else
+                    {
+                        // TODO: Admin panel
+                        <form method="post" asp-controller="Authentication" asp-action="Logout">
+                            <input type="submit" class="btn btn-danger" value="Logout">
+                        </form>
+                    }
                 </ul>
             </div>
         </div>
