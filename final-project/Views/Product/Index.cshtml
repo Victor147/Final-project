@@ -9,8 +9,11 @@
         <div class="col-2"></div>
         <div class="col-8">
             <h2 class="text-center">All products listed</h2>
-            <div><a href="/Product/Create">Create new</a></div>
+            <div>
+                <a href="/Product/Create">Create new</a>
+            </div>
             <table class="table text-center">
+                <thead>
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
@@ -20,6 +23,7 @@
                     <th>Manufacturer</th>
                     <th></th>
                 </tr>
+                </thead>
                 @foreach (var product in Model)
                 {
                     <tr>
@@ -27,7 +31,9 @@
                         <td>@Html.DisplayFor(item => product.Description)</td>
                         <td>@Html.DisplayFor(item => product.Stock)</td>
                         <td>@Html.DisplayFor(item => product.Price)</td>
-                        <td><a href="@Html.DisplayFor(item => product.Image)">Image</a></td>
+                        <td>
+                            <a href="@Html.DisplayFor(item => product.Image)">Image</a>
+                        </td>
                         <td>@Html.DisplayFor(item => product.Manufacturer.Name)</td>
                         <td><a href="/Product/Read/@product.Id">Read</a> | <a href="/Product/Update/@product.Id">Update</a> | <a href="/Product/Delete/@product.Id">Delete</a></td>
                     </tr>

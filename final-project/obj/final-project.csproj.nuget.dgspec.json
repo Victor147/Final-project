@@ -64,6 +64,10 @@
               "target": "Package",
               "version": "[6.0.13, )"
             },
+            "Microsoft.AspNetCore.Session": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.13, )"

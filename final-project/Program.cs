@@ -9,6 +9,7 @@ builder.Services.AddControllersWithViews();
 builder.AddPersistence();
 builder.AddDependencyInjection();
 builder.AddCloudinary();
+builder.Services.AddSession();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddAutoMapper(typeof(HomeController));
 builder.Services.Configure<CookiePolicyOptions>(options =>
@@ -34,6 +35,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseSecurity();
+app.UseSession();
 
 app.UseAuthorization();
 
