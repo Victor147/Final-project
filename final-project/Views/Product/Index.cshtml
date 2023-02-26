@@ -22,8 +22,10 @@
                     <th>Image</th>
                     <th>Manufacturer</th>
                     <th></th>
+                    <th></th>
                 </tr>
                 </thead>
+                <tbody>
                 @foreach (var product in Model)
                 {
                     <tr>
@@ -36,8 +38,10 @@
                         </td>
                         <td>@Html.DisplayFor(item => product.Manufacturer.Name)</td>
                         <td><a href="/Product/Read/@product.Id">Read</a> | <a href="/Product/Update/@product.Id">Update</a> | <a href="/Product/Delete/@product.Id">Delete</a></td>
+                        <td>@Html.ActionLink("Add to Cart", "AddToCart", "Cart", new { id = product.Id }, new { @class = "btn btn-primary" })</td>
                     </tr>
                 }
+                </tbody>
             </table>
         </div>
         <div class="col-2"></div>

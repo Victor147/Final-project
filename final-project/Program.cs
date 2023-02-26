@@ -1,5 +1,6 @@
 using final_project.Controllers;
 using final_project.Extensions;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,10 +8,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.AddPersistence();
-builder.AddDependencyInjection();
 builder.AddCloudinary();
-builder.Services.AddSession();
 builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(opt =>
+{
+    opt.Cookie.Name = "cart";
+    opt.IdleTimeout = TimeSpan.FromMinutes(20);
+    opt.Cookie.IsEssential = true;
+});
 builder.Services.AddAutoMapper(typeof(HomeController));
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
@@ -18,6 +23,7 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.MinimumSameSitePolicy = SameSiteMode.None;
 });
 
+builder.AddDependencyInjection();
 builder.AddSecurity();
 
 var app = builder.Build();
@@ -30,12 +36,12 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseSession();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 app.UseSecurity();
-app.UseSession();
 
 app.UseAuthorization();
 

@@ -1,5 +1,4 @@
-﻿using final_project.Data.Entities;
-using final_project.Extensions;
+﻿using final_project.Extensions;
 using final_project.Models;
 using final_project.Services.ProductService;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +10,10 @@ public class CartController : Controller
     private readonly IProductService _productService;
     private readonly ISession _session;
 
-    public CartController(IProductService productService, ISession session)
+    public CartController(IProductService productService, IHttpContextAccessor httpContextAccessor)
     {
         _productService = productService;
-        _session = session;
+        _session = httpContextAccessor.HttpContext.Session;
     }
 
     public IActionResult Index()

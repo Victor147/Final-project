@@ -16,5 +16,6 @@ public static class GlobalExtensions
         builder.Services.AddTransient<IImageUploader, ImageUploader>();
         builder.Services.AddTransient<IProductService, ProductService>();
         builder.Services.AddTransient<IManufacturerService, ManufacturerService>();
+        builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
     }
 }

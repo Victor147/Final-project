@@ -1,4 +1,5 @@
 ﻿@using final_project.Data.Entities
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
 @model IEnumerable<final_project.Models.CartItemModel>;
 
 @{
@@ -9,7 +10,7 @@
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
-            <h2>Shopping cart info</h2>
+            <h2 class="text-center">Shopping cart info</h2>
             <table class="table text-center">
                 <thead>
                 <tr>
@@ -46,8 +47,10 @@
                         </td>
                     </tr>
                 }
-                <tr aria-colspan="5" style="text-align: right">
-                    Total: @ViewBag.total
+                <tr>
+                    <td colspan="5" style="text-align: right">
+                        Total: @ViewBag.total
+                    </td>
                 </tr>
                 </tbody>
             </table>
