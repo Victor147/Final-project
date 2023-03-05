@@ -13,7 +13,7 @@ public class CartController : Controller
     public CartController(IProductService productService, IHttpContextAccessor httpContextAccessor)
     {
         _productService = productService;
-        _session = httpContextAccessor.HttpContext.Session;
+        _session = httpContextAccessor.HttpContext!.Session;
     }
 
     public IActionResult Index()

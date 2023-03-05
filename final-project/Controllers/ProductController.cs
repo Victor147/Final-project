@@ -5,6 +5,7 @@ using final_project.Services.ManufacturerService;
 using final_project.Services.ProductService;
 using final_project.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace final_project.Controllers;
 
@@ -20,11 +21,30 @@ public class ProductController : Controller
         _productService = productService;
         _manufacturerService = manufacturerService;
     }
-
-    [HttpGet]
-    public async Task<IActionResult> Index()
+    
+    public async Task<IActionResult> Index(string manufacturerFilter, decimal? minPriceFilter, decimal? maxPriceFilter)
     {
         var model = await _productService.GetAllProductsAsync();
+
+         var manufacturers = await _manufacturerService.GetAllManufacturersAsync();
+         var names = manufacturers.Select(m => m.Name).Distinct().OrderBy(m => m).ToList();
+
+         ViewBag.Manufacturers = new SelectList(names);
+
+        if (!string.IsNullOrEmpty(manufacturerFilter))
+        {
+            model = model.Where(p => p.Manufacturer.Name == manufacturerFilter);
+        }
+
+        if (minPriceFilter.HasValue)
+        {
+            model = model.Where(p => p.Price >= minPriceFilter.Value);
+        }
+        
+        if (maxPriceFilter.HasValue)
+        {
+            model = model.Where(p => p.Price <= maxPriceFilter.Value);
+        }
 
         var products = new List<ProductViewModel>();
 

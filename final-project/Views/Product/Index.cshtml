@@ -1,7 +1,28 @@
-﻿@model IEnumerable<final_project.ViewModels.ProductViewModel>
+﻿@using Microsoft.Data.SqlClient.DataClassification
+@model IEnumerable<final_project.ViewModels.ProductViewModel>
 
 @{
     ViewData["Title"] = "All products";
+}
+
+@* filter form *@
+@* TODO: design changes *@
+@using (Html.BeginForm())
+{
+    <div>
+        @* <label>Manufacturer:</label> *@
+        @* @Html.TextBox("manufacturerFilter") *@
+
+        <label>Manufacturer:</label>
+        @Html.DropDownList("manufacturerFilter", ViewBag.Manufacturers as SelectList, "All")
+    </div>
+    <div>
+        <label>Price range:</label>
+        @Html.TextBox("minPriceFilter")
+        to
+        @Html.TextBox("maxPriceFilter")
+    </div>
+    <button type="submit">Filter</button>
 }
 
 <div class="container">

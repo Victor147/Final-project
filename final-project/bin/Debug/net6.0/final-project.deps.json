@@ -13,6 +13,7 @@
           "Cloudinary.Core": "1.31.0",
           "Cloudinary.Core.DependencyInjection": "1.31.0",
           "Microsoft.AspNetCore.Authentication": "2.2.0",
+          "Microsoft.AspNetCore.Components": "6.0.14",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.13",
           "Microsoft.AspNetCore.Session": "2.2.0",
           "Microsoft.EntityFrameworkCore": "6.0.13",
@@ -88,7 +89,7 @@
           "Microsoft.AspNetCore.DataProtection": "2.2.0",
           "Microsoft.AspNetCore.Http": "2.2.0",
           "Microsoft.AspNetCore.Http.Extensions": "2.2.0",
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.3",
           "Microsoft.Extensions.Options": "6.0.0",
           "Microsoft.Extensions.WebEncoders": "2.2.0"
         }
@@ -96,7 +97,7 @@
       "Microsoft.AspNetCore.Authentication.Abstractions/2.2.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.3",
           "Microsoft.Extensions.Options": "6.0.0"
         }
       },
@@ -107,6 +108,32 @@
           "Microsoft.AspNetCore.Http.Extensions": "2.2.0"
         }
       },
+      "Microsoft.AspNetCore.Authorization/6.0.14": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Metadata": "6.0.14",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.3",
+          "Microsoft.Extensions.Options": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authorization.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1423.7403"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components/6.0.14": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "6.0.14",
+          "Microsoft.AspNetCore.Components.Analyzers": "6.0.14"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1423.7403"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.Analyzers/6.0.14": {},
       "Microsoft.AspNetCore.Cryptography.Internal/6.0.13": {
         "runtime": {
           "lib/net6.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
@@ -132,7 +159,7 @@
           "Microsoft.AspNetCore.DataProtection.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.3",
           "Microsoft.Extensions.Options": "6.0.0",
           "Microsoft.Win32.Registry": "4.7.0",
           "System.Security.Cryptography.Xml": "4.5.0",
@@ -193,12 +220,20 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Metadata/6.0.14": {
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Metadata.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1423.7403"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Session/2.2.0": {
         "dependencies": {
           "Microsoft.AspNetCore.DataProtection": "2.2.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.Extensions.Caching.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.3",
           "Microsoft.Extensions.Options": "6.0.0"
         }
       },
@@ -343,7 +378,7 @@
         "dependencies": {
           "Microsoft.Extensions.Caching.Abstractions": "6.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.3",
           "Microsoft.Extensions.Options": "6.0.0",
           "Microsoft.Extensions.Primitives": "6.0.0"
         },
@@ -382,7 +417,7 @@
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "Microsoft.Extensions.FileProviders.Abstractions": "2.2.0",
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.0"
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.3"
         }
       },
       "Microsoft.Extensions.Identity.Core/6.0.13": {
@@ -415,12 +450,19 @@
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "6.0.1",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.3",
           "Microsoft.Extensions.Options": "6.0.0",
           "System.Diagnostics.DiagnosticSource": "6.0.0"
         }
       },
-      "Microsoft.Extensions.Logging.Abstractions/6.0.0": {},
+      "Microsoft.Extensions.Logging.Abstractions/6.0.3": {
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1122.52304"
+          }
+        }
+      },
       "Microsoft.Extensions.ObjectPool/2.2.0": {},
       "Microsoft.Extensions.Options/6.0.0": {
         "dependencies": {
@@ -1324,6 +1366,27 @@
       "path": "microsoft.aspnetcore.authentication.core/2.2.0",
       "hashPath": "microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512"
     },
+    "Microsoft.AspNetCore.Authorization/6.0.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gFktP5LXNvPPWOALCVb0jdBscSTNDsAbP3eSq4BH0xid57/8SgM+nQssPLS18qa8DdNDVIJjhtpyZguMb7NNuQ==",
+      "path": "microsoft.aspnetcore.authorization/6.0.14",
+      "hashPath": "microsoft.aspnetcore.authorization.6.0.14.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components/6.0.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hd8uaIm2BGfMUws41PocD4XdeTlGCv06iEiXns3nAFMJy6fLPbYrLrsMDMtZE46/53M/MVhhR767sCWrZuiKJQ==",
+      "path": "microsoft.aspnetcore.components/6.0.14",
+      "hashPath": "microsoft.aspnetcore.components.6.0.14.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components.Analyzers/6.0.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IkNGrKgeGc9oL9KrhP5dojlTMJyKV6NzxEt3anMJJB/V+jpqcAkrw++NshDzclnf9uX033TVQtg5/ENzlQk8xA==",
+      "path": "microsoft.aspnetcore.components.analyzers/6.0.14",
+      "hashPath": "microsoft.aspnetcore.components.analyzers.6.0.14.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.Cryptography.Internal/6.0.13": {
       "type": "package",
       "serviceable": true,
@@ -1400,6 +1463,13 @@
       "sha512": "sha512-CDsVEJAFK5i0CCd5GiicuxIrayU6pKNrGy0GD+wZMPxv33PePpA2K8qoao8Az6UZ9EYhKMtIyWNN4X5KXZXW/g==",
       "path": "microsoft.aspnetcore.identity.entityframeworkcore/6.0.13",
       "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.6.0.13.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Metadata/6.0.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-giNY/VjXoC2gauhzQiCIEQ620RvbxCfOKWY6K8Sc7LFgo6jbERdIN3QNpQ1CI8oFLz9e2mbUGnBsCM9KMMDHsw==",
+      "path": "microsoft.aspnetcore.metadata/6.0.14",
+      "hashPath": "microsoft.aspnetcore.metadata.6.0.14.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Session/2.2.0": {
       "type": "package",
@@ -1555,12 +1625,12 @@
       "path": "microsoft.extensions.logging/6.0.0",
       "hashPath": "microsoft.extensions.logging.6.0.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.Logging.Abstractions/6.0.0": {
+    "Microsoft.Extensions.Logging.Abstractions/6.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-/HggWBbTwy8TgebGSX5DBZ24ndhzi93sHUBDvP1IxbZD7FDokYzdAr6+vbWGjw2XAfR2EJ1sfKUotpjHnFWPxA==",
-      "path": "microsoft.extensions.logging.abstractions/6.0.0",
-      "hashPath": "microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512"
+      "sha512": "sha512-SUpStcdjeBbdKjPKe53hVVLkFjylX0yIXY8K+xWa47+o1d+REDyOMZjHZa+chsQI1K9qZeiHWk9jos0TFU7vGg==",
+      "path": "microsoft.extensions.logging.abstractions/6.0.3",
+      "hashPath": "microsoft.extensions.logging.abstractions.6.0.3.nupkg.sha512"
     },
     "Microsoft.Extensions.ObjectPool/2.2.0": {
       "type": "package",

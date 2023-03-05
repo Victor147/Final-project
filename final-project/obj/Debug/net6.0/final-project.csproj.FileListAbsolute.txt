@@ -70,3 +70,7 @@ D:\final-project\final-project\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.
 D:\final-project\final-project\bin\Debug\net6.0\Cloudinary.Core.dll
 D:\final-project\final-project\bin\Debug\net6.0\Cloudinary.Core.DependencyInjection.dll
 D:\final-project\final-project\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\final-project\final-project\bin\Debug\net6.0\Microsoft.AspNetCore.Authorization.dll
+D:\final-project\final-project\bin\Debug\net6.0\Microsoft.AspNetCore.Components.dll
+D:\final-project\final-project\bin\Debug\net6.0\Microsoft.AspNetCore.Metadata.dll
+D:\final-project\final-project\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
