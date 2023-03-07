@@ -74,3 +74,4 @@ D:\final-project\final-project\bin\Debug\net6.0\Microsoft.AspNetCore.Authorizati
 D:\final-project\final-project\bin\Debug\net6.0\Microsoft.AspNetCore.Components.dll
 D:\final-project\final-project\bin\Debug\net6.0\Microsoft.AspNetCore.Metadata.dll
 D:\final-project\final-project\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\final-project\final-project\obj\Debug\net6.0\scopedcss\Views\Home\Index.cshtml.rz.scp.css

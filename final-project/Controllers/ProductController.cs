@@ -4,6 +4,7 @@ using final_project.Models;
 using final_project.Services.ManufacturerService;
 using final_project.Services.ProductService;
 using final_project.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -57,6 +58,7 @@ public class ProductController : Controller
     }
     
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create()
     {
         ProductModel model = new ProductModel
@@ -67,6 +69,7 @@ public class ProductController : Controller
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateProduct([FromForm] ProductModel model)
     {
@@ -75,6 +78,7 @@ public class ProductController : Controller
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Read(int id)
     {
         Product product = await _productService.ReadProductAsync(id);
@@ -85,6 +89,7 @@ public class ProductController : Controller
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Update(int id)
     {
         Product product = await _productService.ReadProductAsync(id);
@@ -95,6 +100,7 @@ public class ProductController : Controller
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> UpdateProduct([FromForm] UpdateProductModel model)
     {
@@ -106,6 +112,7 @@ public class ProductController : Controller
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id)
     {
         Product product = await _productService.ReadProductAsync(id);
@@ -116,6 +123,7 @@ public class ProductController : Controller
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteProduct([FromForm]ProductViewModel productViewModel)
     {

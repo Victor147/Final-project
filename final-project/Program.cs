@@ -1,6 +1,5 @@
 using final_project.Controllers;
 using final_project.Extensions;
-using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 

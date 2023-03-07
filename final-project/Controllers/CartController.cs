@@ -1,6 +1,7 @@
 ﻿using final_project.Extensions;
 using final_project.Models;
 using final_project.Services.ProductService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace final_project.Controllers;
@@ -16,6 +17,7 @@ public class CartController : Controller
         _session = httpContextAccessor.HttpContext!.Session;
     }
 
+    [Authorize]
     public IActionResult Index()
     {
         var cart = _session.Get<List<CartItemModel>>("cart");
