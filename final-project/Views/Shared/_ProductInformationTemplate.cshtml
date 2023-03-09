@@ -1,0 +1,11 @@
+﻿@model final_project.ViewModels.ProductViewModel
+
+<div class="card border-dark mx-3" style="width: 18rem;">
+    <img class="card-img-top" src="@Model.Image" alt="Product image">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.Description</p>
+        @Html.ActionLink("Add to Cart", "AddToCart", "Cart", new { id = @Model.Id }, new { @class = "btn btn-primary" })
+        <a href="" class="btn btn-primary">Go somewhere</a>
+    </div>
+</div>

@@ -22,21 +22,28 @@ public class ProductController : Controller
         _productService = productService;
         _manufacturerService = manufacturerService;
     }
+
+    // public async Task<IActionResult> Index(string manufacturerFilter, decimal? minPriceFilter, decimal? maxPriceFilter)
+    // {
+    //     
+    //     
+    //     return View();
+    // }
     
     public async Task<IActionResult> Index(string manufacturerFilter, decimal? minPriceFilter, decimal? maxPriceFilter)
     {
         var model = await _productService.GetAllProductsAsync();
-
+    
          var manufacturers = await _manufacturerService.GetAllManufacturersAsync();
          var names = manufacturers.Select(m => m.Name).Distinct().OrderBy(m => m).ToList();
-
+    
          ViewBag.Manufacturers = new SelectList(names);
-
+    
         if (!string.IsNullOrEmpty(manufacturerFilter))
         {
             model = model.Where(p => p.Manufacturer.Name == manufacturerFilter);
         }
-
+    
         if (minPriceFilter.HasValue)
         {
             model = model.Where(p => p.Price >= minPriceFilter.Value);
@@ -46,14 +53,14 @@ public class ProductController : Controller
         {
             model = model.Where(p => p.Price <= maxPriceFilter.Value);
         }
-
+    
         var products = new List<ProductViewModel>();
-
+    
         foreach (var p in model)
         {
             products.Add(_mapper.Map<ProductViewModel>(p));
         }
-
+    
         return View(products);
     }
     
