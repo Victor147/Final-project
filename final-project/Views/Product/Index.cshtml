@@ -6,48 +6,76 @@
 
 @* filter form *@
 @* TODO: design changes *@
-@using (Html.BeginForm())
-{
-    <div>
-        @* <label>Manufacturer:</label> *@
-        @* @Html.TextBox("manufacturerFilter") *@
 
-        <label>Manufacturer:</label>
-        @Html.DropDownList("manufacturerFilter", ViewBag.Manufacturers as SelectList, "All")
-    </div>
-    <div>
-        <label>Price range:</label>
-        @Html.TextBox("minPriceFilter")
-        to
-        @Html.TextBox("maxPriceFilter")
-    </div>
-    <button type="submit">Filter</button>
-}
 
-<div class="container">
+@* @using (Html.BeginForm()) *@
+@* { *@
+@*     <div> *@
+@*         $1$ <label>Manufacturer:</label> #1# *@
+@*         $1$ @Html.TextBox("manufacturerFilter") #1# *@
+@* *@
+@*         <label>Manufacturer:</label> *@
+@*         @Html.DropDownList("manufacturerFilter", ViewBag.Manufacturers as SelectList, "All") *@
+@*     </div> *@
+@*     <div> *@
+@*         <label>Price range:</label> *@
+@*         @Html.TextBox("minPriceFilter") *@
+@*         to *@
+@*         @Html.TextBox("maxPriceFilter") *@
+@*     </div> *@
+@*     <button type="submit">Filter</button> *@
+@* } *@
+
+<div class="container-fluid">
+    <div>
+        <h2 class="text-center mt-4 mb-5">All products listed</h2>
+        <div class="mb-4">
+            <form id="form" method="post" asp-action="Index" asp-controller="Product">
+                @Html.DropDownList("sortOrder", new SelectList(
+                    new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Name (A-Z)", Value = "name_asc" },
+                        new SelectListItem { Text = "Name (Z-A)", Value = "name_desc" },
+                        new SelectListItem { Text = "Price(Low to High)", Value = "price_asc" },
+                        new SelectListItem { Text = "Price(High to Low)", Value = "price_desc" }
+                    }, "Value", "Text", ViewBag.SortOrder), new { onchange = "this.form.submit();" })
+            </form>
+        </div>
+    </div>
     <div class="row">
-        <div class="col-2"></div>
+        <div class="col-2">
+            @using (Html.BeginForm())
+            {
+                <div>
+                    @* <label>Manufacturer:</label> *@
+                    @* @Html.TextBox("manufacturerFilter") *@
+
+                    <label>Manufacturer:</label>
+                    @Html.DropDownList("manufacturerFilter", ViewBag.Manufacturers as SelectList, "All")
+                </div>
+                <div>
+                    <label>Price range:</label>
+                    @Html.TextBox("minPriceFilter")
+                    to
+                    @Html.TextBox("maxPriceFilter")
+                </div>
+                <button type="submit">Filter</button>
+            }
+        </div>
         <div class="col-8">
-            <h2 class="text-center">All products listed</h2>
-            <div class="d-flex">
-            @foreach (var product in Model)
+            <div class="d-flex justify-content-around flex-wrap">
+                @foreach (var product in Model)
                 {
                     <partial name="_ProductInformationTemplate" model="product"/>
-                    @* <tr> *@
-                    @*     <td>@Html.DisplayFor(item => product.Name)</td> *@
-                    @*     <td>@Html.DisplayFor(item => product.Description)</td> *@
-                    @*     <td>@Html.DisplayFor(item => product.Stock)</td> *@
-                    @*     <td>@Html.DisplayFor(item => product.Price)</td> *@
-                    @*     <td> *@
-                    @*         <a href="@Html.DisplayFor(item => product.Image)">Image</a> *@
-                    @*     </td> *@
-                    @*     <td>@Html.DisplayFor(item => product.Manufacturer.Name)</td> *@
-                    @*     <td><a href="/Product/Read/@product.Id">Read</a> | <a href="/Product/Update/@product.Id">Update</a> | <a href="/Product/Delete/@product.Id">Delete</a></td> *@
-                    @*     <td>@Html.ActionLink("Add to Cart", "AddToCart", "Cart", new { id = product.Id }, new { @class = "btn btn-primary" })</td> *@
-                    @* </tr> *@
                 }
             </div>
         </div>
         <div class="col-2"></div>
     </div>
 </div>
+
+<script>
+    function submit(){
+        document.getElementById("form").submit();
+    }
+</script>

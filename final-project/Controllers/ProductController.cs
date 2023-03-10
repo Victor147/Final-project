@@ -23,14 +23,22 @@ public class ProductController : Controller
         _manufacturerService = manufacturerService;
     }
 
-    // public async Task<IActionResult> Index(string manufacturerFilter, decimal? minPriceFilter, decimal? maxPriceFilter)
-    // {
-    //     
-    //     
-    //     return View();
-    // }
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> ListProducts()
+    {
+        var model = await _productService.GetAllProductsAsync();
+        
+        var products = new List<ProductViewModel>();
     
-    public async Task<IActionResult> Index(string manufacturerFilter, decimal? minPriceFilter, decimal? maxPriceFilter)
+        foreach (var p in model)
+        {
+            products.Add(_mapper.Map<ProductViewModel>(p));
+        }
+    
+        return View(products);
+    }
+    
+    public async Task<IActionResult> Index(string manufacturerFilter, decimal? minPriceFilter, decimal? maxPriceFilter, string sortOrder)
     {
         var model = await _productService.GetAllProductsAsync();
     
@@ -53,14 +61,32 @@ public class ProductController : Controller
         {
             model = model.Where(p => p.Price <= maxPriceFilter.Value);
         }
+
+        switch (sortOrder)
+        {
+            case "name_desc":
+                model = model.OrderByDescending(p => p.Name).ToList();
+                break;
+            case "price_asc":
+                model = model.OrderBy(p => p.Price).ToList();
+                break;
+            case "price_desc":
+                model = model.OrderByDescending(p => p.Price).ToList();
+                break;
+            default:
+                model = model.OrderBy(p => p.Name).ToList();
+                break;
+        }
+
+        ViewBag.SortOrder = sortOrder;
     
         var products = new List<ProductViewModel>();
-    
+        
         foreach (var p in model)
         {
             products.Add(_mapper.Map<ProductViewModel>(p));
         }
-    
+
         return View(products);
     }
     
