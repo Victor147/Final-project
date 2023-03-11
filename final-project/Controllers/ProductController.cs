@@ -140,7 +140,15 @@ public class ProductController : Controller
         ProductModel productModel = _mapper.Map<ProductModel>(model);
         int id = model.Id;
 
-        await _productService.UpdateProductAsync(id, productModel);
+        if (productModel.Image == null)
+        {
+            await _productService.UpdateProductAsync(id, productModel, false);
+        }
+        else
+        {
+            await _productService.UpdateProductAsync(id, productModel, true);
+        }
+        
         return RedirectToAction("Index", "Product");
     }
 

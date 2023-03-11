@@ -12,7 +12,7 @@ public class ProductModel
     
     public decimal Price { get; set; }
     
-    public IFormFile Image { get; set; }
+    public IFormFile? Image { get; set; }
     
     public int ManufacturerId { get; set; }
 

@@ -16,7 +16,7 @@ public class UpdateProductModel
     
     public string Image { get; set; }
     
-    public IFormFile File { get; set; }
+    public IFormFile? File { get; set; }
     
     public int ManufacturerId { get; set; }
 

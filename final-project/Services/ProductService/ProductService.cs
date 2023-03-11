@@ -44,16 +44,18 @@ public class ProductService : IProductService
     }
     
 
-    public async Task UpdateProductAsync(int id, ProductModel model)
+    public async Task UpdateProductAsync(int id, ProductModel model, bool changeImg)
     {
-        var result = await _uploader.UploadImageAsync(model.Image.Name, model.Image);
-        
         var fromDb = await ReadProductAsync(id);
         fromDb.Name = model.Name;
         fromDb.Description = model.Description;
         fromDb.Stock = model.Stock;
         fromDb.Price = model.Price;
-        fromDb.Image = result.Uri.ToString();
+        if (changeImg)
+        {
+            var result = await _uploader.UploadImageAsync(model.Image.Name, model.Image);
+            fromDb.Image = result.Uri.ToString();
+        }
         fromDb.ManufacturerId = model.ManufacturerId;
 
         _context.Products.Update(fromDb);

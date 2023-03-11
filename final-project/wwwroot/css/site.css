@@ -28,6 +28,27 @@ body {
 }
 
 
+:root {
+  --font1: 'Heebo', sans-serif;
+  --font2: 'Fira Sans Extra Condensed', sans-serif;
+  --font3: 'Roboto', sans-serif;
+
+  --btnbg: #ffcc00;
+  --btnfontcolor: rgb(61, 61, 61);
+  --btnfontcolorhover: rgb(255, 255, 255);
+  --btnbghover: #ffc116;
+  --btnactivefs: rgb(241, 195, 46);
+
+
+  --label-index: #960796;
+  --danger-index: #5bc257;
+  /* PAGINATE */
+  --link-color: #000;
+  --link-color-hover: #fff;
+  --bg-content-color: #ffcc00;
+
+}
+
 .card {
   background: #fff;
   box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
