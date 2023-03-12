@@ -32,6 +32,13 @@ public class ManufacturerService : IManufacturerService
         return manufacturer;
     }
 
+    public async Task<Manufacturer?> ReadManufacturerByNameAsync(string name)
+    {
+        var manufacturer = await _context.Manufacturers.FirstOrDefaultAsync(m => m.Name == name);
+        
+        return manufacturer;
+    }
+
     public async Task<IEnumerable<Manufacturer>> GetAllManufacturersAsync()
     {
         var manufacturers = await _context.Manufacturers.ToListAsync();

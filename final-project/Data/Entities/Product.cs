@@ -13,7 +13,7 @@ namespace final_project.Data.Entities
 
         [Required(ErrorMessage = "Manufacturer cannot be empty!")]
         public Manufacturer Manufacturer { get; set; }
-
+        
         [ForeignKey("Manufacturer")]
         public int ManufacturerId { get; set; }
         

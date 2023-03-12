@@ -36,11 +36,18 @@ public class ProductService : IProductService
         return product;
     }
 
-    public async Task<IEnumerable<Product>> GetAllProductsAsync()
+    public async Task<Product?> ReadProductByNameAsync(string name)
+    {
+        var product = await _context.Products.FirstOrDefaultAsync(p => p.Name == name);
+
+        return product;
+    }
+
+    public async Task<IQueryable<Product>> GetAllProductsAsync()
     {
         var products = await _context.Products.Include(p => p.Manufacturer).ToListAsync();
 
-        return products;
+        return products.AsQueryable();
     }
     
 

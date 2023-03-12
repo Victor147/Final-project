@@ -8,6 +8,7 @@ public interface IManufacturerService
 {
     Task CreateManufacturerAsync(ManufacturerModel model);
     Task<Manufacturer> ReadManufacturerAsync(int id);
+    Task<Manufacturer?> ReadManufacturerByNameAsync(string name);
     Task<IEnumerable<Manufacturer>> GetAllManufacturersAsync();
     Task UpdateManufacturerAsync(ManufacturerViewModel model);
     Task DeleteManufacturerAsync(int id);

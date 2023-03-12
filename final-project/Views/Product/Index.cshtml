@@ -7,39 +7,20 @@
 @* filter form *@
 @* TODO: design changes *@
 
-
-@* @using (Html.BeginForm()) *@
-@* { *@
-@*     <div> *@
-@*         $1$ <label>Manufacturer:</label> #1# *@
-@*         $1$ @Html.TextBox("manufacturerFilter") #1# *@
-@* *@
-@*         <label>Manufacturer:</label> *@
-@*         @Html.DropDownList("manufacturerFilter", ViewBag.Manufacturers as SelectList, "All") *@
-@*     </div> *@
-@*     <div> *@
-@*         <label>Price range:</label> *@
-@*         @Html.TextBox("minPriceFilter") *@
-@*         to *@
-@*         @Html.TextBox("maxPriceFilter") *@
-@*     </div> *@
-@*     <button type="submit">Filter</button> *@
-@* } *@
-
 <div class="container-fluid">
     <div>
         <h2 class="text-center mt-4 mb-5">All products listed</h2>
         <div class="mb-4">
-            <form id="form" method="post" asp-action="Index" asp-controller="Product">
-                @Html.DropDownList("sortOrder", new SelectList(
-                    new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Name (A-Z)", Value = "name_asc" },
-                        new SelectListItem { Text = "Name (Z-A)", Value = "name_desc" },
-                        new SelectListItem { Text = "Price(Low to High)", Value = "price_asc" },
-                        new SelectListItem { Text = "Price(High to Low)", Value = "price_desc" }
-                    }, "Value", "Text", ViewBag.SortOrder), new { onchange = "this.form.submit();" })
-            </form>
+            @* <form id="form" method="post" asp-action="Index" asp-controller="Product"> *@
+            @*     @Html.DropDownList("sortOrder", new SelectList( *@
+            @*         new List<SelectListItem> *@
+            @*         { *@
+            @*             new SelectListItem { Text = "Name (A-Z)", Value = "name_asc" }, *@
+            @*             new SelectListItem { Text = "Name (Z-A)", Value = "name_desc" }, *@
+            @*             new SelectListItem { Text = "Price(Low to High)", Value = "price_asc" }, *@
+            @*             new SelectListItem { Text = "Price(High to Low)", Value = "price_desc" } *@
+            @*         }, "Value", "Text", ViewBag.SortOrder), new { onchange = "this.form.submit();" }) *@
+            @* </form> *@
         </div>
     </div>
     <div class="row">
@@ -58,6 +39,16 @@
                     @Html.TextBox("minPriceFilter")
                     to
                     @Html.TextBox("maxPriceFilter")
+                </div>
+                <div>
+                    @Html.DropDownList("sortOrder", new SelectList(
+                        new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Name (A-Z)", Value = "name_asc" },
+                            new SelectListItem { Text = "Name (Z-A)", Value = "name_desc" },
+                            new SelectListItem { Text = "Price(Low to High)", Value = "price_asc" },
+                            new SelectListItem { Text = "Price(High to Low)", Value = "price_desc" }
+                        }, "Value", "Text", ViewBag.SortOrder), new { onchange = "this.form.submit();" })
                 </div>
                 <button type="submit">Filter</button>
             }

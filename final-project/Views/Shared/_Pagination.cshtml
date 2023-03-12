@@ -1,0 +1,36 @@
+﻿@model final_project.Helpers.PaginationProperties
+
+@{
+    var queryParameters = (Dictionary<string, string>)ViewData["QueryParameters"]!;
+}
+
+<nav>
+    <ul class="pagination">
+        @if (Model.PreviousPage != 0)
+        {
+            var parameters = queryParameters;
+            parameters["Page"] = Model.PreviousPage.ToString();
+            <li class="page-item"><a asp-all-route-data="parameters" class="page-link">Prev</a></li>
+        }
+        @for (int i = Model.PageSpanStart; i <= Model.PageSpanEnd; i++)
+        {
+            if (Model.CurrentPage == i)
+            {
+                <li class="page-item active"><a class="page-link active">@Model.CurrentPage</a></li>
+            }
+            else
+            {
+                var parameters = queryParameters;
+                parameters["Page"] = i.ToString();
+                <li class="page-item"><a asp-all-route-data="parameters" class="page-link">@i</a></li>
+            }
+        }
+        @if (Model.NextPage != 0)
+        {
+            var parameters = queryParameters;
+            parameters["Page"] = Model.NextPage.ToString();
+            
+            <li class="page-item"><a asp-all-route-data="parameters" class="page-link">Next</a></li>
+        }
+    </ul>
+</nav>

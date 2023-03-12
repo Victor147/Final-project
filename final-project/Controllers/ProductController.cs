@@ -7,6 +7,8 @@ using final_project.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using final_project.Helpers;
+using Microsoft.EntityFrameworkCore;
 
 namespace final_project.Controllers;
 
@@ -24,18 +26,32 @@ public class ProductController : Controller
     }
 
     [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> ListProducts()
+    public async Task<IActionResult> ListProducts(int page = 1, int perPage = 6)
     {
         var model = await _productService.GetAllProductsAsync();
-        
-        var products = new List<ProductViewModel>();
-    
-        foreach (var p in model)
+        var products = model.ToList()
+            .Skip((page - 1) * perPage)
+            .Take(perPage)
+            .Select(p => _mapper.Map<ProductViewModel>(p));
+
+        ViewData["QueryParameters"] = new Dictionary<string, string>
         {
-            products.Add(_mapper.Map<ProductViewModel>(p));
-        }
+            { "Page", page.ToString() },
+            { "PerPage", perPage.ToString() }
+        };
+        // var products = new List<ProductViewModel>();
+        // foreach (var p in model)
+        // {
+        //     products.Add(_mapper.Map<ProductViewModel>(p));
+        // }
     
-        return View(products);
+        return View(new AdminProductViewModel
+        {
+            Products = products,
+            PaginationProperties = Pagination.CalculateProperties(page,
+                model.Count(), 
+                perPage)
+        });
     }
     
     public async Task<IActionResult> Index(string manufacturerFilter, decimal? minPriceFilter, decimal? maxPriceFilter, string sortOrder)
@@ -65,16 +81,16 @@ public class ProductController : Controller
         switch (sortOrder)
         {
             case "name_desc":
-                model = model.OrderByDescending(p => p.Name).ToList();
+                model = model.OrderByDescending(p => p.Name).ToList().AsQueryable();
                 break;
             case "price_asc":
-                model = model.OrderBy(p => p.Price).ToList();
+                model = model.OrderBy(p => p.Price).ToList().AsQueryable();
                 break;
             case "price_desc":
-                model = model.OrderByDescending(p => p.Price).ToList();
+                model = model.OrderByDescending(p => p.Price).ToList().AsQueryable();
                 break;
             default:
-                model = model.OrderBy(p => p.Name).ToList();
+                model = model.OrderBy(p => p.Name).ToList().AsQueryable();
                 break;
         }
 

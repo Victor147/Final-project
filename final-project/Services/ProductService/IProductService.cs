@@ -7,7 +7,8 @@ public interface IProductService
 {
     Task CreateProductAsync(ProductModel model);
     Task<Product> ReadProductAsync(int id);
-    Task<IEnumerable<Product>> GetAllProductsAsync();
+    Task<Product?> ReadProductByNameAsync(string name);
+    Task<IQueryable<Product>> GetAllProductsAsync();
     Task UpdateProductAsync(int id, ProductModel model, bool changeImg);
     Task DeleteProductAsync(int id);
 }
