@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using final_project.Helpers;
-using Microsoft.EntityFrameworkCore;
 
 namespace final_project.Controllers;
 
@@ -39,40 +38,36 @@ public class ProductController : Controller
             { "Page", page.ToString() },
             { "PerPage", perPage.ToString() }
         };
-        // var products = new List<ProductViewModel>();
-        // foreach (var p in model)
-        // {
-        //     products.Add(_mapper.Map<ProductViewModel>(p));
-        // }
-    
-        return View(new AdminProductViewModel
+
+        return View(new ReturnPaginatedProductsViewModel()
         {
             Products = products,
             PaginationProperties = Pagination.CalculateProperties(page,
-                model.Count(), 
+                model.Count(),
                 perPage)
         });
     }
-    
-    public async Task<IActionResult> Index(string manufacturerFilter, decimal? minPriceFilter, decimal? maxPriceFilter, string sortOrder)
+
+    public async Task<IActionResult> Index(string? manufacturerFilter, decimal? minPriceFilter, decimal? maxPriceFilter,
+        string sortOrder, int page = 1, int perPage = 6)
     {
         var model = await _productService.GetAllProductsAsync();
-    
-         var manufacturers = await _manufacturerService.GetAllManufacturersAsync();
-         var names = manufacturers.Select(m => m.Name).Distinct().OrderBy(m => m).ToList();
-    
-         ViewBag.Manufacturers = new SelectList(names);
-    
+
+        var manufacturers = await _manufacturerService.GetAllManufacturersAsync();
+        var names = manufacturers.Select(m => m.Name).Distinct().OrderBy(m => m).ToList();
+
+        ViewBag.Manufacturers = new SelectList(names);
+
         if (!string.IsNullOrEmpty(manufacturerFilter))
         {
             model = model.Where(p => p.Manufacturer.Name == manufacturerFilter);
         }
-    
+
         if (minPriceFilter.HasValue)
         {
             model = model.Where(p => p.Price >= minPriceFilter.Value);
         }
-        
+
         if (maxPriceFilter.HasValue)
         {
             model = model.Where(p => p.Price <= maxPriceFilter.Value);
@@ -93,19 +88,40 @@ public class ProductController : Controller
                 model = model.OrderBy(p => p.Name).ToList().AsQueryable();
                 break;
         }
-
-        ViewBag.SortOrder = sortOrder;
-    
-        var products = new List<ProductViewModel>();
         
-        foreach (var p in model)
-        {
-            products.Add(_mapper.Map<ProductViewModel>(p));
-        }
+        ViewBag.SortOrder = sortOrder;
 
-        return View(products);
+        var products = model.ToList()
+            .Skip((page - 1) * perPage)
+            .Take(perPage)
+            .Select(p => _mapper.Map<ProductViewModel>(p));
+
+        ViewData["QueryParameters"] = new Dictionary<string, string>
+        {
+            {
+                "Page", page.ToString()
+            },
+            {
+                "PerPage", perPage.ToString()
+            }
+        };
+
+        // foreach (var p in model)
+        // {
+        //     products.Add(_mapper.Map<ProductViewModel>(p));
+        // }
+
+        return View(new ReturnPaginatedProductsViewModel
+        {
+            Products = products,
+            PaginationProperties = Pagination.CalculateProperties(page,
+                model.Count(),
+                perPage)
+        });
+
+        // return View(products);
     }
-    
+
     [HttpGet]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create()
@@ -164,7 +180,7 @@ public class ProductController : Controller
         {
             await _productService.UpdateProductAsync(id, productModel, true);
         }
-        
+
         return RedirectToAction("Index", "Product");
     }
 
@@ -182,10 +198,10 @@ public class ProductController : Controller
     [HttpPost]
     [Authorize(Roles = "Admin")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteProduct([FromForm]ProductViewModel productViewModel)
+    public async Task<IActionResult> DeleteProduct([FromForm] ProductViewModel productViewModel)
     {
         await _productService.DeleteProductAsync(productViewModel.Id);
-        
+
         return RedirectToAction("Index", "Product");
     }
 }

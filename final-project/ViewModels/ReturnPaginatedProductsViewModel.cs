@@ -2,7 +2,7 @@
 
 namespace final_project.ViewModels;
 
-public class AdminProductViewModel
+public class ReturnPaginatedProductsViewModel
 {
     public IEnumerable<ProductViewModel> Products { get; set; }
 

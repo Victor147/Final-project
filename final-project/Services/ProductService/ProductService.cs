@@ -43,7 +43,7 @@ public class ProductService : IProductService
         return product;
     }
 
-    public async Task<IQueryable<Product>> GetAllProductsAsync()
+    public async Task<IEnumerable<Product>> GetAllProductsAsync()
     {
         var products = await _context.Products.Include(p => p.Manufacturer).ToListAsync();
 
