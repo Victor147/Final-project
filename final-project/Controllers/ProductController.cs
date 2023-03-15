@@ -106,11 +106,6 @@ public class ProductController : Controller
             }
         };
 
-        // foreach (var p in model)
-        // {
-        //     products.Add(_mapper.Map<ProductViewModel>(p));
-        // }
-
         return View(new ReturnPaginatedProductsViewModel
         {
             Products = products,
@@ -119,7 +114,7 @@ public class ProductController : Controller
                 perPage)
         });
 
-        // return View(products);
+
     }
 
     [HttpGet]

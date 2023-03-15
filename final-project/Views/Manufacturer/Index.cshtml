@@ -9,7 +9,9 @@
         <div class="col-2"></div>
         <div class="col-8">
             <h2 class="text-center">All manufacturer listed</h2>
-            <div><a href="/Manufacturer/Create">Create new</a></div>
+            <div>
+                <a href="/Manufacturer/Create">Create new</a>
+            </div>
             <table class="table text-center">
                 <tr>
                     <th>Name</th>
@@ -23,6 +25,7 @@
                     </tr>
                 }
             </table>
+            <div>@Html.ActionLink("Go back to panel", "Panel", "Admin", "", new { @class = "btn btn-primary" })</div>
         </div>
         <div class="col-2"></div>
     </div>

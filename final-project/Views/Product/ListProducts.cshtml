@@ -4,13 +4,13 @@
     ViewData["Title"] = "Listed products";
 }
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
             <h2 class="text-center">All products listed</h2>
             <div>
-                <a href="/Product/Create">Create new</a>
+                <a asp-action="Index" asp-controller="Product" class="btn btn-info"><i class="fa-sharp fa-solid fa-plus"></i>Create new product</a>
             </div>
             <table class="table text-center">
                 <thead>
@@ -36,13 +36,16 @@
                             <a href="@Html.DisplayFor(item => product.Image)">Image</a>
                         </td>
                         <td>@Html.DisplayFor(item => product.Manufacturer.Name)</td>
-                        <td><a href="/Product/Read/@product.Id">Read</a> | <a href="/Product/Update/@product.Id">Update</a> | <a href="/Product/Delete/@product.Id">Delete</a></td>
+                        <td><a href="/Product/Read/@product.Id" class="btn btn-success"><i class="fa-solid fa-magnifying-glass"></i></a><a href="/Product/Update/@product.Id" class="btn btn-warning"><i class="fa-solid fa-pen"></i></a><a href="/Product/Delete/@product.Id" class="btn btn-danger rounded"><i class="fa-regular fa-trash-can"></i></a></td>
                     </tr>
                 }
                 </tbody>
             </table>
-            <div class="d-flex justify-content-center"><partial name="_Pagination" model="Model.PaginationProperties"/></div>
+            <div>@Html.ActionLink("Go back to panel", "Panel", "Admin", "", new { @class = "btn btn-primary" })</div>
+            <div class="d-flex justify-content-center">
+                <partial name="_Pagination" model="Model.PaginationProperties"/>
+            </div>
         </div>
-        <div class="col-2"></div>
+        <div class="col-md-2"></div>
     </div>
 </div>

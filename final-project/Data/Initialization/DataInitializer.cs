@@ -80,7 +80,7 @@ public class DataInitializer
                 await _productService.CreateProductAsync(new ProductModel
                 {
                     Name = productName,
-                    Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec cursus nisl vel arcu vestibulum vehicula. Fusce euismod quis dolor non efficitur. Donec nunc urna, sagittis eget urna in, pellentesque vehicula massa. Suspendisse vel lorem ut lorem aliquam finibus. Mauris tempus turpis porttitor ipsum malesuada mattis. Nullam quam orci, varius quis aliquet quis, convallis et arcu. Sed rutrum sapien at risus condimentum, sit amet auctor purus placerat. Sed hendrerit sapien id turpis rhoncus mattis.",
+                    Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec cursus nisl vel arcu vestibulum vehicula. Fusce euismod quis dolor non efficitur.",
                     Stock = new Random().Next(1, 51),
                     Price = new Random().Next(10, 10000),
                     Image = new FormFile(new MemoryStream(bytes), 0, bytes.Length, name, name),
