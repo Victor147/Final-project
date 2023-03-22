@@ -10,6 +10,10 @@
         {
             var parameters = queryParameters;
             parameters["Page"] = Model.PreviousPage.ToString();
+            parameters["SortOrder"] = ViewBag.SortOrder;
+            parameters["MinPriceFilter"] = ViewBag.MinPriceFilter != null ? ViewBag.MinPriceFilter.ToString() : string.Empty;
+            parameters["MaxPriceFilter"] = ViewBag.MaxPriceFilter != null ? ViewBag.MaxPriceFilter.ToString() : string.Empty;
+            parameters["ManufacturerFilter"] = ViewBag.ManufacturerFilter != null ? ViewBag.ManufacturerFilter : string.Empty;
             <li class="page-item"><a asp-all-route-data="parameters" class="page-link">Prev</a></li>
         }
         @for (int i = Model.PageSpanStart; i <= Model.PageSpanEnd; i++)
@@ -22,6 +26,10 @@
             {
                 var parameters = queryParameters;
                 parameters["Page"] = i.ToString();
+                parameters["SortOrder"] = ViewBag.SortOrder;
+                parameters["MinPriceFilter"] = ViewBag.MinPriceFilter != null ? ViewBag.MinPriceFilter.ToString() : string.Empty;
+                parameters["MaxPriceFilter"] = ViewBag.MaxPriceFilter != null ? ViewBag.MaxPriceFilter.ToString() : string.Empty;
+                parameters["ManufacturerFilter"] = ViewBag.ManufacturerFilter != null ? ViewBag.ManufacturerFilter : string.Empty;
                 <li class="page-item"><a asp-all-route-data="parameters" class="page-link">@i</a></li>
             }
         }
@@ -29,7 +37,10 @@
         {
             var parameters = queryParameters;
             parameters["Page"] = Model.NextPage.ToString();
-            
+            parameters["SortOrder"] = ViewBag.SortOrder;
+            parameters["MinPriceFilter"] = ViewBag.MinPriceFilter != null ? ViewBag.MinPriceFilter.ToString() : string.Empty;
+            parameters["MaxPriceFilter"] = ViewBag.MaxPriceFilter != null ? ViewBag.MaxPriceFilter.ToString() : string.Empty;
+            parameters["ManufacturerFilter"] = ViewBag.ManufacturerFilter != null ? ViewBag.ManufacturerFilter : string.Empty;
             <li class="page-item"><a asp-all-route-data="parameters" class="page-link">Next</a></li>
         }
     </ul>

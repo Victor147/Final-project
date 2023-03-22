@@ -90,6 +90,9 @@ public class ProductController : Controller
         }
         
         ViewBag.SortOrder = sortOrder;
+        ViewBag.MinPriceFilter = minPriceFilter;
+        ViewBag.MaxPriceFilter = maxPriceFilter;
+        ViewBag.ManufacturerFilter = manufacturerFilter;
 
         var products = model.ToList()
             .Skip((page - 1) * perPage)

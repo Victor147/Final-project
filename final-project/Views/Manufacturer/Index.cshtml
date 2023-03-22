@@ -21,7 +21,7 @@
                 {
                     <tr>
                         <td>@Html.DisplayFor(item => manufacturer.Name)</td>
-                        <td><a href="/Manufacturer/Read/@manufacturer.Id">Read</a> | <a href="/Manufacturer/Update/@manufacturer.Id">Update</a> | <a href="/Manufacturer/Delete/@manufacturer.Id">Delete</a></td>
+                        <td><a href="/Manufacturer/Read/@manufacturer.Id" class="btn btn-success"><i class="fa-solid fa-magnifying-glass"></i></a><a href="/Manufacturer/Update/@manufacturer.Id" class="btn btn-warning"><i class="fa-solid fa-pen"></i></a><a href="/Manufacturer/Delete/@manufacturer.Id" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></a></td>
                     </tr>
                 }
             </table>

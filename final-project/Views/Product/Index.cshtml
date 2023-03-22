@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "All products";
+    var parameters = new Dictionary<string, string>();
 }
 
 @* filter form *@
@@ -11,7 +12,12 @@
     <div>
         <h2 class="text-center mt-4 mb-5">All products listed</h2>
         <div class="mb-4">
-            <form id="form" method="post" asp-action="Index" asp-controller="Product">
+            @{
+                parameters["MinPriceFilter"] = ViewBag.MinPriceFilter != null ? ViewBag.MinPriceFilter.ToString() : string.Empty;
+                parameters["MaxPriceFilter"] = ViewBag.MaxPriceFilter != null ? ViewBag.MaxPriceFilter.ToString() : string.Empty;
+                parameters["ManufacturerFilter"] = ViewBag.ManufacturerFilter != null ? ViewBag.ManufacturerFilter : string.Empty;
+            }
+            <form id="form" method="post" asp-action="Index" asp-controller="Product" asp-all-route-data="parameters">
                 @Html.DropDownList("sortOrder", new SelectList(
                     new List<SelectListItem>
                     {
@@ -25,7 +31,7 @@
     </div>
     <div class="row">
         <div class="col-2">
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Index", "Product", new { SortOrder = ViewBag.SortOrder }, FormMethod.Post))
             {
                 <div>
                     @* <label>Manufacturer:</label> *@
@@ -40,16 +46,6 @@
                     to
                     @Html.TextBox("maxPriceFilter")
                 </div>
-                @* <div> *@
-                @*     @Html.DropDownList("sortOrder", new SelectList( *@
-                @*         new List<SelectListItem> *@
-                @*         { *@
-                @*             new SelectListItem { Text = "Name (A-Z)", Value = "name_asc" }, *@
-                @*             new SelectListItem { Text = "Name (Z-A)", Value = "name_desc" }, *@
-                @*             new SelectListItem { Text = "Price(Low to High)", Value = "price_asc" }, *@
-                @*             new SelectListItem { Text = "Price(High to Low)", Value = "price_desc" } *@
-                @*         }, "Value", "Text", ViewBag.SortOrder), new { onchange = "this.form.submit();" }) *@
-                @* </div> *@
                 <button type="submit">Filter</button>
             }
         </div>
@@ -60,7 +56,9 @@
                     <partial name="_ProductInformationTemplate" model="product"/>
                 }
             </div>
-            <div class="d-flex justify-content-center"><partial name="_Pagination" model="Model.PaginationProperties"/></div>
+            <div class="d-flex justify-content-center">
+                <partial name="_Pagination" model="Model.PaginationProperties"/>
+            </div>
         </div>
         <div class="col-2"></div>
     </div>
