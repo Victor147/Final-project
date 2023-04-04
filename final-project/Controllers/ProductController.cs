@@ -49,7 +49,7 @@ public class ProductController : Controller
     }
 
     public async Task<IActionResult> Index(string? manufacturerFilter, decimal? minPriceFilter, decimal? maxPriceFilter,
-        string sortOrder, int page = 1, int perPage = 6)
+        string sortOrder, int page = 1, int perPage = 8)
     {
         var model = await _productService.GetAllProductsAsync();
 
