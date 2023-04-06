@@ -6,7 +6,7 @@ html {
   margin-left: auto;
 }
 
-@media (max-width: 768px){
+@media (max-width: 767px){
   .left-collapse{
     margin-left: unset;
   }

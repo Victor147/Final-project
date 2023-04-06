@@ -76,10 +76,12 @@ public class CartController : Controller
         var cart = _session.Get<List<CartItemModel>>("cart");
 
         int index = cart.FindIndex(ci => ci.Product.Id == id);
-        cart[index].Quantity++;
+        var cartItem = cart[index];
+        
+        cartItem.Quantity++;
         
         _session.Set<List<CartItemModel>>("cart", cart);
-        return RedirectToAction("Index", "Cart");
+        return Json(new { success = true, subTotal = cartItem.SubTotal , total = cart.Sum(item => item.SubTotal) });
     }
 
     public IActionResult ReduceQuantity(int id)
@@ -88,17 +90,19 @@ public class CartController : Controller
         var cart = _session.Get<List<CartItemModel>>("cart");
         
         int index = cart.FindIndex(ci => ci.Product.Id == id);
-        if (cart[index].Quantity == 1)
+        var cartItem = cart[index];
+        
+        if (cartItem.Quantity == 1)
         {
             cart.RemoveAt(index);
         }
         else
         {
-            cart[index].Quantity--;
+            cartItem.Quantity--;
         }
         
         _session.Set<List<CartItemModel>>("cart", cart);
-        return RedirectToAction("Index", "Cart");
+        return Json(new { success = true, subTotal = cartItem.SubTotal , total = cart.Sum(item => item.SubTotal) });
     }
 
     public IActionResult RemoveFromCart(int id)

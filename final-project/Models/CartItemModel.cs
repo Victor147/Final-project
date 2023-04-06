@@ -8,10 +8,8 @@ public class CartItemModel
     
     public int Quantity { get; set; }
 
-    private decimal subTotal;
     public decimal SubTotal
     {
-        get { return subTotal; }
-        set { subTotal = Product.Price * Quantity; }
+        get { return Quantity * Product.Price; }
     }
 }

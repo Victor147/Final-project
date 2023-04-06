@@ -33,14 +33,18 @@
                             @Html.DisplayFor(item => cart.Product.Price)
                         </td>
                         <td>
-                            @Html.DisplayFor(item => cart.Quantity)
+                            <span id="quantity_@cart.Product.Id">@cart.Quantity</span>
+                            @* @Html.DisplayFor(item => cart.Quantity) *@
                         </td>
                         <td>
-                            @Html.DisplayFor(item => cart.SubTotal)
+                            <span id="subTotal_@cart.Product.Id">@cart.SubTotal</span>
+                            @* @Html.DisplayFor(item => cart.SubTotal) *@
                         </td>
                         <td>
-                            @Html.ActionLink("+", "IncreaseQuantity", "Cart", new { id = cart.Product.Id }, new { @class = "btn btn-primary" })
-                            @Html.ActionLink("-", "ReduceQuantity", "Cart", new { id = cart.Product.Id }, new { @class = "btn btn-danger" })
+                            <button onclick="increaseQuantity(@cart.Product.Id)" class="btn btn-primary">+</button>
+                            <button onclick="decreaseQuantity(@cart.Product.Id)" class="btn btn-danger">-</button>
+                            @* @Html.ActionLink("+", "IncreaseQuantity", "Cart", new { id = cart.Product.Id }, new { @class = "btn btn-primary increase-quantity" }) *@
+                            @* @Html.ActionLink("-", "ReduceQuantity", "Cart", new { id = cart.Product.Id }, new { @class = "btn btn-danger" }) *@
                         </td>
                         <td>
                             @Html.ActionLink("Remove", "RemoveFromCart", "Cart", new { id = cart.Product.Id }, new { @class = "btn btn-danger" })
@@ -49,7 +53,8 @@
                 }
                 <tr>
                     <td colspan="5" style="text-align: right">
-                        Total: @ViewBag.total
+                        <span>Total: <span id="total">@ViewBag.total</span></span>
+                        @* Total: @ViewBag.total *@
                     </td>
                 </tr>
                 </tbody>
@@ -58,3 +63,51 @@
         <div class="col-2"></div>
     </div>
 </div>
+
+@section Scripts
+{
+    <script>
+        function increaseQuantity(productId){
+            var quantityElement = document.getElementById('quantity_' + productId);
+            var quantity = parseInt(quantityElement.innerHTML) + 1;
+            quantityElement.innerHTML = quantity;
+            
+            $.ajax({
+                url: '/Cart/IncreaseQuantity/' + productId,
+                type: 'POST',
+                success: function (data){
+                    var subTotalElement = document.getElementById('subTotal_' + productId);
+                    var totalElement = document.getElementById('total');
+                    subTotalElement.innerHTML = data.subTotal.toFixed(2);
+                    totalElement.innerHTML = data.total.toFixed(2);
+                },
+                error: function (){
+
+                }
+            });
+        }
+        
+        function decreaseQuantity(productId){
+            var quantityElement = document.getElementById('quantity_' + productId);
+            var quantity = parseInt(quantityElement.innerHTML) - 1;
+            
+            if (quantity > 0){
+                quantityElement.innerHTML = quantity;
+                
+                $.ajax({
+                    url: '/Cart/ReduceQuantity/' + productId,
+                    type: 'POST',
+                    success: function (data){
+                        var subTotalElement = document.getElementById('subTotal_' + productId);
+                        var totalElement = document.getElementById('total');
+                        subTotalElement.innerHTML = data.subTotal.toFixed(2);
+                        totalElement.innerHTML = data.total.toFixed(2);
+                    },
+                    error: function (){
+                
+                    }
+                });
+            }
+        }
+    </script>
+}
