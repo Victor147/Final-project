@@ -1,31 +1,31 @@
-﻿@using final_project.Data.Entities
-@using Microsoft.EntityFrameworkCore.Metadata.Internal
-@model IEnumerable<final_project.Models.CartItemModel>;
+﻿@model IEnumerable<final_project.Models.CartItemModel>;
 
 @{
     ViewData["Title"] = "Shopping cart";
 }
 
-<div class="container">
+@* TODO: make the table responsive *@
+
+<div class="container-fluid">
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
+        <div class="col-3"></div>
+        <div class="col-6">
             <h2 class="text-center">Shopping cart info</h2>
             <table class="table text-center">
                 <thead>
                 <tr>
-                    <th>Product name</th>
-                    <th>Product price</th>
-                    <th>Product quantity</th>
-                    <th>Subtotal</th>
-                    <th></th>
-                    <th></th>
+                    <th scope="col">Product name</th>
+                    <th scope="col">Product price</th>
+                    <th scope="col">Product quantity</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach (var cart in Model)
                 {
-                    <tr>
+                    <tr id="item-row_@cart.Product.Id">
                         <td>
                             @Html.DisplayFor(item => cart.Product.Name)
                         </td>
@@ -47,20 +47,20 @@
                             @* @Html.ActionLink("-", "ReduceQuantity", "Cart", new { id = cart.Product.Id }, new { @class = "btn btn-danger" }) *@
                         </td>
                         <td>
-                            @Html.ActionLink("Remove", "RemoveFromCart", "Cart", new { id = cart.Product.Id }, new { @class = "btn btn-danger" })
+                            <button onclick="removeItem(@cart.Product.Id)" class="btn btn-danger">Remove</button>
+                            @* @Html.ActionLink("Remove", "RemoveFromCart", "Cart", new { id = cart.Product.Id }, new { @class = "btn btn-danger" }) *@
                         </td>
                     </tr>
                 }
                 <tr>
                     <td colspan="5" style="text-align: right">
                         <span>Total: <span id="total">@ViewBag.total</span></span>
-                        @* Total: @ViewBag.total *@
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <div class="col-2"></div>
+        <div class="col-3"></div>
     </div>
 </div>
 
@@ -108,6 +108,23 @@
                     }
                 });
             }
+        }
+        
+        function removeItem(productId){
+            var itemElement = document.getElementById('item-row_' + productId);
+            itemElement.classList.add("d-none");
+            
+            $.ajax({
+                url: '/Cart/RemoveFromCart/' + productId,
+                type: 'POST',
+                success: function (data){
+                    var totalElement = document.getElementById('total');
+                    totalElement.innerHTML = data.total.toFixed(2);
+                },
+                error(){
+                        
+                }
+            });
         }
     </script>
 }

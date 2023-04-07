@@ -23,17 +23,25 @@ public class CartController : Controller
         var cart = _session.Get<List<CartItemModel>>("cart");
         if (cart != null)
         {
-            ViewBag.total = cart.Sum(c => c.SubTotal);
+            if (cart.Sum(c => c.SubTotal) == 0)
+            {
+                ViewBag.total = "0.00";
+            }
+            else
+            {
+                ViewBag.total = cart.Sum(c => c.SubTotal);
+            }
         }
         else
         {
             cart = new List<CartItemModel>();
-            ViewBag.total = 0;
+            ViewBag.total = "0.00";
         }
 
         return View(cart);
     }
 
+    [Authorize]
     public async Task<IActionResult> AddToCart(int id)
     {
         var product = await _productService.ReadProductAsync(id);
@@ -72,7 +80,6 @@ public class CartController : Controller
 
     public IActionResult IncreaseQuantity(int id)
     {
-        //var product = await _productService.ReadProductAsync(id);
         var cart = _session.Get<List<CartItemModel>>("cart");
 
         int index = cart.FindIndex(ci => ci.Product.Id == id);
@@ -86,7 +93,6 @@ public class CartController : Controller
 
     public IActionResult ReduceQuantity(int id)
     {
-        //var product = await _productService.ReadProductAsync(id);
         var cart = _session.Get<List<CartItemModel>>("cart");
         
         int index = cart.FindIndex(ci => ci.Product.Id == id);
@@ -113,6 +119,6 @@ public class CartController : Controller
         cart.RemoveAt(index);
         
         _session.Set<List<CartItemModel>>("cart", cart);
-        return RedirectToAction("Index", "Cart");
+        return Json(new { total = cart.Sum(item => item.SubTotal) });
     }
 }
