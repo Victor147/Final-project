@@ -84,7 +84,7 @@ public class CartController : Controller
             }
         }
         
-        _session.Set<List<CartItemModel>>($"cart_{userId}", cart);
+        _session.Set($"cart_{userId}", cart);
         return RedirectToAction("Index", "Cart");
     }
 
@@ -100,7 +100,7 @@ public class CartController : Controller
         
         cartItem.Quantity++;
         
-        _session.Set<List<CartItemModel>>($"cart_{userId}", cart);
+        _session.Set($"cart_{userId}", cart);
         return Json(new { success = true, subTotal = cartItem.SubTotal , total = cart.Sum(item => item.SubTotal) });
     }
 
@@ -123,7 +123,7 @@ public class CartController : Controller
             cartItem.Quantity--;
         }
         
-        _session.Set<List<CartItemModel>>($"cart_{userId}", cart);
+        _session.Set($"cart_{userId}", cart);
         return Json(new { success = true, subTotal = cartItem.SubTotal , total = cart.Sum(item => item.SubTotal) });
     }
 
@@ -137,7 +137,7 @@ public class CartController : Controller
         int index = cart.FindIndex(ci => ci.Product.Id == id);
         cart.RemoveAt(index);
         
-        _session.Set<List<CartItemModel>>($"cart_{userId}", cart);
+        _session.Set($"cart_{userId}", cart);
         return Json(new { total = cart.Sum(item => item.SubTotal) });
     }
 }

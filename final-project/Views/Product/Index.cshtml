@@ -34,9 +34,6 @@
             @using (Html.BeginForm("Index", "Product", new { SortOrder = ViewBag.SortOrder }, FormMethod.Post))
             {
                 <div>
-                    @* <label>Manufacturer:</label> *@
-                    @* @Html.TextBox("manufacturerFilter") *@
-
                     <label>Manufacturer:</label>
                     @Html.DropDownList("manufacturerFilter", ViewBag.Manufacturers as SelectList, "All" )
                     @* @Html.DropDownList("manufacturerFilter", ViewBag.Manufacturers as SelectList, "All" ,new { onchange = "this.form.submit();"}) *@

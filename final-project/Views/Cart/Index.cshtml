@@ -8,8 +8,8 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
+        <div class="col-2"></div>
+        <div class="col-8">
             <h2 class="text-center">Shopping cart info</h2>
             <table class="table text-center">
                 <thead>
@@ -41,7 +41,7 @@
                             @* @Html.DisplayFor(item => cart.SubTotal) *@
                         </td>
                         <td>
-                            <button onclick="increaseQuantity(@cart.Product.Id)" class="btn btn-primary">+</button>
+                            <button onclick="increaseQuantity(@cart.Product.Id, @cart.Product.Stock)" class="btn btn-primary">+</button>
                             <button onclick="decreaseQuantity(@cart.Product.Id)" class="btn btn-danger">-</button>
                             @* @Html.ActionLink("+", "IncreaseQuantity", "Cart", new { id = cart.Product.Id }, new { @class = "btn btn-primary increase-quantity" }) *@
                             @* @Html.ActionLink("-", "ReduceQuantity", "Cart", new { id = cart.Product.Id }, new { @class = "btn btn-danger" }) *@
@@ -59,31 +59,40 @@
                 </tr>
                 </tbody>
             </table>
+            <div>
+                
+            </div>
         </div>
-        <div class="col-3"></div>
+        <div class="col-2"></div>
     </div>
 </div>
 
 @section Scripts
 {
     <script>
-        function increaseQuantity(productId){
+        function increaseQuantity(productId, stock){
             var quantityElement = document.getElementById('quantity_' + productId);
-            var quantity = parseInt(quantityElement.innerHTML) + 1;
+            var quantity = parseInt(quantityElement.innerHTML);
             quantityElement.innerHTML = quantity;
             
-            $.ajax({
-                url: '/Cart/IncreaseQuantity/' + productId,
-                type: 'POST',
-                success: function (data){
+            if(quantity < stock){
+                quantity += 1;
+                quantityElement.innerHTML = quantity;
+                
+                $.ajax({
+                   url: '/Cart/IncreaseQuantity/' + productId,
+                   type: 'POST',
+                   success: function (data){
                     var subTotalElement = document.getElementById('subTotal_' + productId);
                     var totalElement = document.getElementById('total');
                     subTotalElement.innerHTML = data.subTotal.toFixed(2);
                     totalElement.innerHTML = data.total.toFixed(2);
                 },
                 error: function (){
+                       
                 }
-            });
+                });
+            }
         }
         
         function decreaseQuantity(productId){

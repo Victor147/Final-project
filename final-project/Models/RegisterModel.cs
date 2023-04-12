@@ -35,4 +35,6 @@ public class RegisterModel
     [Required(ErrorMessage = "Please repeat the password!")]
     [DisplayName("Repeat password: ")]
     public string RepeatPassword { get; set; }
+
+    public string? BeforePath { get; set; }
 }

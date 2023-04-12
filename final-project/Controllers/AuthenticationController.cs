@@ -24,9 +24,20 @@ public class AuthenticationController : Controller
 
     [HttpGet]
     [AllowAnonymous]
-    public IActionResult Register()
+    public IActionResult Register(string? beforePath)
     {
-        return View();
+        if (beforePath == null)
+        {
+            return View(new RegisterModel
+            {
+                BeforePath = string.Empty
+            });
+        }
+        
+        return View(new RegisterModel
+        {
+            BeforePath = beforePath
+        });
     }
 
     [HttpPost]
@@ -49,6 +60,15 @@ public class AuthenticationController : Controller
                 var userRole = await _roleManager.FindByNameAsync("User");
                 await _userManager.AddToRoleAsync(user, userRole.Name);
                 await _signInManager.SignInAsync(user, true);
+
+                if (viewModel.BeforePath != null)
+                {
+                    var paths = viewModel.BeforePath.Split('/');
+                    var action = paths[0];
+                    var controller = paths[1];
+                    return viewModel.BeforePath != null ? RedirectToAction(action, controller) : RedirectToAction("Index", "Home");
+                }
+
                 return RedirectToAction("Index", "Home");
             }
 
@@ -60,14 +80,27 @@ public class AuthenticationController : Controller
             ModelState.AddModelError(string.Empty, "Invalid Register Attempt!");
         }
 
+        
         return View("Register", viewModel);
     }
 
     [HttpGet]
     [AllowAnonymous]
-    public IActionResult Login()
+    public IActionResult Login(string? beforePath)
     {
-        return View();
+        if (beforePath == null)
+        {
+            return View(new LoginModel
+            {
+                BeforePath = string.Empty
+            });
+        }
+        
+        return View(new LoginModel
+        {
+            BeforePath = beforePath
+        });
+        
     }
 
     
@@ -81,6 +114,14 @@ public class AuthenticationController : Controller
                 viewModel.RememberMe, false);
             if (result.Succeeded)
             {
+                if (viewModel.BeforePath != null)
+                {
+                    var paths = viewModel.BeforePath.Split('/');
+                    var action = paths[0];
+                    var controller = paths[1];
+                    return viewModel.BeforePath != null ? RedirectToAction(action, controller) : RedirectToAction("Index", "Home");
+                }
+
                 return RedirectToAction("Index", "Home");
             }
             ModelState.AddModelError("Message", "Invalid data!");

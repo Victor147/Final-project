@@ -19,4 +19,6 @@ public class LoginModel
     public bool RememberMe { get; set; } = false;
 
     public string? Message { get; set; } = string.Empty;
+
+    public string? BeforePath { get; set; }
 }
