@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3H4Khm/oLLIY5Yej5xpsX4nqbD9dNe2i00fUrJYrYqg=",
+  "Hash": "fqMYQLkGCJn8worEyTscenpbSqnf4uHOoovMfwgeMdM=",
   "Source": "final-project",
   "BasePath": "_content/final-project",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\final-project\\final-project\\wwwroot\\img\\back_after.jpg",
+      "SourceId": "final-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\final-project\\final-project\\wwwroot\\",
+      "BasePath": "_content/final-project",
+      "RelativePath": "img/back_after.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\back_after.jpg"
     },
     {
       "Identity": "D:\\final-project\\final-project\\wwwroot\\img\\background.jpg",
