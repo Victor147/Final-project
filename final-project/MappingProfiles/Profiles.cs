@@ -20,5 +20,6 @@ public class Profiles : Profile
                 opt => opt.MapFrom(src => src.File)
                 );
         CreateMap<Manufacturer, ManufacturerViewModel>();
+        CreateMap<User, UserModel>();
     }
 }

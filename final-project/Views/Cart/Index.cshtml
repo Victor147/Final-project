@@ -1,4 +1,4 @@
-﻿@model IEnumerable<final_project.Models.CartItemModel>;
+﻿@model final_project.Models.CartModel;
 
 @{
     ViewData["Title"] = "Shopping cart";
@@ -23,7 +23,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach (var cart in Model)
+                @foreach (var cart in Model.Items)
                 {
                     <tr id="item-row_@cart.Product.Id">
                         <td>
@@ -60,7 +60,9 @@
                 </tbody>
             </table>
             <div>
-                
+                <div class="form-group">
+                    <label for=""></label>
+                </div>
             </div>
         </div>
         <div class="col-2"></div>

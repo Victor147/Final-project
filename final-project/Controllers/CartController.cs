@@ -1,4 +1,5 @@
-﻿using final_project.Data.Entities;
+﻿using AutoMapper;
+using final_project.Data.Entities;
 using final_project.Extensions;
 using final_project.Models;
 using final_project.Services.ProductService;
@@ -13,38 +14,46 @@ public class CartController : Controller
     private readonly IProductService _productService;
     private readonly ISession _session;
     private readonly UserManager<User> _userManager;
+    private readonly IMapper _mapper;
 
-    public CartController(IProductService productService, IHttpContextAccessor httpContextAccessor, UserManager<User> userManager)
+    public CartController(IProductService productService, IHttpContextAccessor httpContextAccessor, UserManager<User> userManager, IMapper mapper)
     {
         _productService = productService;
         _userManager = userManager;
+        _mapper = mapper;
         _session = httpContextAccessor.HttpContext!.Session;
     }
 
     [Authorize]
     public async Task<IActionResult> Index()
     {
+        var name = HttpContext.User.Identity!.Name;
         var user = await _userManager.FindByNameAsync(HttpContext.User.Identity!.Name);
+        var userModel = _mapper.Map<UserModel>(user);
         var userId = user.Id;
         
-        var cart = _session.Get<List<CartItemModel>>($"cart_{userId}");
+        var cart = _session.Get<CartModel>($"cart_{userId}");
         if (cart != null)
         {
-            if (cart.Sum(c => c.SubTotal) == 0)
+            if (cart.Items.Sum(c => c.SubTotal) == 0)
             {
                 ViewBag.total = "0.00";
             }
             else
             {
-                ViewBag.total = cart.Sum(c => c.SubTotal);
+                ViewBag.total = cart.Items.Sum(c => c.SubTotal);
             }
         }
         else
         {
-            cart = new List<CartItemModel>();
+            cart = new CartModel
+            {
+                Items = new List<CartItemModel>(),
+                User = userModel
+            };
             ViewBag.total = "0.00";
         }
-
+        
         return View(cart);
     }
 
@@ -52,15 +61,21 @@ public class CartController : Controller
     public async Task<IActionResult> AddToCart(int id)
     {
         var user = await _userManager.FindByNameAsync(HttpContext.User.Identity!.Name);
+        var userModel = _mapper.Map<UserModel>(user);
         var userId = user.Id;
         
         var product = await _productService.ReadProductAsync(id);
-        var cart = _session.Get<List<CartItemModel>>($"cart_{userId}");
+        var cart = _session.Get<CartModel>($"cart_{userId}");
 
         if (cart == null)
         {
-            cart = new List<CartItemModel>();
-            cart.Add(new CartItemModel
+            cart = new CartModel
+            {
+                Items = new List<CartItemModel>(),
+                User = userModel
+            };
+            
+            cart.Items.Add(new CartItemModel
             {
                 Product = product,
                 Quantity = 1
@@ -68,15 +83,15 @@ public class CartController : Controller
         }
         else
         {
-            int index = cart.FindIndex(w => w.Product.Id == id);
+            int index = cart.Items.FindIndex(w => w.Product.Id == id);
 
             if (index != -1)
             {
-                cart[index].Quantity++;
+                cart.Items[index].Quantity++;
             }
             else
             {
-                cart.Add(new CartItemModel
+                cart.Items.Add(new CartItemModel
                 {
                     Product = product,
                     Quantity = 1
@@ -93,15 +108,15 @@ public class CartController : Controller
         var user = await _userManager.FindByNameAsync(HttpContext.User.Identity!.Name);
         var userId = user.Id;
         
-        var cart = _session.Get<List<CartItemModel>>($"cart_{userId}");
+        var cart = _session.Get<CartModel>($"cart_{userId}");
 
-        int index = cart.FindIndex(ci => ci.Product.Id == id);
-        var cartItem = cart[index];
+        int index = cart.Items.FindIndex(ci => ci.Product.Id == id);
+        var cartItem = cart.Items[index];
         
         cartItem.Quantity++;
         
         _session.Set($"cart_{userId}", cart);
-        return Json(new { success = true, subTotal = cartItem.SubTotal , total = cart.Sum(item => item.SubTotal) });
+        return Json(new { success = true, subTotal = cartItem.SubTotal , total = cart.Items.Sum(item => item.SubTotal) });
     }
 
     public async Task<IActionResult> ReduceQuantity(int id)
@@ -109,14 +124,14 @@ public class CartController : Controller
         var user = await _userManager.FindByNameAsync(HttpContext.User.Identity!.Name);
         var userId = user.Id;
         
-        var cart = _session.Get<List<CartItemModel>>($"cart_{userId}");
+        var cart = _session.Get<CartModel>($"cart_{userId}");
         
-        int index = cart.FindIndex(ci => ci.Product.Id == id);
-        var cartItem = cart[index];
+        int index = cart.Items.FindIndex(ci => ci.Product.Id == id);
+        var cartItem = cart.Items[index];
         
         if (cartItem.Quantity == 1)
         {
-            cart.RemoveAt(index);
+            cart.Items.RemoveAt(index);
         }
         else
         {
@@ -124,7 +139,7 @@ public class CartController : Controller
         }
         
         _session.Set($"cart_{userId}", cart);
-        return Json(new { success = true, subTotal = cartItem.SubTotal , total = cart.Sum(item => item.SubTotal) });
+        return Json(new { success = true, subTotal = cartItem.SubTotal , total = cart.Items.Sum(item => item.SubTotal) });
     }
 
     public async Task<IActionResult> RemoveFromCart(int id)
@@ -132,12 +147,12 @@ public class CartController : Controller
         var user = await _userManager.FindByNameAsync(HttpContext.User.Identity!.Name);
         var userId = user.Id;
         
-        var cart = _session.Get<List<CartItemModel>>($"cart_{userId}");
+        var cart = _session.Get<CartModel>($"cart_{userId}");
         
-        int index = cart.FindIndex(ci => ci.Product.Id == id);
-        cart.RemoveAt(index);
+        int index = cart.Items.FindIndex(ci => ci.Product.Id == id);
+        cart.Items.RemoveAt(index);
         
         _session.Set($"cart_{userId}", cart);
-        return Json(new { total = cart.Sum(item => item.SubTotal) });
+        return Json(new { total = cart.Items.Sum(item => item.SubTotal) });
     }
 }
