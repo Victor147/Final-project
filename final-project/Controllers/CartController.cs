@@ -3,6 +3,7 @@ using final_project.Data.Entities;
 using final_project.Extensions;
 using final_project.Models;
 using final_project.Services.ProductService;
+using final_project.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -49,7 +50,8 @@ public class CartController : Controller
             cart = new CartModel
             {
                 Items = new List<CartItemModel>(),
-                User = userModel
+                User = userModel,
+                DeliveryInformation = new DeliveryInformationViewModel()
             };
             ViewBag.total = "0.00";
         }
@@ -72,7 +74,8 @@ public class CartController : Controller
             cart = new CartModel
             {
                 Items = new List<CartItemModel>(),
-                User = userModel
+                User = userModel,
+                DeliveryInformation = new DeliveryInformationViewModel()
             };
             
             cart.Items.Add(new CartItemModel

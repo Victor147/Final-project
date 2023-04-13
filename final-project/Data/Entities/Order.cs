@@ -1,4 +1,6 @@
-﻿namespace final_project.Data.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace final_project.Data.Entities
 {
     public class Order : Entity<int>
     {
@@ -8,7 +10,12 @@
 
         public User User { get; set; }
 
+        [ForeignKey("User")]
         public int UserId { get; set; }
+
+        public string Address { get; set; }
+        
+        public string Town { get; set; }
 
         public IEnumerable<OrderDetail> Details { get; set; }
     }

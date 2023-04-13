@@ -18,8 +18,12 @@ public class Profiles : Profile
             .ForMember(
                 dest => dest.Image,
                 opt => opt.MapFrom(src => src.File)
-                );
+            );
         CreateMap<Manufacturer, ManufacturerViewModel>();
-        CreateMap<User, UserModel>();
+        CreateMap<User, UserModel>()
+            .ForMember(
+                dest => dest.Username,
+                opt => opt.MapFrom(src => src.UserName)
+            );
     }
 }

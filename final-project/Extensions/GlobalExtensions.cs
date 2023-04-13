@@ -2,6 +2,8 @@
 using final_project.Data.Persistence;
 using final_project.Helpers.Cloudinary;
 using final_project.Services.ManufacturerService;
+using final_project.Services.OrderDetailService;
+using final_project.Services.OrderService;
 using final_project.Services.ProductService;
 
 namespace final_project.Extensions;
@@ -17,5 +19,7 @@ public static class GlobalExtensions
         builder.Services.AddTransient<IProductService, ProductService>();
         builder.Services.AddTransient<IManufacturerService, ManufacturerService>();
         builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        builder.Services.AddTransient<IOrderService, OrderService>();
+        builder.Services.AddTransient<IOrderDetailService, OrderDetailService>();
     }
 }
