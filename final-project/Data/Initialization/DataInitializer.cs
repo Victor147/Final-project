@@ -74,7 +74,7 @@ public class DataInitializer
             Product? testProduct = await _productService.ReadProductByNameAsync(productName);
             if (testProduct is null)
             {
-                string path = @"D:\final-project\final-project\wwwroot\img\background.jpg";
+                string path = @"wwwroot\img\background.jpg";
                 string name = Path.GetFileName(path);
                 byte[] bytes = File.ReadAllBytes(path);
                 await _productService.CreateProductAsync(new ProductModel
