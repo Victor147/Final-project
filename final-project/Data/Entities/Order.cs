@@ -16,7 +16,8 @@ namespace final_project.Data.Entities
         public string Address { get; set; }
         
         public string Town { get; set; }
-
+        
         public IEnumerable<OrderDetail> Details { get; set; }
+        
     }
 }

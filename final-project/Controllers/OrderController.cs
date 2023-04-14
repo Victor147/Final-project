@@ -32,35 +32,31 @@ public class OrderController : Controller
 
             model.Items[i].Product = product;
         }
-
-        var orderDetailsList = new List<OrderDetail>();
-
-        for (int i = 0; i < model.Items.Count; i++)
-        {
-            var orderDetail = new OrderDetail
-            {
-                ProductId = model.Items[i].Product.Id,
-                Quantity = model.Items[i].Quantity
-            };
-
-            await _orderDetailService.CreateOrderDetailAsync(orderDetail);
-            
-            orderDetailsList.Add(orderDetail);
-        }
-
+        
         var user = await _userManager.FindByNameAsync(model.User.Username);
         
         var order = new Order
         {
             OrderDate = DateTime.Now,
             TotalCost = model.Items.Sum(it => it.SubTotal),
-            User = user,
+            UserId = user.Id,
             Address = model.DeliveryInformation.Address,
             Town = model.DeliveryInformation.Town,
-            Details = orderDetailsList
         };
 
         await _orderService.CreateOrderAsync(order);
+
+        for (int i = 0; i < model.Items.Count; i++)
+        {
+            var orderDetail = new OrderDetail
+            {
+                ProductId = model.Items[i].Product.Id,
+                Quantity = model.Items[i].Quantity,
+                OrderId = order.Id
+            };
+
+            await _orderDetailService.CreateOrderDetailAsync(orderDetail);
+        }
 
         //implement logic
         return RedirectToAction("Index", "Product");

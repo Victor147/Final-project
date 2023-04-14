@@ -181,5 +181,18 @@
                 }
             });
         }
+        
+        function helper(){
+            $.ajax({
+                url: '/Cart/Index/',
+                type: 'GET',
+                success: function (){
+                    window.location.refresh();
+                },
+                error: function (){
+                                   
+                }
+            });
+        }
     </script>
 }

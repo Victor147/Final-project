@@ -24,7 +24,7 @@ public class CartController : Controller
         _mapper = mapper;
         _session = httpContextAccessor.HttpContext!.Session;
     }
-
+    
     [Authorize]
     public async Task<IActionResult> Index()
     {
@@ -105,7 +105,7 @@ public class CartController : Controller
         _session.Set($"cart_{userId}", cart);
         return RedirectToAction("Index", "Cart");
     }
-
+    
     public async Task<IActionResult> IncreaseQuantity(int id)
     {
         var user = await _userManager.FindByNameAsync(HttpContext.User.Identity!.Name);
@@ -121,7 +121,7 @@ public class CartController : Controller
         _session.Set($"cart_{userId}", cart);
         return Json(new { success = true, subTotal = cartItem.SubTotal , total = cart.Items.Sum(item => item.SubTotal) });
     }
-
+    
     public async Task<IActionResult> ReduceQuantity(int id)
     {
         var user = await _userManager.FindByNameAsync(HttpContext.User.Identity!.Name);

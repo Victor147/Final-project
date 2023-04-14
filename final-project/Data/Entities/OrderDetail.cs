@@ -12,7 +12,7 @@ namespace final_project.Data.Entities
         public Order? Order { get; set; }
 
         [ForeignKey("Order")]
-        public int OrderId { get; set; }
+        public int? OrderId { get; set; }
 
         public int Quantity { get; set; }
     }

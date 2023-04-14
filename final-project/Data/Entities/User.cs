@@ -11,8 +11,5 @@ namespace final_project.Data.Entities
         public string? Address { get; set; }
 
         public IEnumerable<Order>? Orders { get; set; }
-
-        public IEnumerable<OrderDetail>? OrderDetails { get; set; }
-
     }
 }
