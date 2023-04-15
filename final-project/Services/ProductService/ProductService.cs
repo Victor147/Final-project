@@ -69,6 +69,15 @@ public class ProductService : IProductService
         await _context.SaveChangesAsync();
     }
 
+    public async Task UpdateProductQuantityAsync(Product product)
+    {
+        var fromDb = await ReadProductAsync(product.Id);
+        fromDb.Stock = product.Stock;
+
+        _context.Products.Update(fromDb);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task DeleteProductAsync(int id)
     {
         _context.Products.Remove(await ReadProductAsync(id));

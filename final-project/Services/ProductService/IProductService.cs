@@ -11,5 +11,6 @@ public interface IProductService
     Task<Product?> ReadProductByNameAsync(string name);
     Task<IEnumerable<Product>> GetAllProductsAsync();
     Task UpdateProductAsync(int id, ProductModel model, bool changeImg);
+    Task UpdateProductQuantityAsync(Product product);
     Task DeleteProductAsync(int id);
 }

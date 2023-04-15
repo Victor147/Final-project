@@ -25,5 +25,9 @@ public class Profiles : Profile
                 dest => dest.Username,
                 opt => opt.MapFrom(src => src.UserName)
             );
+        CreateMap<Order, OrderAdminModel>()
+            .ForMember(dest => dest.Username,
+                opt => opt.MapFrom(src => src.User.UserName)
+            );
     }
 }

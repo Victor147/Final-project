@@ -28,7 +28,14 @@ public class OrderDetailService : IOrderDetailService
 
     public async Task<IEnumerable<OrderDetail>> GetAllOrdersDetailAsync()
     {
-        var orderDetails = await _context.OrderDetails.ToListAsync();
+        var orderDetails = await _context.OrderDetails.Include(od => od.Product).ToListAsync();
+
+        return orderDetails;
+    }
+
+    public async Task<IEnumerable<OrderDetail>> GetAllOrdersDetailByOrderIdAsync(int orderId)
+    {
+        var orderDetails = await _context.OrderDetails.Include(od => od.Product).Where(od => od.OrderId == orderId).ToListAsync();
 
         return orderDetails;
     }

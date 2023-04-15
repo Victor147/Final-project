@@ -7,4 +7,5 @@ public interface IOrderDetailService
     Task CreateOrderDetailAsync(OrderDetail orderDetail);
     Task<OrderDetail> ReadOrderDetailAsync(int id);
     Task<IEnumerable<OrderDetail>> GetAllOrdersDetailAsync();
+    Task<IEnumerable<OrderDetail>> GetAllOrdersDetailByOrderIdAsync(int orderId);
 }
