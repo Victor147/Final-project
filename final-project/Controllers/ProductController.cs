@@ -94,6 +94,9 @@ public class ProductController : Controller
         ViewBag.MaxPriceFilter = maxPriceFilter;
         ViewBag.ManufacturerFilter = manufacturerFilter;
 
+        //filter products without stock value
+        model = model.Where(p => p.Stock != 0);
+
         var products = model.ToList()
             .Skip((page - 1) * perPage)
             .Take(perPage)
