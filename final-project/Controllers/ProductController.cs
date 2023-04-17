@@ -132,7 +132,8 @@ public class ProductController : Controller
     {
         ProductModel model = new ProductModel
         {
-            Manufacturers = await _manufacturerService.GetAllManufacturersAsync()
+            Manufacturers = await _manufacturerService.GetAllManufacturersAsync(),
+            Categories = await _categoryService.GetAllCategoriesAsync()
         };
         return View(model);
     }

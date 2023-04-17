@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddServerSideBlazor();
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddProgressiveWebApp();
 builder.AddPersistence();
 builder.AddCloudinary();
 builder.Services.AddDistributedMemoryCache();

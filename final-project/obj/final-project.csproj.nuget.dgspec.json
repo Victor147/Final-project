@@ -89,6 +89,10 @@
             "Stripe.net": {
               "target": "Package",
               "version": "[41.13.0, )"
+            },
+            "WebEssentials.AspNetCore.PWA": {
+              "target": "Package",
+              "version": "[1.0.65, )"
             }
           },
           "imports": [
