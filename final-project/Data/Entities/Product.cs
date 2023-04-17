@@ -16,6 +16,12 @@ namespace final_project.Data.Entities
         
         [ForeignKey("Manufacturer")]
         public int ManufacturerId { get; set; }
+
+        [Required(ErrorMessage = "Category cannot be empty")]
+        public Category Category { get; set; }
+
+        [ForeignKey("Category")]
+        public int CategoryId { get; set; }
         
         [NotMapped]
         public IEnumerable<OrderDetail> OrderDetails { get; set; }

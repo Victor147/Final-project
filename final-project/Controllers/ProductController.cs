@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using final_project.Helpers;
+using final_project.Services.CategoryService;
 
 namespace final_project.Controllers;
 
@@ -16,12 +17,14 @@ public class ProductController : Controller
     private readonly IMapper _mapper;
     private readonly IProductService _productService;
     private readonly IManufacturerService _manufacturerService;
+    private readonly ICategoryService _categoryService;
 
-    public ProductController(IMapper mapper, IProductService productService, IManufacturerService manufacturerService)
+    public ProductController(IMapper mapper, IProductService productService, IManufacturerService manufacturerService, ICategoryService categoryService)
     {
         _mapper = mapper;
         _productService = productService;
         _manufacturerService = manufacturerService;
+        _categoryService = categoryService;
     }
 
     [Authorize(Roles = "Admin")]
@@ -150,6 +153,7 @@ public class ProductController : Controller
         Product product = await _productService.ReadProductAsync(id);
         ProductViewModel productVm = _mapper.Map<ProductViewModel>(product);
         productVm.Manufacturer = await _manufacturerService.ReadManufacturerAsync(product.ManufacturerId);
+        productVm.Category = await _categoryService.ReadCategoryAsync(product.CategoryId);
 
         return View(productVm);
     }
@@ -161,6 +165,7 @@ public class ProductController : Controller
         Product product = await _productService.ReadProductAsync(id);
         UpdateProductModel productVm = _mapper.Map<UpdateProductModel>(product);
         productVm.Manufacturers = await _manufacturerService.GetAllManufacturersAsync();
+        productVm.Categories = await _categoryService.GetAllCategoriesAsync();
 
         return View(productVm);
     }
@@ -192,6 +197,7 @@ public class ProductController : Controller
         Product product = await _productService.ReadProductAsync(id);
         ProductViewModel productVm = _mapper.Map<ProductViewModel>(product);
         productVm.Manufacturer = await _manufacturerService.ReadManufacturerAsync(product.ManufacturerId);
+        productVm.Category = await _categoryService.ReadCategoryAsync(product.CategoryId);
 
         return View(productVm);
     }

@@ -85,6 +85,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.13, )"
+            },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[41.13.0, )"
             }
           },
           "imports": [

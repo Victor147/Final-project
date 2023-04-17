@@ -1,3 +1,10 @@
-﻿@{
+﻿@model IEnumerable<final_project.Data.Entities.Order>
+
+@{
     ViewData["Title"] = "Orders";
+}
+
+@foreach (var item in Model)
+{
+    <div>@item.TotalCost</div>
 }

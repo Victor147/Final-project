@@ -20,6 +20,11 @@ public class ProductViewModel
     
     
     public int ManufacturerId { get; set; }
+    
+    public Category Category { get; set; }
+    
+    
+    public int CategoryId { get; set; }
 
     public IEnumerable<Manufacturer> Manufacturers { get; set; }
 }

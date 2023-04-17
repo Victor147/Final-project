@@ -16,5 +16,9 @@ public class ProductModel
     
     public int ManufacturerId { get; set; }
 
+    public int CategoryId { get; set; }
+
     public IEnumerable<Manufacturer>? Manufacturers { get; set; }
+
+    public IEnumerable<Category>? Categories { get; set; }
 }

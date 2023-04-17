@@ -33,6 +33,10 @@
                 <label for="manufacturerName" asp-for="Manufacturer.Name">Product manufacturer name: </label>
                 <input type="text" asp-for="Manufacturer.Name" id="manufacturerName" class="form-control" value="@Model.Manufacturer.Name" readonly="readonly">
             </div>
+            <div class="form-group my-3">
+                <label for="categoryName" asp-for="Category.Name">Product category name: </label>
+                <input type="text" asp-for="Category.Name" id="categoryName" class="form-control" value="@Model.Category.Name" readonly="readonly">
+            </div>
             <div class="form-group">
                 <a class="btn btn-primary" href="/Product/ListProducts">Go back to list</a>
             </div>

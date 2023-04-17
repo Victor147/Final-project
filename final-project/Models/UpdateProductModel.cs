@@ -21,4 +21,8 @@ public class UpdateProductModel
     public int ManufacturerId { get; set; }
 
     public IEnumerable<Manufacturer> Manufacturers { get; set; }
+    
+    public int CategoryId { get; set; }
+
+    public IEnumerable<Category> Categories { get; set; }
 }

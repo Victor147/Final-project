@@ -21,6 +21,7 @@
                     <th>Price</th>
                     <th>Image</th>
                     <th>Manufacturer</th>
+                    <th>Category</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -36,6 +37,7 @@
                             <a href="@Html.DisplayFor(item => product.Image)">Image</a>
                         </td>
                         <td>@Html.DisplayFor(item => product.Manufacturer.Name)</td>
+                        <td>@Html.DisplayFor(item => product.Category.Name)</td>
                         <td><a href="/Product/Read/@product.Id" class="btn btn-success"><i class="fa-solid fa-magnifying-glass"></i></a><a href="/Product/Update/@product.Id" class="btn btn-warning"><i class="fa-solid fa-pen"></i></a><a href="/Product/Delete/@product.Id" class="btn btn-danger rounded"><i class="fa-regular fa-trash-can"></i></a></td>
                     </tr>
                 }

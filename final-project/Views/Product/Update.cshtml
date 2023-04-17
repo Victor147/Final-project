@@ -50,6 +50,15 @@
                         }
                     </select>
                 </div>
+                <div class="from-group my-3">
+                    <label for="category">Product category: </label>
+                    <select asp-for="CategoryId" id="category" class="form-control">
+                        @foreach (var elem in Model.Categories)
+                        {
+                            <option value="@elem.Id">@elem.Name</option>
+                        }
+                    </select>
+                </div>
                 <div class="form-group my-3">
                     <input type="submit" class="btn btn-warning form-control" value="Update">
                 </div>

@@ -40,6 +40,10 @@
                     <input type="text" asp-for="Manufacturer" id="manufacturer" class="form-control" value="@Model.Manufacturer.Name" readonly="readonly">
                 </div>
                 <div class="form-group my-3">
+                    <label for="category" asp-for="Category">Product category: </label>
+                    <input type="text" asp-for="Category" id="category" class="form-control" value="@Model.Category.Name" readonly="readonly">
+                </div>
+                <div class="form-group my-3">
                     <input type="submit" class="btn btn-danger form-control" value="Delete">
                 </div>
             </form>

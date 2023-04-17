@@ -1,5 +1,6 @@
 ﻿using final_project.Data.Entities;
 using final_project.Models;
+using final_project.Services.CategoryService;
 using final_project.Services.ManufacturerService;
 using final_project.Services.ProductService;
 using Microsoft.AspNetCore.Identity;
@@ -12,13 +13,15 @@ public class DataInitializer
     private readonly UserManager<User> _userManager;
     private readonly IManufacturerService _manufacturerService;
     private readonly  IProductService _productService;
+    private readonly ICategoryService _categoryService;
 
-    public DataInitializer(RoleManager<Role> roleManager, UserManager<User> userManager, IManufacturerService manufacturerService, IProductService productService)
+    public DataInitializer(RoleManager<Role> roleManager, UserManager<User> userManager, IManufacturerService manufacturerService, IProductService productService, ICategoryService categoryService)
     {
         _roleManager = roleManager;
         _userManager = userManager;
         _manufacturerService = manufacturerService;
         _productService = productService;
+        _categoryService = categoryService;
     }
 
     public async Task Seed()
@@ -67,6 +70,19 @@ public class DataInitializer
                 });
             }
         }
+        
+        for (int i = 1; i <= 5; i++)
+        {
+            var categoryName = "test_category_" + i;
+            Category? testCategory = await _categoryService.ReadCategoryByNameAsync(categoryName);
+            if (testCategory is null)
+            {
+                await _categoryService.CreateCategoryAsync(new CategoryModel
+                {
+                    Name = categoryName
+                });
+            }
+        }
 
         for (int i = 1; i <= 50; i++)
         {
@@ -84,7 +100,8 @@ public class DataInitializer
                     Stock = new Random().Next(1, 51),
                     Price = new Random().Next(10, 10000),
                     Image = new FormFile(new MemoryStream(bytes), 0, bytes.Length, name, name),
-                    ManufacturerId = new Random().Next(1, 6)
+                    ManufacturerId = new Random().Next(1, 6),
+                    CategoryId = new Random().Next(1, 6)
                 });
             }
         }
