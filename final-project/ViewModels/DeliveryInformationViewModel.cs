@@ -7,4 +7,10 @@ public class DeliveryInformationViewModel
     public string Address { get; set; }
 
     public string Town { get; set; }
+    
+    
+    public string Courier { get; set; }
+    
+
+    public string PaymentMethod { get; set; }
 }

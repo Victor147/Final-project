@@ -17,7 +17,7 @@ namespace final_project.Data.Entities
         
         public string Town { get; set; }
 
-        // public bool IsProcessed { get; set; } = false;
+        public bool IsProcessed { get; set; }
 
         public IEnumerable<OrderDetail> Details { get; set; }
         

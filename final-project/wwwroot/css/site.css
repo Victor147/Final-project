@@ -13,8 +13,8 @@
   --btnfontcolorhover: rgb(255, 255, 255);
   --btnbghover: #ffc116;
   --btnactivefs: rgb(241, 195, 46);
-  --backgroundcolor: rgb(228, 249, 245);
-  --greenishcolor: rgb(48, 227, 202);
+  --backgroundcolor: rgb(243, 222, 186);
+  --navbarcolor: rgb(240, 239, 177);
   --bluishcolor: rgb(17, 153, 158);
   --darkishcolor: rgb(64, 81, 78);
   
@@ -36,7 +36,7 @@ body{
 }
 
 .custom-colored-navbar{
-  background-color: var(--greenishcolor);
+  background-color: var(--navbarcolor);
 }
 
 .margin-left-auto{
@@ -78,7 +78,7 @@ body {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: var(--navbarcolor);
   background-clip: border-box;
   box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
   transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);

@@ -66,21 +66,25 @@ else
                     </tr>
                     </tbody>
                 </table>
+
                 <form method="post" asp-action="Index" asp-controller="Order">
                     <div class="row">
-                        <div class="col-3"></div>
-                        <h2>Delivery Information</h2>
-                        <div class="col-6">
+                        <div class="col-lg-6">
+                            <h2 class="text-center">Delivery Information</h2>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" onclick="checkValue()" type="checkbox" id="flexSwitchCheckDefault">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Да се използват ли данните от Вашия профил за оформянe на поръчката?</label>
+                            </div>
                             <div class="form-group">
-                                <input type="text" asp-for="User.Username" id="username" class="form-control d-none" readonly="readonly"/>
+                                <input type="text" asp-for="User.Username" id="username" class="form-control d-none"/>
                             </div>
                             <div class="form-group">
                                 <label asp-for="User.FirstName" for="firstName">First name: </label>
-                                <input type="text" asp-for="User.FirstName" id="firstName" class="form-control" readonly="readonly"/>
+                                <input type="text" asp-for="User.FirstName" id="firstName" class="form-control" value=""/>
                             </div>
                             <div class="form-group">
                                 <label asp-for="User.LastName" for="lastName">Last name: </label>
-                                <input type="text" asp-for="User.LastName" id="lastName" class="form-control" readonly="readonly"/>
+                                <input type="text" asp-for="User.LastName" id="lastName" class="form-control" value=""/>
                             </div>
                             <div class="form-group">
                                 <label asp-for="DeliveryInformation.Town" for="town">Town: </label>
@@ -94,26 +98,42 @@ else
                                 <label asp-for="DeliveryInformation.PhoneNumber" for="phoneNumber">Phone number: </label>
                                 <input type="text" asp-for="DeliveryInformation.PhoneNumber" id="phoneNumber" class="form-control"/>
                             </div>
-                            @* @for (int i = 0; i < Model.Items.Count; i++) *@
-                            @* { *@
-                            @*     <div class="form-group"> *@
-                            @*         <input type="number" asp-for="Items[i].Product.Id" class="form-control d-none" readonly="readonly"/> *@
-                            @*     </div> *@
-                            @*     <div class="form-group"> *@
-                            @*         <input type="number" asp-for="Items[i].Product.Price" class="form-control d-none" readonly="readonly"/> *@
-                            @*     </div> *@
-                            @*     <div class="form-group"> *@
-                            @*         <input type="number" asp-for="Items[i].Quantity" class="form-control d-none" readonly="readonly"/> *@
-                            @*     </div> *@
-                            @*     <div class="form-group"> *@
-                            @*         <input type="number" step="0.01" asp-for="Items[i].SubTotal" class="form-control d-none" readonly="readonly"/> *@
-                            @*     </div> *@
-                            @* } *@
                             <div class="form-group">
-                                <input type="submit" class="btn btn-primary form-control" value="Order">
+                                <input type="submit" class="btn btn-primary mt-4 form-control" value="Order">
                             </div>
                         </div>
-                        <div class="col-3"></div>
+                        <div class="col-lg-6">
+                            <div class="">
+                                <h2 class="text-center">Метод на плащане</h2>
+                                <div class="form-check">
+                                    <input class="form-check-input" asp-for="DeliveryInformation.PaymentMethod" type="radio" id="cashOnDelivery" value="cash" checked>
+                                    <label class="form-check-label" asp-for="DeliveryInformation.PaymentMethod" for="cashOnDelivery">
+                                        Наложен платеж
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" asp-for="DeliveryInformation.PaymentMethod" type="radio" id="creditDebitCard" value="card">
+                                    <label class="form-check-label" asp-for="DeliveryInformation.PaymentMethod" for="creditDebitCard">
+                                        Кредитна или дебитна карта
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="">
+                                <h2 class="text-center">Предпочитан куриер</h2>
+                                <div class="form-check">
+                                    <input class="form-check-input" asp-for="DeliveryInformation.Courier" type="radio" id="econt" value="econt" checked>
+                                    <label class="form-check-label" asp-for="DeliveryInformation.Courier" for="econt">
+                                        Еконт
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" asp-for="DeliveryInformation.Courier" type="radio" id="speedy" value="speedy">
+                                    <label class="form-check-label" asp-for="DeliveryInformation.Courier" for="speedy">
+                                        Спиди
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -189,6 +209,25 @@ else
                         
                 }
             });
+        }
+        function checkValue(){
+            var toggle = document.getElementById('flexSwitchCheckDefault');
+            var fName = document.getElementById('firstName');
+            var lName = document.getElementById('lastName');
+            
+            if (toggle.checked){
+                fName.value = "@Model.User.FirstName";
+                lName.value = "@Model.User.LastName";
+                fName.readOnly = true;
+                lName.readOnly = true;
+            }
+            else{
+                fName.readOnly = false;
+                fName.value = "";
+                
+                lName.readOnly = false;
+                lName.value = "";
+            }
         }
     </script>
 }
