@@ -1,8 +1,8 @@
 ﻿using System.Text.Json;
 
-namespace final_project.Extensions;
+namespace final_project.Helpers;
 
-public static class SessionExtensions
+public static class SessionHelper
 {
     public static void Set<T>(this ISession session, string key, T value)
     {

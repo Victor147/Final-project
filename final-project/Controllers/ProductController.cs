@@ -45,7 +45,7 @@ public class ProductController : Controller
         return View(new ReturnPaginatedProductsViewModel()
         {
             Products = products,
-            PaginationProperties = Pagination.CalculateProperties(page,
+            PaginationProperties = PaginationHelper.CalculateProperties(page,
                 model.Count(),
                 perPage)
         });
@@ -118,7 +118,7 @@ public class ProductController : Controller
         return View(new ReturnPaginatedProductsViewModel
         {
             Products = products,
-            PaginationProperties = Pagination.CalculateProperties(page,
+            PaginationProperties = PaginationHelper.CalculateProperties(page,
                 model.Count(),
                 perPage)
         });

@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace final_project.Extensions
-{
+{   
     public static class DataExtensions
     {
         public static void AddPersistence(this WebApplicationBuilder builder)
