@@ -51,7 +51,7 @@ public class ProductController : Controller
         });
     }
 
-    public async Task<IActionResult> Index(string? manufacturerFilter, decimal? minPriceFilter, decimal? maxPriceFilter,
+    public async Task<IActionResult> Index(string? category, string? manufacturerFilter, decimal? minPriceFilter, decimal? maxPriceFilter,
         string sortOrder, int page = 1, int perPage = 8)
     {
         var model = await _productService.GetAllProductsAsync();
@@ -61,6 +61,11 @@ public class ProductController : Controller
 
         ViewBag.Manufacturers = new SelectList(names);
 
+        if (!string.IsNullOrEmpty(category))
+        {
+            model = model.Where(p => p.Category.Name == category);
+        }
+        
         if (!string.IsNullOrEmpty(manufacturerFilter))
         {
             model = model.Where(p => p.Manufacturer.Name == manufacturerFilter);
@@ -91,7 +96,8 @@ public class ProductController : Controller
                 model = model.OrderBy(p => p.Name).ToList().AsQueryable();
                 break;
         }
-        
+
+        ViewBag.Category = category;
         ViewBag.SortOrder = sortOrder;
         ViewBag.MinPriceFilter = minPriceFilter;
         ViewBag.MaxPriceFilter = maxPriceFilter;

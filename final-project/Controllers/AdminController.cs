@@ -26,9 +26,17 @@ public class AdminController : Controller
     }
 
     [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> Orders()
+    public async Task<IActionResult> FinishedOrders()
     {
-        var orders = await _orderService.GetAllOrdersAsync();
+        var orders = await _orderService.GetAllFinishedOrdersAsync();
+
+        return View(orders);
+    }
+    
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> OrdersForProcessing()
+    {
+        var orders = await _orderService.GetAllOrdersForProcessingAsync();
 
         return View(orders);
     }

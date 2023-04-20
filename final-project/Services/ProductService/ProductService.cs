@@ -1,7 +1,7 @@
 ﻿using final_project.Data.Entities;
 using final_project.Data.Persistence;
-using final_project.Helpers.Cloudinary;
 using final_project.Models;
+using final_project.Services.Cloudinary;
 using Microsoft.EntityFrameworkCore;
 
 namespace final_project.Services.ProductService;

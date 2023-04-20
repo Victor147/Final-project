@@ -18,7 +18,7 @@ public class ProfileController : Controller
     }
     
     [Authorize(Roles = "User")]
-    public async Task<IActionResult> UserOrders()
+    public async Task<IActionResult> UserOrdersHistory()
     {
         var username = HttpContext.User.Identity!.Name;
         var user = await _userManager.FindByNameAsync(username);
@@ -26,5 +26,11 @@ public class ProfileController : Controller
         var orders = await _orderService.GetAllOrdersForUserAsync(user.Id);
         
         return View(orders);
+    }
+    
+    [Authorize(Roles = "User")]
+    public async Task<IActionResult> Profile()
+    {
+        return View();
     }
 }

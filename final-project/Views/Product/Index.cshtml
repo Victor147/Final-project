@@ -16,6 +16,7 @@
                 parameters["MinPriceFilter"] = ViewBag.MinPriceFilter != null ? ViewBag.MinPriceFilter.ToString() : string.Empty;
                 parameters["MaxPriceFilter"] = ViewBag.MaxPriceFilter != null ? ViewBag.MaxPriceFilter.ToString() : string.Empty;
                 parameters["ManufacturerFilter"] = ViewBag.ManufacturerFilter != null ? ViewBag.ManufacturerFilter : string.Empty;
+                parameters["Category"] = ViewBag.Category != null ? ViewBag.Category : string.Empty;
             }
             <form id="form" method="post" asp-action="Index" asp-controller="Product" asp-all-route-data="parameters">
                 @Html.DropDownList("sortOrder", new SelectList(
@@ -32,7 +33,7 @@
     <div class="row">
         <div class="col-2">
             <div class="row m-auto">
-                @using (Html.BeginForm("Index", "Product", new { SortOrder = ViewBag.SortOrder }, FormMethod.Post, true, new { @class = "d-flex flex-column align-items-center justify-content-center" }))
+                @using (Html.BeginForm("Index", "Product", new { SortOrder = ViewBag.SortOrder, Category = ViewBag.Category }, FormMethod.Post, true, new { @class = "d-flex flex-column align-items-center justify-content-center" }))
                 {
                     <div>
                         <label>Manufacturer:</label>

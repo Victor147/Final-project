@@ -44,6 +44,8 @@ public class OrderController : Controller
             UserId = user.Id,
             Address = model.DeliveryInformation.Address,
             Town = model.DeliveryInformation.Town,
+            Courier = model.DeliveryInformation.Courier,
+            IsProcessed = model.DeliveryInformation.PaymentMethod == "card" ? true : false
         };
         
         await _orderService.CreateOrderAsync(order);
@@ -60,7 +62,7 @@ public class OrderController : Controller
                     Quantity = model.Items[i].Quantity,
                     OrderId = order.Id
                 };
-                
+
                 await _orderDetailService.CreateOrderDetailAsync(orderDetail);
 
                 product.Stock -= model.Items[i].Quantity;

@@ -1,6 +1,6 @@
 ﻿using CloudinaryDotNet.Actions;
 
-namespace final_project.Helpers.Cloudinary;
+namespace final_project.Services.Cloudinary;
 
 public class ImageUploader : IImageUploader
 {
