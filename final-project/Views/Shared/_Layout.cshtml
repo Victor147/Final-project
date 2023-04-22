@@ -7,13 +7,18 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/final_project.styles.css" asp-append-version="true"/>
+    <link rel="shortcut icon" href="/logo.ico" type="image/x-icon"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/40c2119f5b.js" crossorigin="anonymous"></script>
 </head>
 <body class="d-flex flex-column vh-100 mb-0">
 <header>
     <nav class="navbar navbar-expand-md navbar-toggleable-md navbar-light box-shadow custom-colored-navbar mb-3">
         <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Ecommerce app</a>
+            @* <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/img/logo.png" style="width: inherit; height: inherit;" alt="logo"></a> *@
+            <a class="navbar-brand text-navbar" asp-area="" asp-controller="Home" asp-action="Index">Ecommerce app</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -21,22 +26,22 @@
             <div class="navbar-collapse collapse d-md-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1 d-flex">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link text-navbar" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Products</a>
+                        <a class="nav-link text-navbar" asp-area="" asp-controller="Product" asp-action="Index">Products</a>
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Снукър", "Index", "Product", new { category = "test_category_2" }, new { @class = "nav-link text-dark" })
+                        @Html.ActionLink("Снукър", "Index", "Product", new { category = "test_category_2" }, new { @class = "nav-link text-navbar" })
                         @* <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Products</a> *@
                     </li>
                     @if (!Context.User.Identity!.IsAuthenticated)
                     {
                         <li class="nav-item left-collapse margin-left-auto">
-                            <a class="nav-link text-dark" asp-controller="Authentication" asp-action="Login">Login</a>
+                            <a class="nav-link text-navbar" asp-controller="Authentication" asp-action="Login">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Authentication" asp-action="Register">Register</a>
+                            <a class="nav-link text-navbar" asp-controller="Authentication" asp-action="Register">Register</a>
                         </li>
                     }
                     else
@@ -47,7 +52,7 @@
                             @*     <a class="nav-link text-dark" asp-controller="Manufacturer" asp-action="Index">Manufacturers</a> *@
                             @* </li> *@
                             <li class="nav-item left-collapse margin-left-auto">
-                                <a class="nav-link text-dark" asp-controller="Admin" asp-action="Panel">Admin</a>
+                                <a class="nav-link text-navbar" asp-controller="Admin" asp-action="Panel">Admin</a>
                             </li>
                             <form method="post" asp-controller="Authentication" asp-action="Logout">
                                 <input type="submit" class="btn btn-danger" value="Logout">
@@ -56,10 +61,10 @@
                         else if (Context.User.IsInRole("User"))
                         {
                             <li class="nav-item left-collapse margin-left-auto">
-                                <a class="nav-link text-dark" asp-controller="Cart" asp-action="Index">Cart</a>
+                                <a class="nav-link text-navbar" asp-controller="Cart" asp-action="Index">Cart</a>
                             </li>
                             <li class="dropdown nav-item pr-10">
-                                <button class="dropbtn nav-link text-dark" for="btnControl">Здравейте, @Context.User.Identity.Name</button>
+                                <button class="dropbtn nav-link text-navbar" for="btnControl">Здравейте, @Context.User.Identity.Name</button>
                                 <div class="dropdown-content">
                                     <a asp-controller="Profile" asp-action="Profile">Вашият профил</a>
                                     <a asp-controller="Profile" asp-action="UserOrdersHistory">История на поръчките</a>

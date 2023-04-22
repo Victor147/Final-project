@@ -1,8 +1,7 @@
-﻿@using final_project.Data.Entities
-@model final_project.ViewModels.ProductViewModel
+﻿@model final_project.ViewModels.ProductViewModel
 
-<div class="col hp">
-    <div class="card-custom h-100 shadow-sm">
+<div class="col hp d-flex">
+    <div class="card-custom shadow-sm flex-grow-1">
         <a href="#">
             <img class="card-img-top-custom" src="@Model.Image" alt="Product image"/>
         </a>
@@ -13,11 +12,11 @@
             <div class="clearfix mb-3">
                 <span class="float-start badge rounded-pill bg-success-custom">@Model.Price</span>
             </div>
-            <h5 class="card-title">
+            <h5 class="card-title text-navbar">
                 <strong>@Model.Name</strong>
             </h5>
 
-            <p class="card-text">@Model.Description</p>
+            <p class="card-text text-navbar height-fix">@Model.Description</p>
             <div class="d-grid gap-2 my-4">
                 @if (Context.User.Identity!.IsAuthenticated)
                 {

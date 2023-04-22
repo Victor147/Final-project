@@ -4,17 +4,21 @@
 @import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
 
 :root {
-    --font1: 'Heebo', sans-serif;
-    --font2: 'Fira Sans Extra Condensed', sans-serif;
-    --font3: 'Roboto', sans-serif;
+    --font: 'Roboto', sans-serif;
 
     --btnbg: #ffcc00;
     --btnfontcolor: rgb(61, 61, 61);
     --btnfontcolorhover: rgb(255, 255, 255);
+    --btnfontcolorhover: rgb(255, 255, 255);
     --btnbghover: #ffc116;
     --btnactivefs: rgb(241, 195, 46);
-    --backgroundcolor: rgb(243, 222, 186);
-    --navbarcolor: rgb(240, 239, 177);
+    --backgroundcolor: #f5f5f5;
+    /*--backgroundcolor: #f6f6f6;*/
+    /*--backgroundcolor: rgb(243, 222, 186);*/
+    --navbarcolor: #333333;
+    /*--navbarcolor: #d8d8d8;*/
+    /*--navbarcolor: rgb(240, 239, 177);*/
+    --navbartextcolor: #F5F5F5;
     --bluishcolor: rgb(17, 153, 158);
     --darkishcolor: rgb(64, 81, 78);
 
@@ -33,6 +37,19 @@ html {
 
 body {
     background-color: var(--backgroundcolor);
+    font-family: 'Roboto', sans-serif;
+}
+
+.btn-log-reg{
+    background-color: #1717d4 !important;
+}
+
+.color-log-reg{
+    color: #8fb6ff !important;
+}
+
+.rounded-huge{
+    border-radius: 20px;
 }
 
 .custom-colored-navbar {
@@ -79,6 +96,19 @@ body {
 .pr-10{
     padding-right: 1rem;
     padding-left: 1rem;
+}
+
+.log-reg-bgcolor{
+    background-color: #444444;
+}
+
+/*.height-fix{*/
+/*    min-height: 72px;*/
+/*}*/
+
+.text-navbar{
+    color: var(--navbartextcolor) !important;
+    font-family: 'Roboto', sans-serif;
 }
 
 .bg-dropdown{
@@ -179,10 +209,10 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
 }
 
-/* Centered text */
 .label-top {
     position: absolute;
-    background-color: var(--label-index);
+    background-color: #4e7ca8;
+    /*background-color: var(--label-index);*/
     color: #fff;
     top: 8px;
     right: 8px;

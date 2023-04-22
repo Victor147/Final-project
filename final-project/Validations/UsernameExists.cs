@@ -18,6 +18,6 @@ public class UsernameExists : ValidationAttribute
 
         return userService.FindByNameAsync(username).Result != null
             ? ValidationResult.Success
-            : new ValidationResult("No such user with given username exists!");
+            : new ValidationResult("Не съществува потребител с такова име!");
     }
 }

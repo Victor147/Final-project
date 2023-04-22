@@ -1,0 +1,80 @@
+﻿@model final_project.Models.RegisterModel
+
+@{
+    ViewData["Title"] = "Нов профил";
+}
+
+@* TODO: style the form *@
+
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <form method="post" asp-controller="Authentication" asp-action="Register">
+                <h2 class="text-center">Ecommerce app</h2>
+                <h6 class="text-center">Sign up</h6>
+                <div class="form-group">
+                    <p class="">
+                        <span asp-validation-for="FirstName"></span>
+                    </p>
+                    <label asp-for="FirstName" for="firstname"></label>
+                    <input type="text" asp-for="FirstName" id="firstname" class="form-control">
+                </div>
+                <div class="form-group">
+                    <p>
+                        <span asp-validation-for="LastName"></span>
+                    </p>
+                    <label asp-for="LastName" for="lastname"></label>
+                    <input type="text" asp-for="LastName" id="lastname" class="form-control">
+                </div>
+                <div class="form-group">
+                    <p class="">
+                        <span asp-validation-for="Address"></span>
+                    </p>
+                    <label asp-for="Address" for="address"></label>
+                    <input type="text" asp-for="Address" id="address" class="form-control">
+                </div>
+                <div class="form-group">
+                    <p>
+                        <span asp-validation-for="Email"></span>
+                    </p>
+                    <label asp-for="Email" for="email"></label>
+                    <input type="text" asp-for="Email" id="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <p>
+                        <span asp-validation-for="Username"></span>
+                    </p>
+                    <label asp-for="Username" for="username"></label>
+                    <input type="text" asp-for="Username" id="username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <p>
+                        <span asp-validation-for="Password"></span>
+                    </p>
+                    <label asp-for="Password" for="password"></label>
+                    <input type="password" asp-for="Password" id="password" class="form-control">
+                </div>
+                <div class="form-group">
+                    <p>
+                        <span asp-validation-for="RepeatPassword"></span>
+                    </p>
+                    <label asp-for="RepeatPassword" for="repeatPassword"></label>
+                    <input type="password" asp-for="RepeatPassword" id="repeatPassword" class="form-control">
+                </div>
+                <div class="form-group d-none">
+                    <input type="hidden" asp-for="BeforePath" class="form-control">
+                </div>
+                <div class="">
+                    <span>Already have an account?</span>
+                    @Html.ActionLink("Sign in here", "Login", "Authentication", new { beforePath = Model.BeforePath == null ? "" : Model.BeforePath })
+                    @* <a asp-controller="Authentication" asp-action="Login">Sign in here!</a> *@
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>

@@ -6,16 +6,16 @@ namespace final_project.Models;
 
 public class LoginModel
 {
-    [Required(ErrorMessage = "Username is required!")]
+    [Required(ErrorMessage = "Потребителското име е задължително!")]
     [UsernameExists]
-    [DisplayName("Username: ")]
+    [DisplayName("Потребителско име")]
     public string Username { get; set; }
 
-    [Required(ErrorMessage = "Password is required!")]
-    [DisplayName("Password: ")]
+    [Required(ErrorMessage = "Паролата е задължителна!")]
+    [DisplayName("Парола  ")]
     public string Password { get; set; }
 
-    [DisplayName("Remember me: ")] 
+    [DisplayName("Запомни ме")] 
     public bool RememberMe { get; set; } = false;
 
     public string? Message { get; set; } = string.Empty;

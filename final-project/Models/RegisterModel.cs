@@ -7,34 +7,36 @@ namespace final_project.Models;
 
 public class RegisterModel
 {
-    [Required(ErrorMessage = "First Name is required!")]
-    [DisplayName("First name: ")]
+    [Required(ErrorMessage = "Собственото име е задължително!")]
+    [DisplayName("Име")]
     public string FirstName { get; set; }
 
-    [Required(ErrorMessage = "Last Name is required!")]
-    [DisplayName("Last name: ")]
+    [Required(ErrorMessage = "Фамилията е задължителна!")]
+    [DisplayName("Фамилия")]
     public string LastName { get; set; }
     
-    [Required(ErrorMessage = "Address is required!")]
-    [DisplayName("Address: ")]
+    [Required(ErrorMessage = "Адресът е задължителен!")]
+    [DisplayName("Адрес")]
     public string Address { get; set; }
     
-    [Required(ErrorMessage = "Email is required!")]
-    [DisplayName("Email: ")]
+    [Required(ErrorMessage = "Имейлът е задължителен!")]
+    [DisplayName("Имейл")]
     public string Email { get; set; }
 
-    [Required(ErrorMessage = "Username is required!")]
+    [Required(ErrorMessage = "Потебителското име е задължително!")]
     [UsernameAvailable]
-    [DisplayName("Username: ")]
+    [DisplayName("Потребителско име")]
     public string Username { get; set; }
 
-    [Required(ErrorMessage = "Password is required!")]
-    [DisplayName("Password: ")]
+    [Required(ErrorMessage = "Паролата е задължителна!")]
+    [DisplayName("Парола")]
     public string Password { get; set; }
 
-    [Required(ErrorMessage = "Please repeat the password!")]
-    [DisplayName("Repeat password: ")]
+    [Required(ErrorMessage = "Повторянето на паролата е задължително!")]
+    [DisplayName("Повтори паролата")]
     public string RepeatPassword { get; set; }
+
+    public string? Message { get; set; } = string.Empty;
 
     public string? BeforePath { get; set; }
 }
