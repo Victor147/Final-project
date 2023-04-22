@@ -12,11 +12,11 @@
         <div class="col">
             <form method="post" asp-controller="Authentication" asp-action="Login">
                 <div class="log-reg-bgcolor px-5 py-4 rounded-huge">
-                    @* <h2 class="text-center">Ecommerce app</h2> *@
                     <img src="/img/logo.png" alt="logo" class="card-img-top-custom">
                     <h2 class="text-center text-navbar mb-4">Вход</h2>
                     <div class="form-group my-2">
                         <label asp-for="Username" for="username" class="text-navbar mb-1"></label>
+                        <span class="text-danger">*</span>
                         <input type="text" asp-for="Username" id="username" class="form-control">
                         <p class="mt-1">
                             <span asp-validation-for="Username" class="text-danger"></span>
@@ -24,6 +24,7 @@
                     </div>
                     <div class="form-group my-4">
                         <label asp-for="Password" form="password" class="text-navbar mb-1"></label>
+                        <span class="text-danger">*</span>
                         <input type="password" asp-for="Password" id="password" class="form-control">
                         <p class="mt-1">
                             <span asp-validation-for="Password" class="text-danger"></span>
@@ -40,13 +41,12 @@
                         <input type="hidden" asp-for="BeforePath">
                     </div>
                     <div class="d-flex justify-content-between mb-3">
-                        <div class="">
-                            <a href="#" class="text-decoration-none color-log-reg">Забравена парола?</a>
+                        <div>
+                            <a href="#" class="text-decoration-none color-log-reg hover-underline">Забравена парола?</a>
                         </div>
-                        <div class="">
+                        <div>
                             <div class="text-navbar">Нямате профил?</div>
-                            @Html.ActionLink("Създайте нов", "Register", "Authentication", new { beforePath = Model.BeforePath == null ? "" : Model.BeforePath }, new { @class = "text-decoration-none color-log-reg" })
-                            @* <a asp-controller="Authentication" asp-action="Register">Sign up here</a> *@
+                            @Html.ActionLink("Създайте нов", "Register", "Authentication", new { beforePath = Model.BeforePath == null ? "" : Model.BeforePath }, new { @class = "text-decoration-none color-log-reg hover-underline" })
                         </div>
                     </div>
                     <div class="text-center mt-4">

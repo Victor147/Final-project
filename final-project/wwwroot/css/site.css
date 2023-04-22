@@ -9,7 +9,6 @@
     --btnbg: #ffcc00;
     --btnfontcolor: rgb(61, 61, 61);
     --btnfontcolorhover: rgb(255, 255, 255);
-    --btnfontcolorhover: rgb(255, 255, 255);
     --btnbghover: #ffc116;
     --btnactivefs: rgb(241, 195, 46);
     --backgroundcolor: #f5f5f5;
@@ -46,6 +45,12 @@ body {
 
 .color-log-reg{
     color: #8fb6ff !important;
+}
+
+.btn-log-reg:hover{
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
 }
 
 .rounded-huge{
@@ -102,9 +107,9 @@ body {
     background-color: #444444;
 }
 
-/*.height-fix{*/
-/*    min-height: 72px;*/
-/*}*/
+.height-fix{
+    height: 23%;
+}
 
 .text-navbar{
     color: var(--navbartextcolor) !important;
@@ -329,4 +334,28 @@ body {
     font-size: 1rem;
     background-color: var(--btnbg) !important;
     color: var(--btnfontcolor) !important;
+}
+
+.hover-underline {
+    display: inline-block;
+    position: relative;
+    color: #8fb6ff;
+}
+
+.hover-underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #8fb6ff;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.hover-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }

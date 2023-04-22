@@ -10,13 +10,13 @@
         </div>
         <div class="card-body">
             <div class="clearfix mb-3">
-                <span class="float-start badge rounded-pill bg-success-custom">@Model.Price</span>
+                <span class="float-start badge rounded-pill bg-success-custom">@Model.Price лв.</span>
             </div>
             <h5 class="card-title text-navbar">
                 <strong>@Model.Name</strong>
             </h5>
 
-            <p class="card-text text-navbar height-fix">@Model.Description</p>
+            <p class="card-text text-navbar height-fix mb-5">@Model.Description</p>
             <div class="d-grid gap-2 my-4">
                 @if (Context.User.Identity!.IsAuthenticated)
                 {
