@@ -1,7 +1,7 @@
 ﻿@model final_project.ViewModels.ReturnPaginatedProductsViewModel
 
 @{
-    ViewData["Title"] = "All products";
+    ViewData["Title"] = "Продукти";
     var parameters = new Dictionary<string, string>();
 }
 
@@ -9,44 +9,44 @@
 @* TODO: design changes *@
 
 <div class="container-fluid">
-    <div class="d-flex flex-column align-items-center justify-content-center">
-        <h2 class="text-center mt-4 mb-5">All products listed</h2>
-        <div class="mb-4">
-            @{
-                parameters["MinPriceFilter"] = ViewBag.MinPriceFilter != null ? ViewBag.MinPriceFilter.ToString() : string.Empty;
-                parameters["MaxPriceFilter"] = ViewBag.MaxPriceFilter != null ? ViewBag.MaxPriceFilter.ToString() : string.Empty;
-                parameters["ManufacturerFilter"] = ViewBag.ManufacturerFilter != null ? ViewBag.ManufacturerFilter : string.Empty;
-                parameters["Category"] = ViewBag.Category != null ? ViewBag.Category : string.Empty;
-            }
-            <form id="form" method="post" asp-action="Index" asp-controller="Product" asp-all-route-data="parameters">
-                @Html.DropDownList("sortOrder", new SelectList(
-                    new List<SelectListItem>
-                    {
-                        new SelectListItem { Text = "Name (A-Z)", Value = "name_asc" },
-                        new SelectListItem { Text = "Name (Z-A)", Value = "name_desc" },
-                        new SelectListItem { Text = "Price(Low to High)", Value = "price_asc" },
-                        new SelectListItem { Text = "Price(High to Low)", Value = "price_desc" }
-                    }, "Value", "Text", ViewBag.SortOrder), new { onchange = "this.form.submit();", @class = "btn btn-secondary dropdown-toggle" })
-            </form>
+    <div class="row d-flex flex-column align-items-center">
+        <div class="d-flex flex-column align-items-center justify-content-center">
+            <h2 class="text-center mt-4 mb-5">Продукти</h2>
+            <div class="mb-4">
+                @{
+                    parameters["MinPriceFilter"] = ViewBag.MinPriceFilter != null ? ViewBag.MinPriceFilter.ToString() : "0";
+                    parameters["MaxPriceFilter"] = ViewBag.MaxPriceFilter != null ? ViewBag.MaxPriceFilter.ToString() : "20000";
+                    parameters["ManufacturerFilter"] = ViewBag.ManufacturerFilter != null ? ViewBag.ManufacturerFilter : string.Empty;
+                    parameters["Category"] = ViewBag.Category != null ? ViewBag.Category : string.Empty;
+                    parameters["SortOrder"] = ViewBag.SortOrder != null ? ViewBag.SortOrder : string.Empty;
+                }
+                <form id="form" method="post" asp-action="Index" asp-controller="Product" asp-all-route-data="parameters">
+                    @Html.DropDownList("sortOrder", new SelectList(
+                        new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "Азбучен ред", Value = "name_asc" },
+                            new SelectListItem { Text = "Азбучен ред (низходящ)", Value = "name_desc" },
+                            new SelectListItem { Text = "Цена (възходящо)", Value = "price_asc" },
+                            new SelectListItem { Text = "Цена (низходящо)", Value = "price_desc" }
+                        }, "Value", "Text", ViewBag.SortOrder), new { onchange = "this.form.submit();", @class = "btn btn-secondary dropdown-toggle mb-4" })
+                </form>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-            <div class="row m-auto">
-                @using (Html.BeginForm("Index", "Product", new { SortOrder = ViewBag.SortOrder, Category = ViewBag.Category }, FormMethod.Post, true, new { @class = "d-flex flex-column align-items-center justify-content-center" }))
+        <div>
+            <div class="m-auto">
+                @using (Html.BeginForm("Index", "Product", "", FormMethod.Post, true, new { @class = "d-flex flex-column align-items-center justify-content-between" }))
                 {
-                    <div>
-                        <label>Manufacturer:</label>
+                    <div class="mb-3">
+                        <label>Производител: </label>
                         @Html.DropDownList("manufacturerFilter", ViewBag.Manufacturers as SelectList, "All")
-                        @* @Html.DropDownList("manufacturerFilter", ViewBag.Manufacturers as SelectList, "All" ,new { onchange = "this.form.submit();"}) *@
                     </div>
-                    <div>
-                        <label>Price range:</label>
-                        @Html.TextBox("minPriceFilter")
-                        to
-                        @Html.TextBox("maxPriceFilter")
+                    <div class="range-slider mb-4">
+                        <label class="text-center">Ценови диапазон: </label>
+                        <span class="rangeValues"></span>
+                        <input min="0" max="20000" step="50" type="range" id="minPriceFilter" name="minPriceFilter" value="@parameters["MinPriceFilter"]">
+                        <input min="0" max="20000" step="50" type="range" id="maxPriceFilter" name="maxPriceFilter" value="@parameters["MaxPriceFilter"]">
                     </div>
-                    <button type="submit">Filter</button>
+                    <button type="submit" asp-all-route-data="parameters">Филтриране</button>
                 }
             </div>
         </div>
@@ -61,12 +61,40 @@
                 <partial name="_Pagination" model="Model.PaginationProperties"/>
             </div>
         </div>
-        <div class="col-2"></div>
+        <div class="col-4"></div>
     </div>
 </div>
 
 <script>
     function submit(){
         document.getElementById("form").submit();
+    }
+    
+    function getVals(){  
+        let parent = this.parentNode;
+        let slides = parent.getElementsByTagName('input');
+      
+        let slide1 = parseFloat( slides[0].value );
+        let slide2 = parseFloat( slides[1].value );
+        
+        if( slide1 > slide2 ){ let tmp = slide2; slide2 = slide1; slide1 = tmp; }
+      
+        let displayElement = parent.getElementsByClassName('rangeValues')[0];
+      
+        displayElement.innerHTML = slide1 + " лв." + " – " + slide2 + " лв.";
+    }
+    
+    window.onload = function(){
+        let sliderSections = document.getElementsByClassName("range-slider");
+        for(let x = 0; x < sliderSections.length; x++){
+            let sliders = sliderSections[x].getElementsByTagName("input");
+            for( let y = 0; y < sliders.length; y++ ){
+                if( sliders[y].type === "range"){
+                    
+                sliders[y].oninput = getVals;
+                sliders[y].oninput();
+              }
+            }
+        }
     }
 </script>
