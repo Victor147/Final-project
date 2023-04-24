@@ -1,5 +1,6 @@
 ﻿using final_project.Data.Entities;
 using final_project.Data.Persistence;
+using Microsoft.AspNetCore.Identity;
 
 namespace final_project.Extensions;
 
@@ -10,11 +11,11 @@ public static class SecurityExtensions
         var services = builder.Services;
         services.AddIdentity<User, Role>(options =>
         {
-            options.Password.RequireDigit = false;
-            options.Password.RequiredLength = 0;
+            options.Password.RequireDigit = true;
+            options.Password.RequiredLength = 6;
             options.Password.RequireNonAlphanumeric = false;
-            options.Password.RequireUppercase = false;
-            options.Password.RequireLowercase = false;
+            options.Password.RequireUppercase = true;
+            options.Password.RequireLowercase = true;
             options.Password.RequiredUniqueChars = 0;
         }).AddEntityFrameworkStores<EcommerceDbContext>();
     }

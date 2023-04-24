@@ -1,0 +1,7 @@
+﻿@{
+    ViewData["Title"] = "Поръчки";
+}
+
+@Html.ActionLink("Управление на поръчки, които се обработват", "OrderForSending", "Admin", "", new { @class = "btn btn-primary" })
+@Html.ActionLink("Управление на поръчки, които са изпратени", "SentOrders", "Admin", "", new { @class = "btn btn-primary" })
+@Html.ActionLink("Управление на завършени", "FinishedOrders", "Admin", "", new { @class = "btn btn-primary" })

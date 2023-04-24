@@ -1,39 +1,36 @@
 ﻿@model final_project.Models.ProductModel
 
 @{
-    ViewData["Title"] = "Create product page";
+    ViewData["Title"] = "Създаване на продукт";
 }
-
-<!DOCTYPE html>
-
 <div class="container">
     <div class="row">
         <div class="col-4"></div>
         <div class="col-4">
             <form method="post" enctype="multipart/form-data" asp-controller="Product" asp-action="CreateProduct">
-                <h2 class="text-center">Create product</h2>
+                <h2 class="text-center">Създаване на продукт</h2>
                 <div class="form-group">
-                    <label for="name">Product name: </label>
-                    <input type="text" asp-for="Name" id="name" class="form-control" placeholder="Enter product name"/>
+                    <label for="name">Име на продукта: </label>
+                    <input type="text" asp-for="Name" id="name" class="form-control" placeholder="Въведете име на продукта"/>
                 </div>
                 <div class="form-group my-3">
-                    <label for="description">Product description: </label>
-                    <input type="text" asp-for="Description" id="description" class="form-control" placeholder="Enter product description"/>
+                    <label for="description">Описание на продукта: </label>
+                    <input type="text" asp-for="Description" id="description" class="form-control" placeholder="Въведете описание на продукта"/>
                 </div>
                 <div class="form-group my-3">
-                    <label for="stock">Product stock: </label>
-                    <input type="number" min="0" asp-for="Stock" id="stock" class="form-control" placeholder="Enter product stock"/>
+                    <label for="stock">Количество от продукта: </label>
+                    <input type="number" min="0" asp-for="Stock" id="stock" class="form-control" placeholder="Въведете количество на продукта"/>
                 </div>
                 <div class="form-group my-3">
-                    <label for="price">Product price: </label>
-                    <input type="number" min="0" step="0.01" asp-for="Price" id="price" class="form-control" placeholder="Enter product price"/>
+                    <label for="price">Цена на продукта: </label>
+                    <input type="number" min="0" step="0.01" asp-for="Price" id="price" class="form-control" placeholder="Въведете цена на продукта"/>
                 </div>
                 <div class="form-group my-3">
-                    <label for="image">Product image: </label>
-                    <input type="file" accept="image/*" asp-for="Image" id="image" class="form-control" placeholder="Enter product price"/>
+                    <label for="image">Снимка на продукта: </label>
+                    <input type="file" accept="image/*" asp-for="Image" id="image" class="form-control"/>
                 </div>
                 <div class="form-group my-3">
-                    <label for="manufacturer">Product manufacturer: </label>
+                    <label for="manufacturer">Производител на продукта: </label>
                     <select asp-for="ManufacturerId" id="manufacturer" class="form-control">
                         @foreach (var elem in Model.Manufacturers)
                         {
@@ -42,7 +39,7 @@
                     </select>
                 </div>
                 <div class="form-group my-3">
-                    <label for="manufacturer">Product category: </label>
+                    <label for="manufacturer">Категория на продукта: </label>
                     <select asp-for="CategoryId" id="category" class="form-control">
                         @foreach (var elem in Model.Categories)
                         {
@@ -51,7 +48,7 @@
                     </select>
                 </div>
                 <div class="form-group my-3">
-                    <input type="submit" class="btn btn-primary form-control" value="Create">
+                    <input type="submit" class="btn btn-primary form-control" value="Създаване">
                 </div>
             </form>
         </div>

@@ -1,24 +1,24 @@
 ﻿@model final_project.ViewModels.CategoryViewModel
 
 @{
-    ViewData["Title"] = "Details category page";
+    ViewData["Title"] = "Детайли за категория";
 }
 
 <div class="container">
     <div class="row">
         <div class="col-4"></div>
         <div class="col-4">
-            <h2>Details page</h2>
+            <h2>Детайли за категория</h2>
             <div class="form-group my-3">
-                <label for="id" asp-for="Id">Category id: </label>
+                <label for="id" asp-for="Id">Идентификационен номер: </label>
                 <input type="number" asp-for="Id" id="id" class="form-control" value="@Model.Id" readonly="readonly">
             </div>
             <div class="form-group my-3">
-                <label for="name" asp-for="Name">Category name: </label>
+                <label for="name" asp-for="Name">Име: </label>
                 <input type="text" asp-for="Name" id="name" class="form-control" value="@Model.Name" readonly="readonly">
             </div>
             <div class="form-group">
-                <a class="btn btn-primary" href="/Category/Index">Go back to list</a>
+                <a class="btn btn-primary" href="/Category/Index">Назад към всички категории</a>
             </div>
         </div>
         <div class="col-4"></div>

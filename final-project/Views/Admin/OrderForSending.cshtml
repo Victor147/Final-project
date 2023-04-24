@@ -1,0 +1,61 @@
+﻿@model IEnumerable<final_project.Data.Entities.Order>
+
+@{
+    ViewData["Title"] = "Поръчки за обработка";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <h2 class="text-center">Поръчки за обработка</h2>
+            <table class="table text-center">
+                <thead>
+                <tr>
+                    <th scope="col">Потребител</th>
+                    <th scope="col">Дата</th>
+                    <th scope="col">Адрес</th>
+                    <th scope="col">Град</th>
+                    <th scope="col">Доставчик</th>
+                    <th scope="col">Детайли за продуктите</th>
+                    <th scope="col">Обща цена</th>
+                    <th scope="col">Изпращане на поръчка</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(item => order.User.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(item => order.OrderDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(item => order.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(item => order.Town)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(item => order.Courier)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Детайли", "OrderDetails", "Admin", new { orderId = order.Id })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(item => order.TotalCost)
+                            <span> лв.</span>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Изпрати", "SendOrder", "Order", new { orderId = order.Id }, new { @class = "btn btn-primary" })
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 ﻿@model final_project.Models.ManufacturerModel
 
 @{
-    ViewData["Title"] = "Create manufacturer page";
+    ViewData["Title"] = "Създаване на производител";
 }
 
 <div class="container">
@@ -9,13 +9,13 @@
         <div class="col-4"></div>
         <div class="col-4">
             <form method="post" asp-controller="Manufacturer" asp-action="CreateManufacturer">
-                <h2 class="text-center">Create manufacturer</h2>
+                <h2 class="text-center">Създаване на производител</h2>
                 <div class="from-group">
-                    <label for="name">Manufacturer name: </label>
-                    <input type="text" asp-for="Name" id="name" class="form-control" placeholder="Enter manufacturer name"/>
+                    <label for="name">Име на производителя: </label>
+                    <input type="text" asp-for="Name" id="name" class="form-control" placeholder="Въведете името на производителя"/>
                 </div>
                 <div class="form-group my-3">
-                    <input type="submit" class="btn btn-primary form-control" value="Create">
+                    <input type="submit" class="btn btn-primary form-control" value="Създаване">
                 </div>
             </form>
         </div>

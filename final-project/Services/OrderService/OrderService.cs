@@ -26,10 +26,28 @@ public class OrderService : IOrderService
         return order;
     }
 
-    public async Task UpdatePaymentStatus(int id)
+    public async Task UpdatePaymentStatusAsync(int id)
     {
         var fromDb = await ReadOrderAsync(id);
         fromDb.IsPaid = true;
+
+        _context.Orders.Update(fromDb);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task SendOrderAsync(int id)
+    {
+        var fromDb = await ReadOrderAsync(id);
+        fromDb.OrderStatus = OrderStatusEnum.Sent;
+
+        _context.Orders.Update(fromDb);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task FinishOrderAsync(int id)
+    {
+        var fromDb = await ReadOrderAsync(id);
+        fromDb.OrderStatus = OrderStatusEnum.Received;
 
         _context.Orders.Update(fromDb);
         await _context.SaveChangesAsync();
@@ -52,6 +70,27 @@ public class OrderService : IOrderService
     public async Task<List<Order>> GetAllUnpayedOrdersAsync()
     {
         var orders = await _context.Orders.Include(or => or.User).Include(or => or.Details).Where(or => !or.IsPaid).ToListAsync();
+
+        return orders;
+    }
+
+    public async Task<List<Order>> GetAllUnprocessedOrders()
+    {
+        var orders = await _context.Orders.Include(or => or.User).Include(or => or.Details).Where(or => or.OrderStatus == OrderStatusEnum.Processing).Where(or => or.IsPaid).ToListAsync();
+
+        return orders;
+    }
+
+    public async Task<List<Order>> GetAllSentOrders()
+    {
+        var orders = await _context.Orders.Include(or => or.User).Include(or => or.Details).Where(or => or.OrderStatus == OrderStatusEnum.Sent).ToListAsync();
+
+        return orders;
+    }
+
+    public async Task<List<Order>> GetAllFinishedOrders()
+    {
+        var orders = await _context.Orders.Include(or => or.User).Include(or => or.Details).Where(or => or.OrderStatus == OrderStatusEnum.Received).ToListAsync();
 
         return orders;
     }

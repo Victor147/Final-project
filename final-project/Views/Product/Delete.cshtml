@@ -1,46 +1,46 @@
 ﻿@model final_project.ViewModels.ProductViewModel
 
 @{
-    ViewData["Title"] = "Delete product page";
+    ViewData["Title"] = "Изтриване на продукт";
 }
 
 <div class="container">
     <div class="row">
         <div class="col-4"></div>
         <div class="col-4">
-            <h2>Delete product</h2>
+            <h2>Изтриване на продукт</h2>
             <form method="post" asp-controller="Product" asp-action="DeleteProduct">
                 <div class="form-group my-3">
-                    <label for="id" asp-for="Id">Product id: </label>
+                    <label for="id" asp-for="Id">Идентификационен номер: </label>
                     <input type="number" asp-for="Id" id="id" class="form-control" value="@Model.Id" readonly="readonly">
                 </div>
                 <div class="form-group my-3">
-                    <label for="name" asp-for="Name">Product name: </label>
+                    <label for="name" asp-for="Name">Име: </label>
                     <input type="text" asp-for="Name" id="name" class="form-control" value="@Model.Name" readonly="readonly">
                 </div>
                 <div class="form-group my-3">
-                    <label for="description" asp-for="Description">Product description: </label>
+                    <label for="description" asp-for="Description">Описание: </label>
                     <input type="text" asp-for="Description" id="description" class="form-control" value="@Model.Description" readonly="readonly">
                 </div>
                 <div class="form-group my-3">
-                    <label for="stock" asp-for="Stock">Product stock: </label>
+                    <label for="stock" asp-for="Stock">Налично количество: </label>
                     <input type="number" min="0" asp-for="Stock" id="stock" class="form-control" value="@Model.Stock" readonly="readonly">
                 </div>
                 <div class="form-group my-3">
-                    <label for="price" asp-for="Price">Product price: </label>
+                    <label for="price" asp-for="Price">Цена: </label>
                     <input type="number" min="0" step="any" asp-for="Price" id="price" class="form-control" value="@Model.Price" readonly="readonly">
                 </div>
                 <div class="form-group my-3">
                     <div>
-                        <a href="@Model.Image" readonly="readonly">Product image</a>
+                        <a href="@Model.Image" readonly="readonly">Снимка</a>
                     </div>
                 </div>
                 <div class="form-group my-3">
-                    <label for="manufacturer" asp-for="Manufacturer">Product manufacturer: </label>
+                    <label for="manufacturer" asp-for="Manufacturer">Производител: </label>
                     <input type="text" asp-for="Manufacturer" id="manufacturer" class="form-control" value="@Model.Manufacturer.Name" readonly="readonly">
                 </div>
                 <div class="form-group my-3">
-                    <label for="category" asp-for="Category">Product category: </label>
+                    <label for="category" asp-for="Category">Категория: </label>
                     <input type="text" asp-for="Category" id="category" class="form-control" value="@Model.Category.Name" readonly="readonly">
                 </div>
                 <div class="form-group my-3">
@@ -48,7 +48,7 @@
                 </div>
             </form>
             <div class="form-group">
-                <a class="btn btn-primary" href="/Product/ListProducts">Go back to list</a>
+                <a class="btn btn-primary" href="/Product/ListProducts">Назад към всички продукти</a>
             </div>
         </div>
         <div class="col-4"></div>

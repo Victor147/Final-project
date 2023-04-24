@@ -46,7 +46,8 @@ public class OrderController : Controller
             Address = model.DeliveryInformation.Address,
             Town = model.DeliveryInformation.Town,
             Courier = model.DeliveryInformation.Courier,
-            IsPaid = model.DeliveryInformation.PaymentMethod == "card" ? true : false
+            IsPaid = model.DeliveryInformation.PaymentMethod == "card" ? true : false,
+            OrderStatus = OrderStatusEnum.Processing
         };
         
         await _orderService.CreateOrderAsync(order);
@@ -92,7 +93,23 @@ public class OrderController : Controller
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> UpdatePaymentStatus(int orderId)
     {
-        await _orderService.UpdatePaymentStatus(orderId);
+        await _orderService.UpdatePaymentStatusAsync(orderId);
+        
+        return RedirectToAction("Panel", "Admin");
+    }
+    
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> SendOrder(int orderId)
+    {
+        await _orderService.SendOrderAsync(orderId);
+        
+        return RedirectToAction("Panel", "Admin");
+    }
+    
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> FinishOrder(int orderId)
+    {
+        await _orderService.FinishOrderAsync(orderId);
         
         return RedirectToAction("Panel", "Admin");
     }

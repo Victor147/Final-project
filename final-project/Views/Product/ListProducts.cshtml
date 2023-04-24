@@ -1,27 +1,27 @@
 ﻿@model final_project.ViewModels.ReturnPaginatedProductsViewModel
 
 @{
-    ViewData["Title"] = "Listed products";
+    ViewData["Title"] = "Продукти";
 }
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <h2 class="text-center">All products listed</h2>
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <h2 class="text-center">Продукти</h2>
             <div>
-                <a asp-action="Create" asp-controller="Product" class="btn btn-info"><i class="fa-sharp fa-solid fa-plus"></i>Create new product</a>
+                <a asp-action="Create" asp-controller="Product" class="btn btn-info"><i class="fa-sharp fa-solid fa-plus"></i>Създаване на нов продукт</a>
             </div>
             <table class="table text-center">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Stock</th>
-                    <th>Price</th>
-                    <th>Image</th>
-                    <th>Manufacturer</th>
-                    <th>Category</th>
+                    <th>Име</th>
+                    <th>Описание</th>
+                    <th>Налично количество</th>
+                    <th>Цена</th>
+                    <th>Снимка</th>
+                    <th>Производител</th>
+                    <th>Категория</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -34,7 +34,7 @@
                         <td>@Html.DisplayFor(item => product.Stock)</td>
                         <td>@Html.DisplayFor(item => product.Price)</td>
                         <td>
-                            <a href="@Html.DisplayFor(item => product.Image)">Image</a>
+                            <a href="@Html.DisplayFor(item => product.Image)">Снимка</a>
                         </td>
                         <td>@Html.DisplayFor(item => product.Manufacturer.Name)</td>
                         <td>@Html.DisplayFor(item => product.Category.Name)</td>
@@ -43,11 +43,11 @@
                 }
                 </tbody>
             </table>
-            <div>@Html.ActionLink("Go back to panel", "Panel", "Admin", "", new { @class = "btn btn-primary" })</div>
+            <div>@Html.ActionLink("Обратно към панел", "Panel", "Admin", "", new { @class = "btn btn-primary" })</div>
             <div class="d-flex justify-content-center">
                 <partial name="_Pagination" model="Model.PaginationProperties"/>
             </div>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-1"></div>
     </div>
 </div>

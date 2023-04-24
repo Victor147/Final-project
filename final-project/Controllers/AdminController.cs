@@ -24,6 +24,24 @@ public class AdminController : Controller
     {
         return View();
     }
+    
+    [Authorize(Roles = "Admin")]
+    public IActionResult Orders()
+    {
+        return View();
+    }
+
+    [Authorize(Roles = "Admin")]
+    public IActionResult PaymentOrders()
+    {
+        return View();
+    }
+    
+    [Authorize(Roles = "Admin")]
+    public IActionResult StatusOrders()
+    {
+        return View();
+    }
 
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> PaidOrders()
@@ -40,11 +58,29 @@ public class AdminController : Controller
 
         return View(orders);
     }
-
+    
     [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> PaymentOrders()
+    public async Task<IActionResult> OrderForSending()
     {
-        return View();
+        var orders = await _orderService.GetAllUnprocessedOrders();
+
+        return View(orders);
+    }
+    
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> SentOrders()
+    {
+        var orders = await _orderService.GetAllSentOrders();
+
+        return View(orders);
+    }
+    
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> FinishedOrders()
+    {
+        var orders = await _orderService.GetAllFinishedOrders();
+
+        return View(orders);
     }
     
     [Authorize(Roles = "Admin")]

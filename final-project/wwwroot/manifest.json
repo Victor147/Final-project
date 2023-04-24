@@ -1,7 +1,7 @@
 ﻿{
-  "name" : "PWA",
-  "short_name" : "PWA бутон",
-  "description": "Използване на PWA в MVC приложение",
+  "name" : "The Cue Corner",
+  "short_name" : "TCC",
+  "description": "Приложение за продажба на снукър и билярд артикули",
   "icons": [
     {
       "src": "/images/icon192x192.png",
