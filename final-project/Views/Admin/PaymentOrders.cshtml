@@ -1,0 +1,6 @@
+﻿@{
+    ViewData["Title"] = "Управление на плащанията";
+}
+
+@Html.ActionLink("Неплатени поръчки", "UnpayedOrders", "Admin", "", new { @class = "btn btn-primary" })
+@Html.ActionLink("Платени поръчки", "PaidOrders", "Admin", "", new { @class = "btn btn-primary" })

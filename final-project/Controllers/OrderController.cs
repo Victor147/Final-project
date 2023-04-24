@@ -6,6 +6,7 @@ using final_project.Services.OrderDetailService;
 using final_project.Services.OrderService;
 using final_project.Services.ProductService;
 using final_project.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,7 +46,7 @@ public class OrderController : Controller
             Address = model.DeliveryInformation.Address,
             Town = model.DeliveryInformation.Town,
             Courier = model.DeliveryInformation.Courier,
-            IsProcessed = model.DeliveryInformation.PaymentMethod == "card" ? true : false
+            IsPaid = model.DeliveryInformation.PaymentMethod == "card" ? true : false
         };
         
         await _orderService.CreateOrderAsync(order);
@@ -86,5 +87,13 @@ public class OrderController : Controller
         }
 
         return RedirectToAction("Index", "Product");
+    }
+
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> UpdatePaymentStatus(int orderId)
+    {
+        await _orderService.UpdatePaymentStatus(orderId);
+        
+        return RedirectToAction("Panel", "Admin");
     }
 }

@@ -1,11 +1,10 @@
 ﻿@{
-    ViewData["Title"] = "Admin panel";
+    ViewData["Title"] = "Администраторски панел";
 }
 
 <div class="container">
-    @Html.ActionLink("Manage Products", "ListProducts", "Product", "", new { @class = "btn btn-primary" })
-    @Html.ActionLink("Manage Manufacturer", "Index", "Manufacturer", "", new { @class = "btn btn-primary" })
-    @Html.ActionLink("View Finished Orders", "FinishedOrders", "Admin", "", new { @class = "btn btn-primary" })
-    @Html.ActionLink("Manage Categories", "Index", "Category", "", new { @class = "btn btn-primary" })
-    @Html.ActionLink("Orders for Processing", "OrdersForProcessing", "Admin", "", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Управление на продукти", "ListProducts", "Product", "", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Управление на производители", "Index", "Manufacturer", "", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Управление на категории", "Index", "Category", "", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Управление на заплащането на поръчки", "PaymentOrders", "Admin", "", new { @class = "btn btn-primary" })
 </div>

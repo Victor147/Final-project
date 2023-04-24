@@ -26,6 +26,15 @@ public class OrderService : IOrderService
         return order;
     }
 
+    public async Task UpdatePaymentStatus(int id)
+    {
+        var fromDb = await ReadOrderAsync(id);
+        fromDb.IsPaid = true;
+
+        _context.Orders.Update(fromDb);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task<List<Order>> GetAllOrdersAsync()
     {
         var orders = await _context.Orders.Include(or => or.User).Include(or => or.Details).ToListAsync();
@@ -33,16 +42,16 @@ public class OrderService : IOrderService
         return orders;
     }
 
-    public async Task<List<Order>> GetAllFinishedOrdersAsync()
+    public async Task<List<Order>> GetAllPaidOrdersAsync()
     {
-        var orders = await _context.Orders.Include(or => or.User).Include(or => or.Details).Where(or => or.IsProcessed).ToListAsync();
+        var orders = await _context.Orders.Include(or => or.User).Include(or => or.Details).Where(or => or.IsPaid).ToListAsync();
 
         return orders;
     }
 
-    public async Task<List<Order>> GetAllOrdersForProcessingAsync()
+    public async Task<List<Order>> GetAllUnpayedOrdersAsync()
     {
-        var orders = await _context.Orders.Include(or => or.User).Include(or => or.Details).Where(or => !or.IsProcessed).ToListAsync();
+        var orders = await _context.Orders.Include(or => or.User).Include(or => or.Details).Where(or => !or.IsPaid).ToListAsync();
 
         return orders;
     }

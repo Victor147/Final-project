@@ -75,7 +75,7 @@
                     </div>
                     <div class="">
                         <span class="text-navbar">Имате профил?</span>
-                        @Html.ActionLink("Вход", "Register", "Authentication", new { beforePath = Model.BeforePath == null ? "" : Model.BeforePath }, new { @class = "text-decoration-none color-log-reg hover-underline" })
+                        @Html.ActionLink("Вход", "Login", "Authentication", new { beforePath = Model.BeforePath == null ? "" : Model.BeforePath }, new { @class = "text-decoration-none color-log-reg hover-underline" })
                     </div>
                     <div class="text-center mt-4">
                         <input type="submit" class="btn btn-log-reg text-navbar" value="Регистрация">

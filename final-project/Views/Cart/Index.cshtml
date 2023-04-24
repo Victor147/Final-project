@@ -1,7 +1,7 @@
 ﻿@model final_project.Models.CartModel;
 
 @{
-    ViewData["Title"] = "Shopping cart";
+    ViewData["Title"] = "Потребителски кошница";
 }
 
 @* TODO: make the table responsive *@
@@ -10,22 +10,21 @@
     <h1 class="text-center">
         Количката е празна!
     </h1>
-    
 }
 else
 {
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8">
-                <h2 class="text-center">Shopping cart info</h2>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <h2 class="text-center">Продукти в количката</h2>
                 <table class="table text-center">
                     <thead>
                     <tr>
-                        <th scope="col">Product name</th>
-                        <th scope="col">Product price</th>
-                        <th scope="col">Product quantity</th>
-                        <th scope="col">Subtotal</th>
+                        <th scope="col">Име на продукта</th>
+                        <th scope="col">Цена</th>
+                        <th scope="col">Количество</th>
+                        <th scope="col">Междинна сума</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
@@ -39,106 +38,126 @@ else
                             </td>
                             <td>
                                 @Html.DisplayFor(item => cart.Product.Price)
+                                <span> лв.</span>
                             </td>
                             <td>
                                 <span id="quantity_@cart.Product.Id">@cart.Quantity</span>
-                                @* @Html.DisplayFor(item => cart.Quantity) *@
                             </td>
                             <td>
                                 <span id="subTotal_@cart.Product.Id">@cart.SubTotal</span>
-                                @* @Html.DisplayFor(item => cart.SubTotal) *@
+                                <span> лв.</span>
                             </td>
                             <td>
                                 <button onclick="increaseQuantity(@cart.Product.Id, @cart.Product.Stock)" class="btn btn-primary">+</button>
                                 <button onclick="decreaseQuantity(@cart.Product.Id)" class="btn btn-danger">-</button>
-                                @* @Html.ActionLink("+", "IncreaseQuantity", "Cart", new { id = cart.Product.Id }, new { @class = "btn btn-primary increase-quantity" }) *@
-                                @* @Html.ActionLink("-", "ReduceQuantity", "Cart", new { id = cart.Product.Id }, new { @class = "btn btn-danger" }) *@
                             </td>
                             <td>
-                                <button onclick="removeItem(@cart.Product.Id)" class="btn btn-danger">Remove</button>
-                                @* @Html.ActionLink("Remove", "RemoveFromCart", "Cart", new { id = cart.Product.Id }, new { @class = "btn btn-danger" }) *@
+                                <button onclick="removeItem(@cart.Product.Id)" class="btn btn-danger">Премахване</button>
                             </td>
                         </tr>
                     }
                     <tr>
                         <td colspan="5" style="text-align: right">
-                            <span>Total: <span id="total">@ViewBag.total</span></span>
+                            <span>Дължима сума: <span id="total">@ViewBag.total</span><span> лв.</span></span>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-
-                <form method="post" asp-action="Index" asp-controller="Order">
+                <form method="post" asp-action="Index" asp-controller="Order" class="mt-5">
                     <div class="row">
-                        <div class="col-lg-6">
-                            <h2 class="text-center">Delivery Information</h2>
-                            <div class="form-check form-switch">
+                        <div class="col-lg-6 mb-5">
+                            <h2 class="text-center mb-3">Информация за доставката</h2>
+                            <div class="form-check form-switch mb-3">
                                 <input class="form-check-input" onclick="checkValue()" type="checkbox" id="flexSwitchCheckDefault">
                                 <label class="form-check-label" for="flexSwitchCheckDefault">Да се използват ли данните от Вашия профил за оформянe на поръчката?</label>
                             </div>
                             <div class="form-group">
                                 <input type="text" asp-for="User.Username" id="username" class="form-control d-none"/>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="User.FirstName" for="firstName">First name: </label>
-                                <input type="text" asp-for="User.FirstName" id="firstName" class="form-control" value=""/>
+                            <div class="form-group mb-3">
+                                <label asp-for="User.FirstName" for="firstName">Име </label>
+                                <span class="text-danger">*</span>
+                                <input type="text" asp-for="User.FirstName" id="firstName" class="form-control" value="" required/>
+                                <p>
+                                    <span asp-validation-for="User.FirstName" class="text-danger"></span>
+                                </p>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="User.LastName" for="lastName">Фамилия </label>
+                                <span class="text-danger">*</span>
+                                <input type="text" asp-for="User.LastName" id="lastName" class="form-control" value="" required/>
+                                <p>
+                                    <span asp-validation-for="User.LastName" class="text-danger"></span>
+                                </p>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="DeliveryInformation.Town" for="town">Град </label>
+                                <span class="text-danger">*</span>
+                                <input type="text" asp-for="DeliveryInformation.Town" id="town" class="form-control" required/>
+                                <p>
+                                    <span asp-validation-for="DeliveryInformation.Town" class="text-danger"></span>
+                                </p>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label asp-for="DeliveryInformation.Address" for="address">Адрес </label>
+                                <span class="text-danger">*</span>
+                                <input type="text" asp-for="DeliveryInformation.Address" id="address" class="form-control" required/>
+                                <p>
+                                    <span asp-validation-for="DeliveryInformation.Address" class="text-danger"></span>
+                                </p>
                             </div>
                             <div class="form-group">
-                                <label asp-for="User.LastName" for="lastName">Last name: </label>
-                                <input type="text" asp-for="User.LastName" id="lastName" class="form-control" value=""/>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="DeliveryInformation.Town" for="town">Town: </label>
-                                <input type="text" asp-for="DeliveryInformation.Town" id="town" class="form-control"/>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="DeliveryInformation.Address" for="address">Address: </label>
-                                <input type="text" asp-for="DeliveryInformation.Address" id="address" class="form-control"/>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="DeliveryInformation.PhoneNumber" for="phoneNumber">Phone number: </label>
-                                <input type="text" asp-for="DeliveryInformation.PhoneNumber" id="phoneNumber" class="form-control"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" class="btn btn-primary mt-4 form-control" value="Order">
+                                <label asp-for="DeliveryInformation.PhoneNumber" for="phoneNumber">Телефонен номер </label>
+                                <span class="text-danger">*</span>
+                                <input type="text" asp-for="DeliveryInformation.PhoneNumber" id="phoneNumber" class="form-control" required/>
+                                <p>
+                                    <span asp-validation-for="DeliveryInformation.PhoneNumber" class="text-danger"></span>
+                                </p>
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="">
+                        <div class="col-lg-6 px-lg-5">
+                            <div class="mb-5">
                                 <h2 class="text-center">Метод на плащане</h2>
-                                <div class="form-check">
-                                    <input class="form-check-input" asp-for="DeliveryInformation.PaymentMethod" type="radio" id="cashOnDelivery" value="cash" checked>
-                                    <label class="form-check-label" asp-for="DeliveryInformation.PaymentMethod" for="cashOnDelivery">
-                                        Наложен платеж
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" asp-for="DeliveryInformation.PaymentMethod" type="radio" id="creditDebitCard" value="card">
-                                    <label class="form-check-label" asp-for="DeliveryInformation.PaymentMethod" for="creditDebitCard">
-                                        Кредитна или дебитна карта
-                                    </label>
+                                <div class="px-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" asp-for="DeliveryInformation.PaymentMethod" type="radio" id="cashOnDelivery" value="cash" checked onchange="switchButtonName()">
+                                        <label class="form-check-label" asp-for="DeliveryInformation.PaymentMethod" for="cashOnDelivery">
+                                            Наложен платеж
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" asp-for="DeliveryInformation.PaymentMethod" type="radio" id="creditDebitCard" value="card" onchange="switchButtonName()">
+                                        <label class="form-check-label" asp-for="DeliveryInformation.PaymentMethod" for="creditDebitCard">
+                                            Кредитна или дебитна карта
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="">
                                 <h2 class="text-center">Предпочитан куриер</h2>
-                                <div class="form-check">
-                                    <input class="form-check-input" asp-for="DeliveryInformation.Courier" type="radio" id="econt" value="econt" checked>
-                                    <label class="form-check-label" asp-for="DeliveryInformation.Courier" for="econt">
-                                        Еконт
-                                    </label>
+                                <div class="px-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" asp-for="DeliveryInformation.Courier" type="radio" id="econt" value="Еконт" checked>
+                                        <label class="form-check-label" asp-for="DeliveryInformation.Courier" for="econt">
+                                            Еконт
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" asp-for="DeliveryInformation.Courier" type="radio" id="speedy" value="Спиди">
+                                        <label class="form-check-label" asp-for="DeliveryInformation.Courier" for="speedy">
+                                            Спиди
+                                        </label>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" asp-for="DeliveryInformation.Courier" type="radio" id="speedy" value="speedy">
-                                    <label class="form-check-label" asp-for="DeliveryInformation.Courier" for="speedy">
-                                        Спиди
-                                    </label>
-                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary mt-4 form-control" value="Поръчка" id="submitBtn">
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
-            <div class="col-2"></div>
+            <div class="col-lg-2"></div>
         </div>
     </div>
 }
@@ -229,6 +248,19 @@ else
                 lName.readOnly = false;
                 lName.value = "";
             }
+        }
+        
+        function switchButtonName(){
+             var radioCardOption = document.getElementById('creditDebitCard');
+             var radioCashOption = document.getElementById('cashOnDelivery');
+             var submitButton = document.getElementById('submitBtn');
+             
+             if (radioCardOption.checked){
+                 submitButton.value = "Плащане";
+             }
+             if (radioCashOption.checked){
+                 submitButton.value = "Поръчка";
+             }
         }
     </script>
 }

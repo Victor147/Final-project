@@ -26,19 +26,25 @@ public class AdminController : Controller
     }
 
     [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> FinishedOrders()
+    public async Task<IActionResult> PaidOrders()
     {
-        var orders = await _orderService.GetAllFinishedOrdersAsync();
+        var orders = await _orderService.GetAllPaidOrdersAsync();
 
         return View(orders);
     }
     
     [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> OrdersForProcessing()
+    public async Task<IActionResult> UnpayedOrders()
     {
-        var orders = await _orderService.GetAllOrdersForProcessingAsync();
+        var orders = await _orderService.GetAllUnpayedOrdersAsync();
 
         return View(orders);
+    }
+
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> PaymentOrders()
+    {
+        return View();
     }
     
     [Authorize(Roles = "Admin")]

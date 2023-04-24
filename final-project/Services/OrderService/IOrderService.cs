@@ -6,8 +6,9 @@ public interface IOrderService
 {
     Task CreateOrderAsync(Order order);
     Task<Order> ReadOrderAsync(int id);
+    Task UpdatePaymentStatus(int id);
     Task<List<Order>> GetAllOrdersAsync();
-    Task<List<Order>> GetAllFinishedOrdersAsync();
-    Task<List<Order>> GetAllOrdersForProcessingAsync();
+    Task<List<Order>> GetAllPaidOrdersAsync();
+    Task<List<Order>> GetAllUnpayedOrdersAsync();
     Task<List<Order>> GetAllOrdersForUserAsync(int userId);
 }

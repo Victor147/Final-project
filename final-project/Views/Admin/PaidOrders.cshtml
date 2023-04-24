@@ -1,23 +1,24 @@
 ﻿@model IEnumerable<final_project.Data.Entities.Order>
 
 @{
-    ViewData["Title"] = "Finished orders";
+    ViewData["Title"] = "Платени поръчки";
 }
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-            <h2 class="text-center">Orders</h2>
+        <div class="col-1"></div>
+        <div class="col-10">
+            <h2 class="text-center">Платени поръчки</h2>
             <table class="table text-center">
                 <thead>
                 <tr>
-                    <th scope="col">Username</th>
-                    <th scope="col">Order date</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Town</th>
-                    <th scope="col">Product details</th>
-                    <th scope="col">Total cost</th>
+                    <th scope="col">Потребител</th>
+                    <th scope="col">Дата</th>
+                    <th scope="col">Адрес</th>
+                    <th scope="col">Град</th>
+                    <th scope="col">Доставчик</th>
+                    <th scope="col">Детайли за продуктите</th>
+                    <th scope="col">Обща цена</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -37,16 +38,20 @@
                             @Html.DisplayFor(item => order.Town)
                         </td>
                         <td>
-                            @Html.ActionLink("Details", "OrderDetails", "Admin", new { orderId = order.Id })
+                            @Html.DisplayFor(item => order.Courier)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Детайли", "OrderDetails", "Admin", new { orderId = order.Id })
                         </td>
                         <td>
                             @Html.DisplayFor(item => order.TotalCost)
+                            <span> лв.</span>
                         </td>
                     </tr>
                 }
                 </tbody>
             </table>
         </div>
-        <div class="col-2"></div>
+        <div class="col-1"></div>
     </div>
 </div>

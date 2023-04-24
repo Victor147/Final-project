@@ -18,8 +18,10 @@ namespace final_project.Data.Entities
         public string Town { get; set; }
         
         public string Courier { get; set; }
-
-        public bool IsProcessed { get; set; }
+        
+        public bool IsPaid { get; set; }
+        
+        public OrderStatusEnum OrderStatus { get; set; }
 
         public IEnumerable<OrderDetail> Details { get; set; }
         
