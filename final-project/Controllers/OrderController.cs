@@ -22,7 +22,9 @@ public class OrderController : Controller
     private readonly IMapper _mapper;
     private readonly IProductService _productService;
 
-    public OrderController(UserManager<User> userManager, IOrderDetailService orderDetailService, IOrderService orderService, IHttpContextAccessor httpContextAccessor, IMapper mapper, IProductService productService)
+    public OrderController(UserManager<User> userManager, IOrderDetailService orderDetailService,
+        IOrderService orderService, IHttpContextAccessor httpContextAccessor, IMapper mapper,
+        IProductService productService)
     {
         _userManager = userManager;
         _orderDetailService = orderDetailService;
@@ -41,6 +43,8 @@ public class OrderController : Controller
         var session = _session.Get<CartModel>($"cart_{user.Id}");
         model.Items = session!.Items;
 
+        _session.Set($"cart_{user.Id}", session);
+
         var order = new Order
         {
             OrderDate = DateTime.Now,
@@ -49,18 +53,18 @@ public class OrderController : Controller
             Address = model.DeliveryInformation.Address,
             Town = model.DeliveryInformation.Town,
             Courier = model.DeliveryInformation.Courier,
-            IsPaid = model.DeliveryInformation.PaymentMethod == "card" ? true : false,
+            IsPaid = false,
             OrderStatus = OrderStatusEnum.Processing
         };
-        
+
         await _orderService.CreateOrderAsync(order);
-        
+
         for (int i = 0; i < model.Items.Count; i++)
         {
             if (model.Items[i].Quantity <= model.Items[i].Product.Stock)
             {
                 var product = model.Items[i].Product;
-                
+
                 var orderDetail = new OrderDetail
                 {
                     ProductId = product.Id,
@@ -73,7 +77,7 @@ public class OrderController : Controller
                 product.Stock -= model.Items[i].Quantity;
 
                 await _productService.UpdateProductQuantityAsync(product);
-                
+
                 session = new CartModel
                 {
                     Items = new List<CartItemModel>(),
@@ -82,7 +86,6 @@ public class OrderController : Controller
                 };
                 _session.Set($"cart_{user.Id}", session);
                 ViewBag.total = "0.00";
-                
             }
             else
             {
@@ -93,27 +96,84 @@ public class OrderController : Controller
         return RedirectToAction("Index", "Product");
     }
 
+    [HttpPost]
+    public async Task<IActionResult> RegisterCardOrder(User user)
+    {
+        user = await _userManager.FindByNameAsync(user.UserName);
+        var model = _session.Get<CartModel>($"cart_{user.Id}");
+
+        var order = new Order
+        {
+            OrderDate = DateTime.Now,
+            TotalCost = model.Items.Sum(it => it.SubTotal),
+            UserId = user.Id,
+            Address = model.DeliveryInformation.Address,
+            Town = model.DeliveryInformation.Town,
+            Courier = model.DeliveryInformation.Courier,
+            IsPaid = true,
+            OrderStatus = OrderStatusEnum.Processing
+        };
+
+        await _orderService.CreateOrderAsync(order);
+
+        for (int i = 0; i < model.Items.Count; i++)
+        {
+            if (model.Items[i].Quantity <= model.Items[i].Product.Stock)
+            {
+                var product = model.Items[i].Product;
+
+                var orderDetail = new OrderDetail
+                {
+                    ProductId = product.Id,
+                    Quantity = model.Items[i].Quantity,
+                    OrderId = order.Id
+                };
+
+                await _orderDetailService.CreateOrderDetailAsync(orderDetail);
+
+                product.Stock -= model.Items[i].Quantity;
+
+                await _productService.UpdateProductQuantityAsync(product);
+
+                model = new CartModel
+                {
+                    Items = new List<CartItemModel>(),
+                    User = _mapper.Map<UserModel>(user),
+                    DeliveryInformation = new DeliveryInformationViewModel()
+                };
+                _session.Set($"cart_{user.Id}", model);
+                ViewBag.total = "0.00";
+            }
+            else
+            {
+                //return error page
+            }
+        }
+
+        return RedirectToAction("Index", "Home");
+    }
+
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> UpdatePaymentStatus(int orderId)
     {
         await _orderService.UpdatePaymentStatusAsync(orderId);
-        
+
         return RedirectToAction("Panel", "Admin");
     }
-    
+
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> SendOrder(int orderId)
     {
         await _orderService.SendOrderAsync(orderId);
-        
+
         return RedirectToAction("Panel", "Admin");
     }
-    
+
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> FinishOrder(int orderId)
     {
         await _orderService.FinishOrderAsync(orderId);
-        
+
         return RedirectToAction("Panel", "Admin");
     }
 }

@@ -1,5 +1,11 @@
-﻿@{
+﻿@model final_project.Data.Entities.User
+
+@{
     ViewData["Title"] = "Успешна поръчка";
 }
 
-<h1>Успешна поръчка</h1>
+<h1>Плащането е успешно</h1>
+<form method="post" asp-controller="Order" asp-action="RegisterCardOrder">
+    <input type="text" class="d-none" asp-for="UserName">
+    <input type="submit" value="Продължете напред">
+</form>
