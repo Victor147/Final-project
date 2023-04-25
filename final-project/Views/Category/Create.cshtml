@@ -13,6 +13,9 @@
                 <div class="from-group">
                     <label for="name">Име на категорията: </label>
                     <input type="text" asp-for="Name" id="name" class="form-control" placeholder="Въведете име на категорията"/>
+                    <p class="mt-1">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </p>
                 </div>
                 <div class="form-group my-3">
                     <input type="submit" class="btn btn-primary form-control" value="Създаване">

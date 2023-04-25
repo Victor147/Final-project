@@ -1,7 +1,7 @@
 ﻿@model final_project.Models.CartModel;
 
 @{
-    ViewData["Title"] = "Потребителски кошница";
+    ViewData["Title"] = "Потребителскa кошница";
 }
 
 @* TODO: make the table responsive *@
@@ -63,7 +63,7 @@ else
                     </tr>
                     </tbody>
                 </table>
-                <form method="post" asp-action="Index" asp-controller="Order" class="mt-5">
+                <form method="post" action="/Order/Index" class="mt-5" id="orderForm">
                     <div class="row">
                         <div class="col-lg-6 mb-5">
                             <h2 class="text-center mb-3">Информация за доставката</h2>
@@ -254,12 +254,15 @@ else
              var radioCardOption = document.getElementById('creditDebitCard');
              var radioCashOption = document.getElementById('cashOnDelivery');
              var submitButton = document.getElementById('submitBtn');
+             var form = document.getElementById('orderForm')
              
              if (radioCardOption.checked){
                  submitButton.value = "Плащане";
+                 form.action = "/Payment/Pay"
              }
              if (radioCashOption.checked){
                  submitButton.value = "Поръчка";
+                 form.action = "/Order/Index"
              }
         }
     </script>

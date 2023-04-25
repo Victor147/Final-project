@@ -42,8 +42,13 @@ public class CategoryController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateCategory([FromForm] CategoryModel model)
     {
-        await _categoryService.CreateCategoryAsync(model);
-        return RedirectToAction("Index", "Category");
+        if (ModelState.IsValid)
+        {
+            await _categoryService.CreateCategoryAsync(model);
+            return RedirectToAction("Index", "Category");
+        }
+
+        return View("Create");
     }
 
     [HttpGet]
@@ -68,8 +73,13 @@ public class CategoryController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> UpdateCategory([FromForm] CategoryViewModel model)
     {
-        await _categoryService.UpdateCategoryAsync(model);
-        return RedirectToAction("Index", "Category");
+        if (ModelState.IsValid)
+        {
+            await _categoryService.UpdateCategoryAsync(model);
+            return RedirectToAction("Index", "Category");
+        }
+
+        return View("Update", model);
     }
 
     [HttpGet]

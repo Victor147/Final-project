@@ -38,48 +38,55 @@ public class PaymentController : Controller
         var session = _session.Get<CartModel>($"cart_{user.Id}");
         model.Items = session!.Items;
 
-        var options = new SessionCreateOptions()
+        var lineItems = new List<SessionLineItemOptions>();
+
+        foreach (var item in model.Items)
         {
-            LineItems = new List<SessionLineItemOptions>
+            var slio = new SessionLineItemOptions
             {
-                new SessionLineItemOptions
+                PriceData = new SessionLineItemPriceDataOptions
                 {
-                    PriceData = new SessionLineItemPriceDataOptions
+                    UnitAmount = Convert.ToInt64(item.Product.Price) * 100,
+                    Currency = "bgn",
+                    ProductData = new SessionLineItemPriceDataProductDataOptions
                     {
-                        UnitAmount = (long)model.Items[0].Product.Price,
-                        Currency = "bgn",
-                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        Name = item.Product.Name,
+                        Images = new List<string>
                         {
-                            Name = model.Items[0].Product.Name
-                        },
-
-                    },
-                    Quantity = model.Items[0].Quantity
+                            item.Product.Image
+                        }
+                    }
                 },
-                new SessionLineItemOptions
-                {
-                    PriceData = new SessionLineItemPriceDataOptions
-                    {
-                        UnitAmount = Convert.ToInt64(model.Items[1].Product.Price),
-                        Currency = "bgn",
-                        ProductData = new SessionLineItemPriceDataProductDataOptions
-                        {
-                            Name = model.Items[1].Product.Name
-                        },
+                Quantity = item.Quantity
+            };
+            
+            lineItems.Add(slio);
+        }
 
-                    },
-                    Quantity = model.Items[1].Quantity
-                }
-            },
+        var options = new SessionCreateOptions
+        {
+            LineItems = lineItems,
             Mode = "payment",
-            SuccessUrl = "https://localhost:7255/Product/Index",
-            CancelUrl = "https://localhost:7255/Home"
+            SuccessUrl = "https://localhost:7255/Payment/Success",
+            CancelUrl = "https://localhost:7255/Payment/Failure"
         };
-
+        
         var service = new SessionService();
         Session sessionConsent = service.Create(options);
 
         Response.Headers.Add("Location", sessionConsent.Url);
         return new StatusCodeResult(303);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Success()
+    {
+        return View();
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> Failure()
+    {
+        return View();
     }
 }

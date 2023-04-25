@@ -9,6 +9,7 @@ using final_project.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Stripe;
 
 namespace final_project.Controllers;
 
@@ -29,9 +30,11 @@ public class OrderController : Controller
         _mapper = mapper;
         _productService = productService;
         _session = httpContextAccessor.HttpContext!.Session;
+        StripeConfiguration.ApiKey =
+            "sk_test_51MxlqfIe9yuEDfkXNITQ0wdiDXD5wiQRqeHqSrH8lI7VTEkCtRUv6pPOSu3OADZJcWHUCXaWkiC10qeRN5xKxwJe009u5U8keK";
     }
 
-    [HttpPost]
+
     public async Task<IActionResult> Index(CartModel model)
     {
         var user = await _userManager.FindByNameAsync(model.User.Username);

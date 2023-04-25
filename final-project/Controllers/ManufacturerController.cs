@@ -43,8 +43,13 @@ public class ManufacturerController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateManufacturer([FromForm] ManufacturerModel model)
     {
-        await _manufacturerService.CreateManufacturerAsync(model);
-        return RedirectToAction("Index", "Manufacturer");
+        if (ModelState.IsValid)
+        {
+            await _manufacturerService.CreateManufacturerAsync(model);
+            return RedirectToAction("Index", "Manufacturer");
+        }
+
+        return View("Create");
     }
 
     [HttpGet]
@@ -69,8 +74,13 @@ public class ManufacturerController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> UpdateManufacturer([FromForm] ManufacturerViewModel model)
     {
-        await _manufacturerService.UpdateManufacturerAsync(model);
-        return RedirectToAction("Index", "Manufacturer");
+        if (ModelState.IsValid)
+        {
+            await _manufacturerService.UpdateManufacturerAsync(model);
+            return RedirectToAction("Index", "Manufacturer");
+        }
+
+        return View("Update", model);
     }
 
     [HttpGet]

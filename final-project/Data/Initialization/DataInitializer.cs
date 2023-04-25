@@ -46,14 +46,14 @@ public class DataInitializer
 
         if (admin is null)
         {
-            await _userManager.CreateAsync(new User { UserName = "admin" }, "admin");
+            await _userManager.CreateAsync(new User { UserName = "admin" }, "Admin123");
             admin = await _userManager.FindByNameAsync("admin");
             await _userManager.AddToRoleAsync(admin, "admin");
         }
 
         if (user is null)
         {
-            await _userManager.CreateAsync(new User { UserName = "user" }, "user");
+            await _userManager.CreateAsync(new User { UserName = "user" }, "User123");
             user = await _userManager.FindByNameAsync("user");
             await _userManager.AddToRoleAsync(user, "user");
         }

@@ -19,7 +19,8 @@ public class ProductController : Controller
     private readonly IManufacturerService _manufacturerService;
     private readonly ICategoryService _categoryService;
 
-    public ProductController(IMapper mapper, IProductService productService, IManufacturerService manufacturerService, ICategoryService categoryService)
+    public ProductController(IMapper mapper, IProductService productService, IManufacturerService manufacturerService,
+        ICategoryService categoryService)
     {
         _mapper = mapper;
         _productService = productService;
@@ -51,7 +52,8 @@ public class ProductController : Controller
         });
     }
 
-    public async Task<IActionResult> Index(string? category, string? manufacturerFilter, decimal? minPriceFilter, decimal? maxPriceFilter,
+    public async Task<IActionResult> Index(string? category, string? manufacturerFilter, decimal? minPriceFilter,
+        decimal? maxPriceFilter,
         string sortOrder, int page = 1, int perPage = 8)
     {
         var model = await _productService.GetAllProductsAsync();
@@ -65,7 +67,7 @@ public class ProductController : Controller
         {
             model = model.Where(p => p.Category.Name == category);
         }
-        
+
         if (!string.IsNullOrEmpty(manufacturerFilter))
         {
             model = model.Where(p => p.Manufacturer.Name == manufacturerFilter);
@@ -128,8 +130,6 @@ public class ProductController : Controller
                 model.Count(),
                 perPage)
         });
-
-
     }
 
     [HttpGet]
@@ -149,8 +149,16 @@ public class ProductController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateProduct([FromForm] ProductModel model)
     {
-        await _productService.CreateProductAsync(model);
-        return RedirectToAction("Index", "Product");
+        if (ModelState.IsValid)
+        {
+            await _productService.CreateProductAsync(model);
+            return RedirectToAction("Index", "Product");
+        }
+
+        model.Categories = await _categoryService.GetAllCategoriesAsync();
+        model.Manufacturers = await _manufacturerService.GetAllManufacturersAsync();
+
+        return View("Create", model);
     }
 
     [HttpGet]
@@ -182,19 +190,27 @@ public class ProductController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> UpdateProduct([FromForm] UpdateProductModel model)
     {
-        ProductModel productModel = _mapper.Map<ProductModel>(model);
-        int id = model.Id;
-
-        if (productModel.Image == null)
+        if (ModelState.IsValid)
         {
-            await _productService.UpdateProductAsync(id, productModel, false);
-        }
-        else
-        {
-            await _productService.UpdateProductAsync(id, productModel, true);
+            ProductModel productModel = _mapper.Map<ProductModel>(model);
+            int id = model.Id;
+
+            if (productModel.Image == null)
+            {
+                await _productService.UpdateProductAsync(id, productModel, false);
+            }
+            else
+            {
+                await _productService.UpdateProductAsync(id, productModel, true);
+            }
+
+            return RedirectToAction("Index", "Product");
         }
 
-        return RedirectToAction("Index", "Product");
+        model.Categories = await _categoryService.GetAllCategoriesAsync();
+        model.Manufacturers = await _manufacturerService.GetAllManufacturersAsync();
+        
+        return View("Update", model);
     }
 
     [HttpGet]
