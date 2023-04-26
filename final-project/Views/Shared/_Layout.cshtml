@@ -15,9 +15,8 @@
 </head>
 <body class="d-flex flex-column vh-100 mb-0">
 <header>
-    <nav class="navbar navbar-expand-md navbar-toggleable-md navbar-light box-shadow custom-colored-navbar mb-3">
+    <nav class="navbar navbar-expand-md navbar-toggleable-md navbar-light box-shadow custom-colored-navbar">
         <div class="container-fluid">
-            @* <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/img/logo.png" style="width: inherit; height: inherit;" alt="logo"></a> *@
             <a class="navbar-brand text-navbar" asp-area="" asp-controller="Home" asp-action="Index">The Cue Corner</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -25,15 +24,14 @@
             </button>
             <div class="navbar-collapse collapse d-md-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1 d-flex">
-                    @* <li class="nav-item"> *@
-                    @*     <a class="nav-link text-navbar" asp-area="" asp-controller="Home" asp-action="Index">Home</a> *@
-                    @* </li> *@
                     <li class="nav-item">
                         <a class="nav-link text-navbar" asp-area="" asp-controller="Product" asp-action="Index">Продукти</a>
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Снукър", "Index", "Product", new { category = "test_category_2" }, new { @class = "nav-link text-navbar" })
-                        @* <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Products</a> *@
+                        @Html.ActionLink("Снукър", "Index", "Product", new { category = "Снукър" }, new { @class = "nav-link text-navbar" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Билярд", "Index", "Product", new { category = "Билярд" }, new { @class = "nav-link text-navbar" })
                     </li>
                     @if (!Context.User.Identity!.IsAuthenticated)
                     {
@@ -78,15 +76,48 @@
         </div>
     </nav>
 </header>
-<div class="container-fluid">
-    <main role="main" class="pb-3">
+<div class="container-fluid p-0">
+    <main role="main">
         @RenderBody()
     </main>
 </div>
 
-<footer class="footer border-top text-muted mt-auto">
+<footer class="footer custom-colored-navbar text-navbar mt-auto">
     <div class="container">
-        &copy; 2023 - The Cue Corner - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <section class="mt-3">
+            <div class="row text-center d-flex justify-content-center pt-2">
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        @Html.ActionLink("Продукти", "Index", "Product", new { }, new { @class = "text-navbar text-decoration-none" })
+                    </h6>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        @Html.ActionLink("Снукър", "Index", "Product", new { category = "Снукър" }, new { @class = "text-navbar text-decoration-none" })
+                    </h6>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        @Html.ActionLink("Билярд", "Index", "Product", new { category = "Билярд" }, new { @class = "text-navbar text-decoration-none" })
+                    </h6>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="text-uppercase font-weight-bold">
+                        @Html.ActionLink("Контакти", "Contact", "Home", new { }, new { @class = "text-navbar text-decoration-none" })
+                    </h6>
+                </div>
+            </div>
+        </section>
+        <hr class="my-3"/>
+        <section class="mb-3">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <p class="text-center">
+                        &copy; The Cue Corner - 2023
+                    </p>
+                </div>
+            </div>
+        </section>
     </div>
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>

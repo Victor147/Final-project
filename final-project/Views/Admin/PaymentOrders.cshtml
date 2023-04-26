@@ -2,5 +2,9 @@
     ViewData["Title"] = "Управление на плащанията";
 }
 
-@Html.ActionLink("Неплатени поръчки", "UnpayedOrders", "Admin", "", new { @class = "btn btn-primary" })
-@Html.ActionLink("Платени поръчки", "PaidOrders", "Admin", "", new { @class = "btn btn-primary" })
+<div class="container my-5">
+    <div class="text-center">
+        <div>@Html.ActionLink("Неплатени поръчки", "UnpayedOrders", "Admin", new { }, new { @class = "btn btn-secondary mb-3" })</div>
+        <div>@Html.ActionLink("Платени поръчки", "PaidOrders", "Admin", new { }, new { @class = "btn btn-secondary mb-3" })</div>
+    </div>
+</div>

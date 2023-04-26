@@ -20,11 +20,11 @@
             <div class="d-grid gap-2 my-4">
                 @if (Context.User.Identity!.IsAuthenticated)
                 {
-                    @Html.ActionLink("Add to Cart", "AddToCart", "Cart", new { id = @Model.Id }, new { @class = "btn-custom btn-warning-custom bold-btn" })
+                    @Html.ActionLink("Добавяне в количката", "AddToCart", "Cart", new { id = @Model.Id }, new { @class = "btn-custom btn-warning-custom bold-btn" })
                 }
                 else
                 {
-                    @Html.ActionLink("Add to cart", "Register", "Authentication", new { beforePath = "/Product/Index" }, new { @class = "btn-custom btn-warning-custom bold-btn" })
+                    @Html.ActionLink("Добавяне в количката", "Register", "Authentication", new { beforePath = "/Product/Index" }, new { @class = "btn-custom btn-warning-custom bold-btn" })
                 }
             </div>
         </div>

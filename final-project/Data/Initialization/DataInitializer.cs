@@ -58,52 +58,24 @@ public class DataInitializer
             await _userManager.AddToRoleAsync(user, "user");
         }
 
-        for (int i = 1; i <= 5; i++)
+        var categorySnooker = "Снукър";
+        Category? testCategory1 = await _categoryService.ReadCategoryByNameAsync(categorySnooker);
+        if (testCategory1 is null)
         {
-            var manufacturerName = "test" + i;
-            Manufacturer? testManufacturer = await _manufacturerService.ReadManufacturerByNameAsync(manufacturerName);
-            if (testManufacturer is null)
+            await _categoryService.CreateCategoryAsync(new CategoryModel
             {
-                await _manufacturerService.CreateManufacturerAsync(new ManufacturerModel
-                {
-                    Name = manufacturerName
-                });
-            }
+                Name = categorySnooker
+            });
         }
         
-        for (int i = 1; i <= 5; i++)
+        var categoryBilliard = "Билярд";
+        Category? testCategory2 = await _categoryService.ReadCategoryByNameAsync(categoryBilliard);
+        if (testCategory2 is null)
         {
-            var categoryName = "test_category_" + i;
-            Category? testCategory = await _categoryService.ReadCategoryByNameAsync(categoryName);
-            if (testCategory is null)
+            await _categoryService.CreateCategoryAsync(new CategoryModel
             {
-                await _categoryService.CreateCategoryAsync(new CategoryModel
-                {
-                    Name = categoryName
-                });
-            }
-        }
-
-        for (int i = 1; i <= 50; i++)
-        {
-            var productName = "test" + i;
-            Product? testProduct = await _productService.ReadProductByNameAsync(productName);
-            if (testProduct is null)
-            {
-                string path = @"wwwroot\img\background.jpg";
-                string name = Path.GetFileName(path);
-                byte[] bytes = File.ReadAllBytes(path);
-                await _productService.CreateProductAsync(new ProductModel
-                {
-                    Name = productName,
-                    Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec cursus nisl vel arcu vestibulum vehicula. Fusce euismod quis dolor non efficitur.",
-                    Stock = new Random().Next(1, 51),
-                    Price = new Random().Next(10, 10000),
-                    Image = new FormFile(new MemoryStream(bytes), 0, bytes.Length, name, name),
-                    ManufacturerId = new Random().Next(1, 6),
-                    CategoryId = new Random().Next(1, 6)
-                });
-            }
+                Name = categoryBilliard
+            });
         }
     }
 }

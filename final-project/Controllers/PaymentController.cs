@@ -21,16 +21,6 @@ public class PaymentController : Controller
             "sk_test_51MxlqfIe9yuEDfkXNITQ0wdiDXD5wiQRqeHqSrH8lI7VTEkCtRUv6pPOSu3OADZJcWHUCXaWkiC10qeRN5xKxwJe009u5U8keK";
     }
 
-    [HttpGet]
-    public async Task<IActionResult> Index()
-    {
-        var name = HttpContext.User.Identity!.Name;
-        var user = await _userManager.FindByNameAsync(HttpContext.User.Identity!.Name);
-        var cart = _session.Get<CartModel>($"cart_{user.Id}");
-
-        return View(cart);
-    }
-
     [HttpPost]
     public async Task<IActionResult> Pay(CartModel model)
     {
@@ -48,7 +38,7 @@ public class PaymentController : Controller
             {
                 PriceData = new SessionLineItemPriceDataOptions
                 {
-                    UnitAmount = Convert.ToInt64(item.Product.Price) * 100,
+                    UnitAmount = Convert.ToInt64(item.Product.Price * 100),
                     Currency = "bgn",
                     ProductData = new SessionLineItemPriceDataProductDataOptions
                     {

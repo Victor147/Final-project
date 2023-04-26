@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\logo.ico" />
+    <Content Remove="wwwroot\img\back.png" />
   </ItemGroup>
 
 </Project>

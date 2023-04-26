@@ -38,15 +38,15 @@
                 {
                     <div class="mb-3">
                         <label>Производител: </label>
-                        @Html.DropDownList("manufacturerFilter", ViewBag.Manufacturers as SelectList, "All")
+                        @Html.DropDownList("manufacturerFilter", ViewBag.Manufacturers as SelectList, "Всички", new{@class="btn btn-secondary dropdown-toggle"})
                     </div>
                     <div class="range-slider mb-4">
-                        <label class="text-center">Ценови диапазон: </label>
+                        <label class="text-center mb-1">Ценови диапазон: </label>
                         <span class="rangeValues"></span>
                         <input min="0" max="20000" step="50" type="range" id="minPriceFilter" name="minPriceFilter" value="@parameters["MinPriceFilter"]">
                         <input min="0" max="20000" step="50" type="range" id="maxPriceFilter" name="maxPriceFilter" value="@parameters["MaxPriceFilter"]">
                     </div>
-                    <button type="submit" asp-all-route-data="parameters">Филтриране</button>
+                    <button type="submit" asp-all-route-data="parameters" class="btn btn-secondary">Филтриране</button>
                 }
             </div>
         </div>

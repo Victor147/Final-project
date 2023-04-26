@@ -6,22 +6,25 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
             <form method="post" asp-controller="Manufacturer" asp-action="CreateManufacturer">
-                <h2 class="text-center">Създаване на производител</h2>
-                <div class="from-group">
+                <h2 class="text-center mt-5 mb-4">Създаване на производител</h2>
+                <div class="from-group my-4">
                     <label for="name">Име на производителя: </label>
                     <input type="text" asp-for="Name" id="name" class="form-control" placeholder="Въведете името на производителя"/>
                     <p class="mt-1">
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </p>
                 </div>
-                <div class="form-group my-3">
+                <div class="form-group my-4">
                     <input type="submit" class="btn btn-primary form-control" value="Създаване">
                 </div>
             </form>
+            <div class="form-group text-center mb-5">
+                <a asp-controller="Manufacturer" asp-action="Index" class="btn btn-primary">Назад към всички производители</a>
+            </div>
         </div>
-        <div class="col-4"></div>
+        <div class="col-lg-3"></div>
     </div>
 </div>

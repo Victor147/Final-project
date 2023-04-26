@@ -8,9 +8,9 @@
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
-            <h2 class="text-center">Категории</h2>
-            <div>
-                <a href="/Category/Create">Създаване на нова категория</a>
+            <h2 class="text-center mt-5 mb-4">Категории</h2>
+            <div class="text-center">
+                <a asp-controller="Category" asp-action="Create" class="btn btn-info text-navbar mb-3">Създаване на нова категория</a>
             </div>
             <table class="table text-center" id="dataTable">
                 <tr>
@@ -21,11 +21,23 @@
                 {
                     <tr>
                         <td>@Html.DisplayFor(item => category.Name)</td>
-                        <td><a href="/Category/Read/@category.Id" class="btn btn-success"><i class="fa-solid fa-magnifying-glass"></i></a><a href="/Category/Update/@category.Id" class="btn btn-warning"><i class="fa-solid fa-pen"></i></a><a href="/Category/Delete/@category.Id" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></a></td>
+                        <td>
+                            <a href="/Category/Read/@category.Id" class="btn btn-success">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </a>
+                            <a href="/Category/Update/@category.Id" class="btn btn-warning">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                            <a href="/Category/Delete/@category.Id" class="btn btn-danger">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </a>
+                        </td>
                     </tr>
                 }
             </table>
-            <div>@Html.ActionLink("Обратно към панела", "Panel", "Admin", "", new { @class = "btn btn-primary" })</div>
+            <div class="text-center">
+                @Html.ActionLink("Обратно към панела", "Panel", "Admin", new { }, new { @class = "btn btn-primary my-3" })
+            </div>
         </div>
         <div class="col-2"></div>
     </div>

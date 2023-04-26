@@ -15,7 +15,7 @@
             parameters["MaxPriceFilter"] = ViewBag.MaxPriceFilter != null ? ViewBag.MaxPriceFilter.ToString() : string.Empty;
             parameters["ManufacturerFilter"] = ViewBag.ManufacturerFilter != null ? ViewBag.ManufacturerFilter : string.Empty;
             parameters["Category"] = ViewBag.Category != null ? ViewBag.Category : string.Empty;
-            <li class="page-item"><a asp-all-route-data="parameters" class="page-link">Prev</a></li>
+            <li class="page-item"><a asp-all-route-data="parameters" class="page-link">Предишна</a></li>
         }
         @for (int i = Model.PageSpanStart; i <= Model.PageSpanEnd; i++)
         {
@@ -44,7 +44,7 @@
             parameters["MaxPriceFilter"] = ViewBag.MaxPriceFilter != null ? ViewBag.MaxPriceFilter.ToString() : string.Empty;
             parameters["ManufacturerFilter"] = ViewBag.ManufacturerFilter != null ? ViewBag.ManufacturerFilter : string.Empty;
             parameters["Category"] = ViewBag.Category != null ? ViewBag.Category : string.Empty;
-            <li class="page-item"><a asp-all-route-data="parameters" class="page-link">Next</a></li>
+            <li class="page-item"><a asp-all-route-data="parameters" class="page-link">Следваща</a></li>
         }
     </ul>
 </nav>

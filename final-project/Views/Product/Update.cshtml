@@ -6,57 +6,54 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4">
-            <h2>Редактиране на продукт</h2>
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <h2 class="text-center mt-5 mb-4">Редактиране на продукт</h2>
             <form method="post" enctype="multipart/form-data" asp-controller="Product" asp-action="UpdateProduct">
-                <div class="form-group my-3">
+                <div class="form-group my-4">
                     <label for="id" asp-for="Id">Идентификационен номер: </label>
                     <input type="number" asp-for="Id" id="id" class="form-control" value="@Model.Id" readonly="readonly">
                 </div>
-                <div class="form-group my-3">
+                <div class="form-group my-4">
                     <label for="name" asp-for="Name">Име: </label>
                     <input type="text" asp-for="Name" id="name" class="form-control" value="@Model.Name">
                     <p class="mt-1">
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </p>
                 </div>
-                <div class="form-group my-3">
+                <div class="form-group my-4">
                     <label for="description" asp-for="Description">Описание: </label>
                     <input type="text" asp-for="Description" id="description" class="form-control" value="@Model.Description">
                     <p class="mt-1">
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </p>
                 </div>
-                <div class="form-group my-3">
+                <div class="form-group my-4">
                     <label for="stock" asp-for="Stock">Налично количество: </label>
                     <input type="number" min="0" asp-for="Stock" id="stock" class="form-control" value="@Model.Stock">
                     <p class="mt-1">
                         <span asp-validation-for="Stock" class="text-danger"></span>
                     </p>
                 </div>
-                <div class="form-group my-3">
+                <div class="form-group my-4">
                     <label for="price" asp-for="Price">Цена: </label>
                     <input type="number" min="0" step="0.01" asp-for="Price" id="price" class="form-control" value="@Model.Price">
                     <p class="mt-1">
                         <span asp-validation-for="Price" class="text-danger"></span>
                     </p>
                 </div>
-                <div class="form-group my-3">
-                    <div>
-                        <a href="@Model.Image">Снимка</a>
+                <div class="form-group my-4">
+                    <div class="mb-2">
+                        <a href="@Model.Image">Старата снимка</a>
                     </div>
-
+                    <input type="text" class="d-none" asp-for="Image">
                     <label for="image" asp-for="File">Избор на нова снимка: </label>
                     <input type="file" accept="image/*" asp-for="File" id="image" class="form-control" placeholder="Enter product image">
                     <p class="mt-1">
                         <span asp-validation-for="File" class="text-danger"></span>
                     </p>
-
-                    @* TODO: fix image width and use the following to display it / make this everywhere *@
-                    @* <img src="@Model.Image" alt=""/> *@
                 </div>
-                <div class="from-group my-3">
+                <div class="from-group my-4">
                     <label for="manufacturer">Производител: </label>
                     <select asp-for="ManufacturerId" id="manufacturer" class="form-control">
                         @foreach (var elem in Model.Manufacturers)
@@ -65,7 +62,7 @@
                         }
                     </select>
                 </div>
-                <div class="from-group my-3">
+                <div class="from-group my-4">
                     <label for="category">Категория: </label>
                     <select asp-for="CategoryId" id="category" class="form-control">
                         @foreach (var elem in Model.Categories)
@@ -74,14 +71,14 @@
                         }
                     </select>
                 </div>
-                <div class="form-group my-3">
+                <div class="form-group my-4">
                     <input type="submit" class="btn btn-warning form-control" value="Промяна">
                 </div>
             </form>
-            <div class="form-group">
+            <div class="form-group text-center mb-5">
                 <a class="btn btn-primary" href="/Product/ListProducts">Назад към всички продукти</a>
             </div>
         </div>
-        <div class="col-4"></div>
+        <div class="col-lg-3"></div>
     </div>
 </div>

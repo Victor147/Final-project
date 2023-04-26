@@ -6,24 +6,20 @@
 :root {
     --font: 'Roboto', sans-serif;
 
-    --btnbg: #ffcc00;
+    --btnbg: #ffe785;
     --btnfontcolor: rgb(61, 61, 61);
     --btnfontcolorhover: rgb(255, 255, 255);
-    --btnbghover: #ffc116;
+    --btnbghover: #baa449;
     --btnactivefs: rgb(241, 195, 46);
     --backgroundcolor: #f5f5f5;
-    /*--backgroundcolor: #f6f6f6;*/
-    /*--backgroundcolor: rgb(243, 222, 186);*/
     --navbarcolor: #333333;
-    /*--navbarcolor: #d8d8d8;*/
-    /*--navbarcolor: rgb(240, 239, 177);*/
     --navbartextcolor: #F5F5F5;
     --bluishcolor: rgb(17, 153, 158);
     --darkishcolor: rgb(64, 81, 78);
 
     --label-index: #960796;
     --danger-index: #5bc257;
-    /* PAGINATE */
+    
     --link-color: #000;
     --link-color-hover: #fff;
     --bg-content-color: #ffcc00;
@@ -65,12 +61,16 @@ body {
     margin-left: auto;
 }
 
+.px-6{
+    padding-left: 10rem!important;
+    padding-right: 10rem!important;
+}
+
 @media (max-width: 767px) {
     .left-collapse {
         margin-left: unset;
     }
 }
-
 @media (min-width: 768px) {
     html {
         font-size: 16px;
@@ -217,7 +217,6 @@ body {
 .label-top {
     position: absolute;
     background-color: #4e7ca8;
-    /*background-color: var(--label-index);*/
     color: #fff;
     top: 8px;
     right: 8px;
@@ -247,12 +246,9 @@ body {
 .top-right span {
     display: inline-block;
     vertical-align: middle;
-    /* line-height: normal; */
-    /* padding: 0 25px; */
 }
 
 .aff-link {
-    /* text-decoration: overline; */
     font-weight: 500;
 }
 
@@ -293,7 +289,6 @@ body {
     }
 }
 
-/* START BUTTON */
 .btn-warning-custom {
     background: var(--btnbg);
     color: var(--btnfontcolor);
@@ -301,20 +296,17 @@ body {
     border: none;
     text-decoration: none;
     outline: 0;
-    /* box-shadow: -1px 6px 19px rgba(247, 129, 10, 0.25); */
     border-radius: 100px;
 }
 
 .btn-warning-custom:hover {
     background: var(--btnbghover);
     color: var(--btnfontcolorhover);
-    /* box-shadow: -1px 6px 13px rgba(255, 150, 43, 0.35); */
 }
 
 .btn-check:focus + .btn-warning-custom, .btn-warning-custom:focus {
     background: var(--btnbghover);
     color: var(--btnfontcolorhover);
-    /* box-shadow: -1px 6px 13px rgba(255, 150, 43, 0.35); */
 }
 
 .btn-warning-custom:active:focus {
@@ -324,10 +316,7 @@ body {
 .btn-warning-custom:active {
     background: var(--btnbghover);
     color: var(--btnfontcolorhover);
-    /* box-shadow: -1px 6px 13px rgba(255, 150, 43, 0.35); */
 }
-
-/* END BUTTON */
 
 .bg-success-custom {
     --bs-bg-opacity: 1;
@@ -360,8 +349,6 @@ body {
     transform-origin: bottom left;
 }
 
-
-/*slider*/
 .range-slider {
     width: 300px;
     text-align: center;
@@ -370,11 +357,11 @@ body {
 }
 .range-slider .rangeValues {
     display: block;
-    border: 1px solid red;
-    /*box-shadow: 0 0 20px rgba(0,139,253,0.25);*/
     padding: 10px;
+    border: 1px solid rgba(0,139,253,0.25);
     font-size: 18px;
     margin-bottom: 35px;
+    box-shadow: 0 0 20px rgba(0,139,253,0.25);
 }
 input[type=range] {
     -webkit-appearance: none;

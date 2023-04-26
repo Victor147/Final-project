@@ -2,6 +2,10 @@
     ViewData["Title"] = "Поръчки";
 }
 
-@Html.ActionLink("Управление на поръчки, които се обработват", "OrderForSending", "Admin", "", new { @class = "btn btn-primary" })
-@Html.ActionLink("Управление на поръчки, които са изпратени", "SentOrders", "Admin", "", new { @class = "btn btn-primary" })
-@Html.ActionLink("Управление на завършени", "FinishedOrders", "Admin", "", new { @class = "btn btn-primary" })
+<div class="container my-5">
+    <div class="text-center">
+        <div>@Html.ActionLink("Управление на поръчки, които се обработват", "OrderForSending", "Admin", new { }, new { @class = "btn btn-secondary mb-3" })</div>
+        <div>@Html.ActionLink("Управление на поръчки, които са изпратени", "SentOrders", "Admin", new { }, new { @class = "btn btn-secondary mb-3" })</div>
+        <div>@Html.ActionLink("Управление на завършени поръчки", "FinishedOrders", "Admin", new { }, new { @class = "btn btn-secondary mb-3" })</div>
+    </div>
+</div>

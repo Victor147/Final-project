@@ -57,8 +57,8 @@ public class ProductController : Controller
         string sortOrder, int page = 1, int perPage = 8)
     {
         var model = await _productService.GetAllProductsAsync();
-
         var manufacturers = await _manufacturerService.GetAllManufacturersAsync();
+        
         var names = manufacturers.Select(m => m.Name).Distinct().OrderBy(m => m).ToList();
 
         ViewBag.Manufacturers = new SelectList(names);
@@ -104,8 +104,7 @@ public class ProductController : Controller
         ViewBag.MinPriceFilter = minPriceFilter;
         ViewBag.MaxPriceFilter = maxPriceFilter;
         ViewBag.ManufacturerFilter = manufacturerFilter;
-
-        //filter products without stock value
+        
         model = model.Where(p => p.Stock != 0);
 
         var products = model.ToList()
@@ -209,7 +208,7 @@ public class ProductController : Controller
 
         model.Categories = await _categoryService.GetAllCategoriesAsync();
         model.Manufacturers = await _manufacturerService.GetAllManufacturersAsync();
-        
+
         return View("Update", model);
     }
 

@@ -4,12 +4,14 @@
     ViewData["Title"] = "Потребителскa кошница";
 }
 
-@* TODO: make the table responsive *@
 @if (Model.Items.Count == 0)
 {
-    <h1 class="text-center">
+    <h2 class="text-center h1 my-5">
         Количката е празна!
-    </h1>
+    </h2>
+    <div class="text-center">
+        <a asp-controller="Product" asp-action="Index" class="btn btn-secondary">Продължете пазаруването</a>
+    </div>
 }
 else
 {
@@ -17,7 +19,7 @@ else
         <div class="row">
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
-                <h2 class="text-center">Продукти в количката</h2>
+                <h2 class="text-center mt-4 mb-3">Продукти в количката</h2>
                 <table class="table text-center">
                     <thead>
                     <tr>
@@ -150,8 +152,12 @@ else
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <input type="submit" class="btn btn-primary mt-4 form-control" value="Поръчка" id="submitBtn">
+                            <div class="form-group text-center">
+                                <input type="submit" class="btn btn-primary mt-4" value="Поръчка" id="submitBtn">
+                            </div>
+                            <div class="text-center my-2">или</div>
+                            <div class=" form-group text-center mb-4">
+                                <a asp-controller="Product" asp-action="Index" class="btn btn-secondary">Продължете пазаруването</a>
                             </div>
                         </div>
                     </div>

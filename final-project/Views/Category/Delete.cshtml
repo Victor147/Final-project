@@ -6,26 +6,26 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4">
-            <h2>Изтриване на категория</h2>
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <h2 class="text-center mt-5 mb-4">Изтриване на категория</h2>
             <form method="post" asp-controller="Category" asp-action="DeleteCategory">
-                <div class="form-group my-3">
+                <div class="form-group my-4">
                     <label for="id" asp-for="Id">Идентификационен номер: </label>
                     <input type="number" asp-for="Id" id="id" class="form-control" value="@Model.Id" readonly="readonly">
                 </div>
-                <div class="form-group my-3">
+                <div class="form-group my-4">
                     <label for="name" asp-for="Name">Име: </label>
                     <input type="text" asp-for="Name" id="name" class="form-control" value="@Model.Name" readonly="readonly">
                 </div>
-                <div class="form-group my-3">
+                <div class="form-group my-4">
                     <input type="submit" class="btn btn-danger form-control" value="Изтриване">
                 </div>
             </form>
-            <div class="form-group">
-                <a class="btn btn-primary" href="/Category/Index">Назад към всички категории</a>
+            <div class="form-group text-center mb-5">
+                <a asp-controller="Category" asp-action="Index" class="btn btn-primary">Назад към всички категории</a>
             </div>
         </div>
-        <div class="col-4"></div>
+        <div class="col-lg-3"></div>
     </div>
 </div>
