@@ -14,5 +14,6 @@ public interface IOrderService
     Task<List<Order>> GetAllUnprocessedOrders();
     Task<List<Order>> GetAllSentOrders();
     Task<List<Order>> GetAllFinishedOrders();
-    Task<List<Order>> GetAllOrdersForUserAsync(int userId);
+    Task<List<Order>> GetAllUnfinishedOrdersForUserAsync(int userId);
+    Task<List<Order>> GetAllFinishedOrdersForUserAsync(int userId);
 }

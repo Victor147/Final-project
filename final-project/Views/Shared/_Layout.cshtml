@@ -64,7 +64,8 @@
                                 <button class="dropbtn nav-link text-navbar" for="btnControl">Здравейте, @Context.User.Identity.Name</button>
                                 <div class="dropdown-content">
                                     <a asp-controller="Profile" asp-action="Profile">Вашият профил</a>
-                                    <a asp-controller="Profile" asp-action="UserOrdersHistory">История на поръчките</a>
+                                    <a asp-controller="Profile" asp-action="ActiveUserOrders">Активни поръчки</a>
+                                    <a asp-controller="Profile" asp-action="FinishedUserOrders">Завършени поръчки</a>
                                     <form method="post" asp-controller="Authentication" asp-action="Logout" class="p-xy">
                                         <input type="submit" class="border-0 bg-dropdown p-0" value="Изход">
                                     </form>

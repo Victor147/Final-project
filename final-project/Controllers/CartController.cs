@@ -69,7 +69,7 @@ public class CartController : Controller
         var product = await _productService.ReadProductAsync(id);
         var cart = _session.Get<CartModel>($"cart_{userId}");
 
-        if (cart == null)
+        if (cart is null)
         {
             cart = new CartModel
             {

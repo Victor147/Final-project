@@ -37,7 +37,7 @@ public class PaymentController : Controller
         var user = await _userManager.FindByNameAsync(model.User.Username);
         var session = _session.Get<CartModel>($"cart_{user.Id}");
         model.Items = session!.Items;
-        
+
         _session.Set($"cart_{user.Id}", model);
 
         var lineItems = new List<SessionLineItemOptions>();
@@ -61,7 +61,7 @@ public class PaymentController : Controller
                 },
                 Quantity = item.Quantity
             };
-            
+
             lineItems.Add(slio);
         }
 
@@ -70,9 +70,9 @@ public class PaymentController : Controller
             LineItems = lineItems,
             Mode = "payment",
             SuccessUrl = $"https://localhost:7255/Payment/Success?username={model.User.Username}",
-            CancelUrl = "https://localhost:7255/Payment/Failure",
+            CancelUrl = $"https://localhost:7255/Payment/Failure?username={model.User.Username}",
         };
-        
+
         var service = new SessionService();
         Session sessionConsent = service.Create(options);
 
@@ -89,8 +89,13 @@ public class PaymentController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Failure()
+    public async Task<IActionResult> Failure(string username)
     {
-        return View();
+        var user = await _userManager.FindByNameAsync(username);
+        var session = _session.Get<CartModel>($"cart_{user.Id}");
+        
+        _session.Set($"cart_{user.Id}", session);
+
+        return RedirectToAction("Index", "Cart");
     }
 }

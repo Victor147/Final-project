@@ -13,9 +13,7 @@ public class DeliveryInformationViewModel
     [Required(ErrorMessage = "Градът е задължителен!")]
     public string Town { get; set; }
     
-    
     public string Courier { get; set; }
-    
 
     public string PaymentMethod { get; set; }
 }

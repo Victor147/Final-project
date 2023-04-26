@@ -41,9 +41,7 @@ public class OrderController : Controller
     {
         var user = await _userManager.FindByNameAsync(model.User.Username);
         var session = _session.Get<CartModel>($"cart_{user.Id}");
-        model.Items = session!.Items;
-
-        _session.Set($"cart_{user.Id}", session);
+        model.Items = session.Items;
 
         var order = new Order
         {

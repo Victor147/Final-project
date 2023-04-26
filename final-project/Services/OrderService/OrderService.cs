@@ -95,10 +95,18 @@ public class OrderService : IOrderService
         return orders;
     }
 
-    public async Task<List<Order>> GetAllOrdersForUserAsync(int userId)
+    public async Task<List<Order>> GetAllUnfinishedOrdersForUserAsync(int userId)
     {
         var orders = await _context.Orders.Include(or => or.User).Include(or => or.Details)
-            .Where(or => or.User.Id == userId).ToListAsync();
+            .Where(or => or.User.Id == userId).Where(or => or.OrderStatus != OrderStatusEnum.Received).ToListAsync();
+
+        return orders;
+    }
+
+    public async Task<List<Order>> GetAllFinishedOrdersForUserAsync(int userId)
+    {
+        var orders = await _context.Orders.Include(or => or.User).Include(or => or.Details)
+            .Where(or => or.User.Id == userId).Where(or => or.OrderStatus == OrderStatusEnum.Received).ToListAsync();
 
         return orders;
     }

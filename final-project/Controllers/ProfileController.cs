@@ -18,22 +18,32 @@ public class ProfileController : Controller
     }
 
     [Authorize(Roles = "User")]
-    public async Task<IActionResult> UserOrdersHistory()
+    public async Task<IActionResult> ActiveUserOrders()
     {
         var username = HttpContext.User.Identity!.Name;
         var user = await _userManager.FindByNameAsync(username);
 
-        var orders = await _orderService.GetAllOrdersForUserAsync(user.Id);
+        var orders = await _orderService.GetAllUnfinishedOrdersForUserAsync(user.Id);
         
         return View(orders);
     }
     
     [Authorize(Roles = "User")]
+    public async Task<IActionResult> FinishedUserOrders()
+    {
+        var username = HttpContext.User.Identity!.Name;
+        var user = await _userManager.FindByNameAsync(username);
+
+        var orders = await _orderService.GetAllFinishedOrdersForUserAsync(user.Id);
+        
+        return View(orders);
+    }
+
+    [Authorize(Roles = "User")]
     public async Task<IActionResult> Profile()
     {
         var username = HttpContext.User.Identity!.Name;
         var user = await _userManager.FindByNameAsync(username);
-        
         
         return View();
     }
