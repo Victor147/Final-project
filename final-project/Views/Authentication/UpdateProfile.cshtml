@@ -1,0 +1,49 @@
+﻿@model final_project.Models.ProfileModel
+
+@{
+    ViewData["Title"] = "Промяна на профил";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <h2 class="text-center mt-5 mb-4">Редактиране на профил</h2>
+            <form method="post" asp-controller="Authentication" asp-action="UpdateProfile">
+                <input type="text" asp-for="Username" id="username" class="form-control d-none" value="@Model.Username">
+                <div class="form-group my-4">
+                    <label for="fName" asp-for="FirstName">Име: </label>
+                    <input type="text" asp-for="FirstName" id="fName" class="form-control" value="@Model.FirstName">
+                    <p class="mt-1">
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </p>
+                </div>
+                <div class="form-group my-4">
+                    <label for="lName" asp-for="LastName">Фамилия: </label>
+                    <input type="text" asp-for="LastName" id="lName" class="form-control" value="@Model.LastName">
+                    <p class="mt-1">
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </p>
+                </div>
+                <div class="form-group my-4">
+                    <label for="address" asp-for="Address">Адрес: </label>
+                    <input type="text" asp-for="Address" id="address" class="form-control" value="@Model.Address">
+                    <p class="mt-1">
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </p>
+                </div>
+                <div class="form-group my-4">
+                    <label for="email" asp-for="Email">Имейл: </label>
+                    <input type="text" asp-for="Email" id="email" class="form-control" value="@Model.Email">
+                    <p class="mt-1">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </p>
+                </div>
+                <div class="form-group my-4">
+                    <input type="submit" class="btn btn-warning form-control" value="Промяна"/>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>

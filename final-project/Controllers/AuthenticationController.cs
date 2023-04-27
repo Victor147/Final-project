@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Net.Security;
+using AutoMapper;
 using final_project.Data.Entities;
 using final_project.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -128,6 +129,38 @@ public class AuthenticationController : Controller
         }
 
         return View("Login", viewModel);
+    }
+
+    [HttpGet]
+    [Authorize(Roles = "User")]
+    public async Task<IActionResult> UpdateProfile(string username)
+    {
+        var user = await _userManager.FindByNameAsync(username);
+
+        var profile = _mapper.Map<ProfileModel>(user);
+
+        return View(profile);
+    }
+
+    [HttpPost]
+    [Authorize(Roles = "User")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> UpdateProfile(ProfileModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            var fromDb = await _userManager.FindByNameAsync(model.Username);
+            fromDb.FirstName = model.FirstName;
+            fromDb.LastName = model.LastName;
+            fromDb.Address = model.Address;
+            fromDb.Email = model.Email;
+
+            await _userManager.UpdateAsync(fromDb);
+
+            return RedirectToAction("Profile", "Profile");
+        }
+
+        return View("UpdateProfile", model);
     }
 
     public async Task<IActionResult> Logout()

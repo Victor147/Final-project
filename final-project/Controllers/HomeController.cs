@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using final_project.ViewModels;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace final_project.Controllers
 {
@@ -22,10 +23,15 @@ namespace final_project.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [Route("Error/{statusCode}")]
+        public IActionResult Error(int statusCode)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var feature = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
+            return View(new ErrorViewModel
+            {
+                StatusCode = statusCode,
+                OriginalPath = feature?.OriginalPath
+            });
         }
     }
 }
