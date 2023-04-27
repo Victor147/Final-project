@@ -1,4 +1,4 @@
-﻿@model IEnumerable<final_project.ViewModels.ManufacturerViewModel>
+﻿@model final_project.ViewModels.ReturnPaginatedManufacturersViewModel
 
 @{
     ViewData["Title"] = "Производители";
@@ -20,7 +20,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach (var manufacturer in Model)
+                @foreach (var manufacturer in Model.Manufacturers)
                 {
                     <tr>
                         <td>@Html.DisplayFor(item => manufacturer.Name)</td>
@@ -41,6 +41,9 @@
             </table>
             <div class="text-center">
                 @Html.ActionLink("Обратно към панела", "Panel", "Admin", "", new { @class = "btn btn-primary my-3" })
+            </div>
+            <div class="d-flex justify-content-center my-4">
+                <partial name="_Pagination" model="Model.PaginationProperties"/>
             </div>
         </div>
         <div class="col-md-2"></div>

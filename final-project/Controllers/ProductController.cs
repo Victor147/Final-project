@@ -43,7 +43,7 @@ public class ProductController : Controller
             { "PerPage", perPage.ToString() }
         };
 
-        return View(new ReturnPaginatedProductsViewModel()
+        return View(new ReturnPaginatedProductsViewModel
         {
             Products = products,
             PaginationProperties = PaginationHelper.CalculateProperties(page,

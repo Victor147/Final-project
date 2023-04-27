@@ -66,9 +66,12 @@ body {
     padding-right: 10rem!important;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .left-collapse {
         margin-left: unset;
+    }
+    .pr-10{
+        padding: 0!important;
     }
 }
 @media (min-width: 768px) {

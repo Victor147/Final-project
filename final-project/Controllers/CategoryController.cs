@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using final_project.Helpers;
 using final_project.Models;
 using final_project.Services.CategoryService;
 using final_project.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace final_project.Controllers;
@@ -18,27 +20,39 @@ public class CategoryController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Index()
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Index(int page = 1, int perPage = 6)
     {
-        var categories = await _categoryService.GetAllCategoriesAsync();
+        var model = await _categoryService.GetAllCategoriesAsync();
+        var categories = model.ToList()
+            .Skip((page - 1) * perPage)
+            .Take(perPage)
+            .Select(c => _mapper.Map<CategoryViewModel>(c));
 
-        var categoriesVm = new List<CategoryViewModel>();
-
-        foreach (var category in categories)
+        ViewData["QueryParameters"] = new Dictionary<string, string>
         {
-            categoriesVm.Add(_mapper.Map<CategoryViewModel>(category));
-        }
-
-        return View(categoriesVm);
+            { "Page", page.ToString() },
+            { "PerPage", perPage.ToString() }
+        };
+        
+        return View(new ReturnPaginatedCategoriesViewModel
+        {
+            Categories = categories,
+            PaginationProperties = PaginationHelper.CalculateProperties(page, 
+                model.Count(), 
+                perPage)
+        });
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create()
     {
         return View();
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateCategory([FromForm] CategoryModel model)
     {
@@ -52,6 +66,7 @@ public class CategoryController : Controller
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Read(int id)
     {
         var category = await _categoryService.ReadCategoryAsync(id);
@@ -61,6 +76,7 @@ public class CategoryController : Controller
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Update(int id)
     {
         var category = await _categoryService.ReadCategoryAsync(id);
@@ -70,6 +86,7 @@ public class CategoryController : Controller
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> UpdateCategory([FromForm] CategoryViewModel model)
     {
@@ -83,6 +100,7 @@ public class CategoryController : Controller
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id)
     {
         var category = await _categoryService.ReadCategoryAsync(id);
@@ -92,6 +110,7 @@ public class CategoryController : Controller
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteCategory([FromForm] CategoryViewModel model)
     {

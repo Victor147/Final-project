@@ -4,8 +4,10 @@
     ViewData["Title"] = "Успешна поръчка";
 }
 
-<h1>Плащането е успешно</h1>
+<h1 class="text-center my-5">Плащането е успешно</h1>
 <form method="post" asp-controller="Order" asp-action="RegisterCardOrder">
     <input type="text" class="d-none" asp-for="UserName">
-    <input type="submit" value="Продължете напред">
+    <div class="text-center">
+        <input type="submit" value="Продължете напред" class="btn btn-secondary mb-3">
+    </div>
 </form>

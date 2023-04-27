@@ -12,7 +12,7 @@
             <div class="text-center">
                 <a asp-action="Create" asp-controller="Product" class="btn btn-info text-navbar mb-3">Създаване на нов продукт</a>
             </div>
-            <table class="table text-center">
+            <table class="myTable text-center">
                 <thead>
                 <tr>
                     <th>Име</th>
@@ -32,7 +32,10 @@
                         <td>@Html.DisplayFor(item => product.Name)</td>
                         <td>@Html.DisplayFor(item => product.Description)</td>
                         <td>@Html.DisplayFor(item => product.Stock)</td>
-                        <td>@Html.DisplayFor(item => product.Price)</td>
+                        <td>
+                            @Html.DisplayFor(item => product.Price)
+                            <span> лв.</span>
+                        </td>
                         <td>
                             <a href="@Html.DisplayFor(item => product.Image)">Снимка</a>
                         </td>
@@ -63,3 +66,7 @@
         <div class="col-md-1"></div>
     </div>
 </div>
+
+@section Scripts{
+    
+}
