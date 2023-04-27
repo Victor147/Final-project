@@ -6,25 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56ff1d17-8e34-4e3c-8a02-b007449711b9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.final-project/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.final-project/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.final-project/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.final-project/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/config/applicationhost.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/final-project.metadata.v2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/final-project.projects.v2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/final-project/DesignTimeBuild/.dtbcache.v2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/final-project/FileContentIndex/0e0f8c1b-a32b-4d5d-b732-6845479c0add.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/final-project/FileContentIndex/4ce0c788-1980-4e01-bb1d-2e96219a588f.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/final-project/FileContentIndex/c54e9f70-98c5-40f1-919b-85d255656658.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/final-project/FileContentIndex/fb7b0584-c831-4f08-9db7-2aec3c16dadd.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/final-project/FileContentIndex/read.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/final-project/config/applicationhost.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/final-project/v17/.futdcache.v1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/final-project/v17/.suo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/obj/staticwebassets.pack.sentinel" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/staticwebassets.pack.sentinel" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.final-project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.final-project/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,14 +18,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.final-project: final_project">
     <configuration name="final-project: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/final-project/final-project.csproj" />
@@ -85,6 +67,7 @@
       <option name="presentableId" value="Default" />
       <updated>1682619825389</updated>
       <workItem from="1682619828204" duration="42000" />
+      <workItem from="1682620644290" duration="166000" />
     </task>
     <servers />
   </component>
