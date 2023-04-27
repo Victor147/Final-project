@@ -21,16 +21,18 @@ public class OrderController : Controller
     private readonly ISession _session;
     private readonly IMapper _mapper;
     private readonly IProductService _productService;
+    private readonly IOrderDetailService _orderDetailsService;
 
     public OrderController(UserManager<User> userManager, IOrderDetailService orderDetailService,
         IOrderService orderService, IHttpContextAccessor httpContextAccessor, IMapper mapper,
-        IProductService productService)
+        IProductService productService, IOrderDetailService orderDetailsService)
     {
         _userManager = userManager;
         _orderDetailService = orderDetailService;
         _orderService = orderService;
         _mapper = mapper;
         _productService = productService;
+        _orderDetailsService = orderDetailsService;
         _session = httpContextAccessor.HttpContext!.Session;
         StripeConfiguration.ApiKey =
             "sk_test_51MxlqfIe9yuEDfkXNITQ0wdiDXD5wiQRqeHqSrH8lI7VTEkCtRUv6pPOSu3OADZJcWHUCXaWkiC10qeRN5xKxwJe009u5U8keK";
@@ -41,7 +43,7 @@ public class OrderController : Controller
     {
         var user = await _userManager.FindByNameAsync(model.User.Username);
         var session = _session.Get<CartModel>($"cart_{user.Id}");
-        model.Items = session.Items;
+        model.Items = session!.Items;
 
         var order = new Order
         {
@@ -103,7 +105,7 @@ public class OrderController : Controller
         var order = new Order
         {
             OrderDate = DateTime.Now,
-            TotalCost = model.Items.Sum(it => it.SubTotal),
+            TotalCost = model!.Items.Sum(it => it.SubTotal),
             UserId = user.Id,
             Address = model.DeliveryInformation.Address,
             Town = model.DeliveryInformation.Town,
@@ -132,21 +134,21 @@ public class OrderController : Controller
                 product.Stock -= model.Items[i].Quantity;
 
                 await _productService.UpdateProductQuantityAsync(product);
-
-                model = new CartModel
-                {
-                    Items = new List<CartItemModel>(),
-                    User = _mapper.Map<UserModel>(user),
-                    DeliveryInformation = new DeliveryInformationViewModel()
-                };
-                _session.Set($"cart_{user.Id}", model);
-                ViewBag.total = "0.00";
             }
             else
             {
                 //return error page
             }
         }
+        
+        model = new CartModel
+        {
+            Items = new List<CartItemModel>(),
+            User = _mapper.Map<UserModel>(user),
+            DeliveryInformation = new DeliveryInformationViewModel()
+        };
+        _session.Set($"cart_{user.Id}", model);
+        ViewBag.total = "0.00";
 
         return RedirectToAction("Index", "Home");
     }
@@ -173,5 +175,14 @@ public class OrderController : Controller
         await _orderService.FinishOrderAsync(orderId);
 
         return RedirectToAction("Panel", "Admin");
+    }
+    
+    
+    [Authorize(Roles = "Admin, User")]
+    public async Task<IActionResult> OrderDetails(int orderId)
+    {
+        var orderDetails = await _orderDetailsService.GetAllOrdersDetailByOrderIdAsync(orderId);
+
+        return View(orderDetails);
     }
 }

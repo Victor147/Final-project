@@ -39,7 +39,7 @@
                             @Html.DisplayFor(item => order.Courier)
                         </td>
                         <td>
-                            @Html.ActionLink("Детайли", "OrderDetails", "Admin", new { orderId = order.Id })
+                            @Html.ActionLink("Детайли", "OrderDetails", "Order", new { orderId = order.Id })
                         </td>
                         @if (order.OrderStatus == OrderStatusEnum.Received)
                         {

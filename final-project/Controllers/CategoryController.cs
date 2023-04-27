@@ -46,7 +46,7 @@ public class CategoryController : Controller
 
     [HttpGet]
     [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> Create()
+    public IActionResult Create()
     {
         return View();
     }

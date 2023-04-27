@@ -41,7 +41,7 @@
                             @Html.DisplayFor(item => order.Courier)
                         </td>
                         <td>
-                            @Html.ActionLink("Детайли", "OrderDetails", "Admin", new { orderId = order.Id })
+                            @Html.ActionLink("Детайли", "OrderDetails", "Order", new { orderId = order.Id })
                         </td>
                         <td>
                             @Html.DisplayFor(item => order.TotalCost)
@@ -53,7 +53,7 @@
             </table>
         </div>
         <div class="text-center">
-            @Html.ActionLink("Обратно към статуса на поръчките", "StatusOrders", "Admin", new { }, new { @class = "btn btn-primary my-3" })
+            @Html.ActionLink("Обратно към статуса на поръчките", "StatusOrders", "Admin", new { }, new { @class = "btn btn-primary my-4" })
         </div>
         <div class="col-1"></div>
     </div>

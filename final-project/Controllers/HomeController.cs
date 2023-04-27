@@ -30,7 +30,7 @@ namespace final_project.Controllers
             return View(new ErrorViewModel
             {
                 StatusCode = statusCode,
-                OriginalPath = feature?.OriginalPath
+                OriginalPath = feature?.OriginalPath!
             });
         }
     }

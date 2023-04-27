@@ -58,6 +58,7 @@
                         <label asp-for="Password" for="password" class="text-navbar mb-1"></label>
                         <span class="text-danger">*</span>
                         <input type="password" asp-for="Password" id="password" class="form-control">
+                        <div class="text-navbar mt-1">Паролата трябва да съдържа поне 6 символа, в които да има главна и малка буква и цифра!</div>
                         <p class="mt-1">
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </p>

@@ -113,7 +113,7 @@ public class CartController : Controller
         
         var cart = _session.Get<CartModel>($"cart_{userId}");
 
-        int index = cart.Items.FindIndex(ci => ci.Product.Id == id);
+        int index = cart!.Items.FindIndex(ci => ci.Product.Id == id);
         var cartItem = cart.Items[index];
         
         cartItem.Quantity++;
@@ -129,7 +129,7 @@ public class CartController : Controller
         
         var cart = _session.Get<CartModel>($"cart_{userId}");
         
-        int index = cart.Items.FindIndex(ci => ci.Product.Id == id);
+        int index = cart!.Items.FindIndex(ci => ci.Product.Id == id);
         var cartItem = cart.Items[index];
         
         if (cartItem.Quantity == 1)
@@ -152,7 +152,7 @@ public class CartController : Controller
         
         var cart = _session.Get<CartModel>($"cart_{userId}");
         
-        int index = cart.Items.FindIndex(ci => ci.Product.Id == id);
+        int index = cart!.Items.FindIndex(ci => ci.Product.Id == id);
         cart.Items.RemoveAt(index);
         
         _session.Set($"cart_{userId}", cart);

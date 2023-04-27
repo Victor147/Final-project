@@ -47,7 +47,7 @@
                 <div class="form-group my-4">
                     <label for="manufacturer">Производител на продукта: </label>
                     <select asp-for="ManufacturerId" id="manufacturer" class="form-control">
-                        @foreach (var elem in Model.Manufacturers)
+                        @foreach (var elem in Model.Manufacturers!)
                         {
                             <option value="@elem.Id">@elem.Name</option>
                         }
@@ -56,7 +56,7 @@
                 <div class="form-group my-4">
                     <label for="manufacturer">Категория на продукта: </label>
                     <select asp-for="CategoryId" id="category" class="form-control">
-                        @foreach (var elem in Model.Categories)
+                        @foreach (var elem in Model.Categories!)
                         {
                             <option value="@elem.Id">@elem.Name</option>
                         }

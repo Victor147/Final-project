@@ -12,11 +12,14 @@
             <div class="text-center">
                 <a asp-controller="Category" asp-action="Create" class="btn btn-info text-navbar mb-3">Създаване на нова категория</a>
             </div>
-            <table class="table text-center" id="dataTable">
+            <table class="table text-center">
+                <thead>
                 <tr>
                     <th>Име</th>
                     <th></th>
                 </tr>
+                </thead>
+                <tbody>
                 @foreach (var category in Model.Categories)
                 {
                     <tr>
@@ -34,6 +37,7 @@
                         </td>
                     </tr>
                 }
+                </tbody>
             </table>
             <div class="text-center">
                 @Html.ActionLink("Обратно към панела", "Panel", "Admin", new { }, new { @class = "btn btn-primary my-3" })

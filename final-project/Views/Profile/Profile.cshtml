@@ -32,6 +32,9 @@
         <div class="text-center">
             @Html.ActionLink("Редактиране на профила", "UpdateProfile", "Authentication", new { username = Model.Username }, new { @class = "btn btn-secondary mt-3" })
         </div>
+        <div class="text-center">
+            @Html.ActionLink("Назад към началната страница", "Index", "Home", new {  }, new { @class = "btn btn-secondary mt-3" })
+        </div>
         <div class="col-3"></div>
     </div>
 </div>

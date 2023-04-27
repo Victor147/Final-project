@@ -52,7 +52,7 @@ public class AdminController : Controller
     }
     
     [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> UnpayedOrders()
+    public async Task<IActionResult> UnpaidOrders()
     {
         var orders = await _orderService.GetAllUnpayedOrdersAsync();
 
@@ -81,13 +81,5 @@ public class AdminController : Controller
         var orders = await _orderService.GetAllFinishedOrders();
 
         return View(orders);
-    }
-    
-    [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> OrderDetails(int orderId)
-    {
-        var orderDetails = await _orderDetailsService.GetAllOrdersDetailByOrderIdAsync(orderId);
-
-        return View(orderDetails);
     }
 }

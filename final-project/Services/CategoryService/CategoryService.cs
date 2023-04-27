@@ -30,7 +30,7 @@ public class CategoryService : ICategoryService
     {
         var category = await _context.Categories.FindAsync(id);
 
-        return category;
+        return category!;
     }
 
     public async Task<Category?> ReadCategoryByNameAsync(string name)

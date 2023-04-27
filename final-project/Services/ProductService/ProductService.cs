@@ -19,7 +19,7 @@ public class ProductService : IProductService
 
     public async Task CreateProductAsync(ProductModel model)
     {
-        var result = await _uploader.UploadImageAsync(model.Image.Name, model.Image);
+        var result = await _uploader.UploadImageAsync(model.Image!.Name, model.Image);
         var product = new Product
         {
             Name = model.Name, Description = model.Description, Stock = model.Stock,
@@ -33,7 +33,7 @@ public class ProductService : IProductService
     {
         var product = await _context.Products.FindAsync(id);
         
-        return product;
+        return product!;
     }
 
     public async Task<Product?> ReadProductByNameAsync(string name)
@@ -60,7 +60,7 @@ public class ProductService : IProductService
         fromDb.Price = model.Price;
         if (changeImg)
         {
-            var result = await _uploader.UploadImageAsync(model.Image.Name, model.Image);
+            var result = await _uploader.UploadImageAsync(model.Image!.Name, model.Image);
             fromDb.Image = result.Uri.ToString();
         }
         fromDb.ManufacturerId = model.ManufacturerId;

@@ -23,7 +23,7 @@ public class OrderService : IOrderService
     {
         var order = await _context.Orders.FindAsync(id);
 
-        return order;
+        return order!;
     }
 
     public async Task UpdatePaymentStatusAsync(int id)

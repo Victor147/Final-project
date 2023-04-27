@@ -29,7 +29,7 @@ public class ManufacturerService : IManufacturerService
     {
         var manufacturer = await _context.Manufacturers.FindAsync(id);
         
-        return manufacturer;
+        return manufacturer!;
     }
 
     public async Task<Manufacturer?> ReadManufacturerByNameAsync(string name)

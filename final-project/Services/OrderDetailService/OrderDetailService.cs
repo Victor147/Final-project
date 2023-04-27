@@ -23,7 +23,7 @@ public class OrderDetailService : IOrderDetailService
     {
         var orderDetail = await _context.OrderDetails.FindAsync(id);
 
-        return orderDetail;
+        return orderDetail!;
     }
 
     public async Task<IEnumerable<OrderDetail>> GetAllOrdersDetailAsync()
