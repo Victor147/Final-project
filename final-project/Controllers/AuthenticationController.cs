@@ -18,7 +18,8 @@ public class AuthenticationController : Controller
     private readonly SignInManager<User> _signInManager;
     private readonly IEmailSender _emailService;
 
-    public AuthenticationController(IMapper mapper, UserManager<User> userManager, RoleManager<Role> roleManager, SignInManager<User> signInManager, IEmailSender emailService)
+    public AuthenticationController(IMapper mapper, UserManager<User> userManager, RoleManager<Role> roleManager,
+        SignInManager<User> signInManager, IEmailSender emailService)
     {
         _mapper = mapper;
         _userManager = userManager;
@@ -38,7 +39,7 @@ public class AuthenticationController : Controller
                 BeforePath = string.Empty
             });
         }
-        
+
         return View(new RegisterModel
         {
             BeforePath = beforePath
@@ -53,7 +54,7 @@ public class AuthenticationController : Controller
         {
             if (viewModel.Password != viewModel.RepeatPassword)
             {
-                ModelState.AddModelError("RepeatPassword", "Passwords don't match!");
+                ModelState.AddModelError("RepeatPassword", "Паролите не съвпадат!");
                 return View("Register", viewModel);
             }
 
@@ -71,7 +72,9 @@ public class AuthenticationController : Controller
                     var paths = viewModel.BeforePath.Split('/');
                     var action = paths[0];
                     var controller = paths[1];
-                    return viewModel.BeforePath != null ? RedirectToAction(action, controller) : RedirectToAction("Index", "Home");
+                    return viewModel.BeforePath != null
+                        ? RedirectToAction(action, controller)
+                        : RedirectToAction("Index", "Home");
                 }
 
                 return RedirectToAction("Index", "Home");
@@ -81,11 +84,11 @@ public class AuthenticationController : Controller
             {
                 ModelState.AddModelError("", error.Description);
             }
-            
-            ModelState.AddModelError(string.Empty, "Invalid Register Attempt!");
+
+            ModelState.AddModelError(string.Empty, "Невалиден опит за регистрация!");
         }
 
-        
+
         return View("Register", viewModel);
     }
 
@@ -100,15 +103,14 @@ public class AuthenticationController : Controller
                 BeforePath = string.Empty
             });
         }
-        
+
         return View(new LoginModel
         {
             BeforePath = beforePath
         });
-        
     }
 
-    
+
     [HttpPost]
     [AllowAnonymous]
     public async Task<IActionResult> Login(LoginModel viewModel)
@@ -124,12 +126,15 @@ public class AuthenticationController : Controller
                     var paths = viewModel.BeforePath.Split('/');
                     var action = paths[0];
                     var controller = paths[1];
-                    return viewModel.BeforePath != null ? RedirectToAction(action, controller) : RedirectToAction("Index", "Home");
+                    return viewModel.BeforePath != null
+                        ? RedirectToAction(action, controller)
+                        : RedirectToAction("Index", "Home");
                 }
 
                 return RedirectToAction("Index", "Home");
             }
-            ModelState.AddModelError("Message", "Invalid data!");
+
+            ModelState.AddModelError("Message", "Невалидна информация!");
         }
 
         return View("Login", viewModel);
@@ -170,7 +175,6 @@ public class AuthenticationController : Controller
     [HttpGet]
     public IActionResult ForgotPassword()
     {
-        
         return View();
     }
 
@@ -194,20 +198,67 @@ public class AuthenticationController : Controller
 
             MessageHelper helper = new MessageHelper
             {
-                Name = user.FirstName,
+                Name = user.FirstName + " " + user.LastName,
                 To = user.Email,
                 Subject = "Промяна на паролата",
                 Content = callbackUrl
             };
-            
+
             _emailService.SendEmail(helper);
+
+            return RedirectToAction("ForgotPasswordSuccess", "Authentication");
         }
 
         return View("ForgotPassword", model);
     }
 
     [HttpGet]
-    public IActionResult ResetPassword()
+    public IActionResult ForgotPasswordSuccess()
+    {
+        return View();
+    }
+
+    [HttpGet]
+    public IActionResult ResetPassword(int userId, string token)
+    {
+        ResetPasswordViewModel model = new ResetPasswordViewModel
+        {
+            Token = token
+        };
+        
+        return View(model);
+    }
+
+    [HttpPost]
+    [AllowAnonymous]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            if (model.Password != model.ConfirmPassword)
+            {
+                ModelState.AddModelError("ConfirmPassword", "Паролите не съвпадат!");
+                return View("ResetPassword", model);
+            }
+
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user is null)
+            {
+                return RedirectToAction("ResetPassword", model);
+            }
+
+            var result = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("ResetPasswordSuccess");
+            }
+        }
+        return View("ResetPassword", model);
+    }
+    
+    [HttpGet]
+    public IActionResult ResetPasswordSuccess()
     {
         return View();
     }

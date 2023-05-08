@@ -8,34 +8,17 @@
     <list default="true" id="56ff1d17-8e34-4e3c-8a02-b007449711b9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.final-project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.final-project/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/Controllers/AuthenticationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Controllers/AuthenticationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Controllers/CategoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Controllers/CategoryController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Controllers/ManufacturerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Controllers/ManufacturerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Controllers/ProductController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Controllers/ProductController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Extensions/GlobalExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Extensions/GlobalExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Extensions/SecurityExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Extensions/SecurityExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Authentication/Login.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Authentication/Login.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Category/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Category/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Manufacturer/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Manufacturer/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Product/ListProducts.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Product/ListProducts.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Product/Update.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Product/Update.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/bin/Debug/net6.0/final-project.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/bin/Debug/net6.0/final-project.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final-project/Services/EmailService/EmailService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Services/EmailService/EmailService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final-project/ViewModels/ForgotPasswordViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/ViewModels/ForgotPasswordViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final-project/Views/Authentication/ResetPassword.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Authentication/ResetPassword.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/bin/Debug/net6.0/final-project.dll" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/bin/Debug/net6.0/final-project.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/bin/Debug/net6.0/final-project.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/bin/Debug/net6.0/final-project.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/final-project.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/final-project.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.csproj.AssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.dll" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/ref/final-project.dll" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/ref/final-project.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/refint/final-project.dll" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/refint/final-project.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/obj/final-project.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/final-project.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/rider.project.restore.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/obj/staticwebassets.pack.sentinel" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/staticwebassets.pack.sentinel" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,8 +30,8 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4d8b711a34634e9aa8a29cfa1774cb7b11cc00/58/ccd89fee/MailboxAddress.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4d8b711a34634e9aa8a29cfa1774cb7b11cc00/78/11c6b764/MimeMessage.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/19c0286a75dff72c3ce73dc6e482dcb6d35db2552d9d228c38e66a461343f/TokenOptions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4ea681aa1df24442c1a5e1e18582b1a2d29ac5bfd41390c94a5d2cc958b5ff/UserManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7d9a41d47547e1fe7fe548b21ab4de12cc2671170a023bc8c629017837eb5f4/ActionMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/final-project/final-project/Controllers/CategoryController.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -119,6 +102,8 @@
       <workItem from="1683008474636" duration="931000" />
       <workItem from="1683357851950" duration="611000" />
       <workItem from="1683523365940" duration="12811000" />
+      <workItem from="1683549132546" duration="1523000" />
+      <workItem from="1683571847702" duration="4908000" />
     </task>
     <servers />
   </component>
@@ -145,19 +130,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/final-project/Services/EmailService/EmailService.cs</url>
-          <line>9</line>
-          <properties documentPath="D:\final-project\final-project\Services\EmailService\EmailService.cs" initialLine="9" containingFunctionPresentation="method 'SendEmail'">
-            <startOffsets>
-              <option value="211" />
-            </startOffsets>
-            <endOffsets>
-              <option value="212" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

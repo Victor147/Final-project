@@ -13,10 +13,10 @@ public class EmailSender : IEmailSender
         smtpClient.Authenticate("victorivanov2004@gmail.com", "0887161628Vik");
 
         var message = new MimeMessage();
-        message.From.Add(new MailboxAddress("Victor", "victorivanov2004@gmail.com"));
+        message.From.Add(new MailboxAddress("Victor Ivanov", "victorivanov2004@gmail.com"));
         message.To.Add(new MailboxAddress($"{helper.Name}", $"{helper.To}"));
         message.Subject = helper.Subject;
-        message.Body = new TextPart("plain") { Text = helper.Content };
+        message.Body = new TextPart("plain") { Text = "Линк за промяна на паролата\n" + helper.Content };
 
         smtpClient.Send(message);
         smtpClient.Disconnect(true);
