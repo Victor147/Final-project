@@ -86,6 +86,10 @@
               "target": "Package",
               "version": "[6.0.13, )"
             },
+            "NETCore.MailKit": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
             "Stripe.net": {
               "target": "Package",
               "version": "[41.13.0, )"

@@ -61,6 +61,7 @@ public class ManufacturerController : Controller
         if (ModelState.IsValid)
         {
             await _manufacturerService.CreateManufacturerAsync(model);
+            TempData["AlertManufacturerMessage"] = "Производителят е създаден успешно!";
             return RedirectToAction("Index", "Manufacturer");
         }
 
@@ -95,6 +96,7 @@ public class ManufacturerController : Controller
         if (ModelState.IsValid)
         {
             await _manufacturerService.UpdateManufacturerAsync(model);
+            TempData["AlertManufacturerMessage"] = "Производителят е променен успешно!";
             return RedirectToAction("Index", "Manufacturer");
         }
 
@@ -117,6 +119,7 @@ public class ManufacturerController : Controller
     public async Task<IActionResult> DeleteManufacturer([FromForm] ManufacturerViewModel model)
     {
         await _manufacturerService.DeleteManufacturerAsync(model.Id);
+        TempData["AlertManufacturerMessage"] = "Производителят е изтрит успешно!";
         return RedirectToAction("Index", "Manufacturer");
     }
 }

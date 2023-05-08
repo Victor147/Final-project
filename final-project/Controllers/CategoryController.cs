@@ -59,6 +59,7 @@ public class CategoryController : Controller
         if (ModelState.IsValid)
         {
             await _categoryService.CreateCategoryAsync(model);
+            TempData["AlertCategoryMessage"] = "Категорията е създадена успешно!";
             return RedirectToAction("Index", "Category");
         }
 
@@ -93,6 +94,7 @@ public class CategoryController : Controller
         if (ModelState.IsValid)
         {
             await _categoryService.UpdateCategoryAsync(model);
+            TempData["AlertCategoryMessage"] = "Категорията е промемена успешно!";
             return RedirectToAction("Index", "Category");
         }
 
@@ -115,6 +117,7 @@ public class CategoryController : Controller
     public async Task<IActionResult> DeleteCategory([FromForm] CategoryViewModel model)
     {
         await _categoryService.DeleteCategoryAsync(model.Id);
+        TempData["AlertCategoryMessage"] = "Категорията е изтрита успешно!";
         return RedirectToAction("Index", "Category");
     }
 }

@@ -58,7 +58,7 @@ public class ProductController : Controller
     {
         var model = await _productService.GetAllProductsAsync();
         var manufacturers = await _manufacturerService.GetAllManufacturersAsync();
-        
+
         var names = manufacturers.Select(m => m.Name).Distinct().OrderBy(m => m).ToList();
 
         ViewBag.Manufacturers = new SelectList(names);
@@ -104,7 +104,7 @@ public class ProductController : Controller
         ViewBag.MinPriceFilter = minPriceFilter;
         ViewBag.MaxPriceFilter = maxPriceFilter;
         ViewBag.ManufacturerFilter = manufacturerFilter;
-        
+
         model = model.Where(p => p.Stock != 0);
 
         var products = model.ToList()
@@ -151,7 +151,8 @@ public class ProductController : Controller
         if (ModelState.IsValid)
         {
             await _productService.CreateProductAsync(model);
-            return RedirectToAction("Index", "Product");
+            TempData["AlertProductMessage"] = "Продуктът е създаден успешно!";
+            return RedirectToAction("ListProducts", "Product");
         }
 
         model.Categories = await _categoryService.GetAllCategoriesAsync();
@@ -189,27 +190,20 @@ public class ProductController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> UpdateProduct([FromForm] UpdateProductModel model)
     {
-        if (ModelState.IsValid)
+        ProductModel productModel = _mapper.Map<ProductModel>(model);
+        int id = model.Id;
+
+        if (productModel.Image == null)
         {
-            ProductModel productModel = _mapper.Map<ProductModel>(model);
-            int id = model.Id;
-
-            if (productModel.Image == null)
-            {
-                await _productService.UpdateProductAsync(id, productModel, false);
-            }
-            else
-            {
-                await _productService.UpdateProductAsync(id, productModel, true);
-            }
-
-            return RedirectToAction("Index", "Product");
+            await _productService.UpdateProductAsync(id, productModel, false);
+        }
+        else
+        {
+            await _productService.UpdateProductAsync(id, productModel, true);
         }
 
-        model.Categories = await _categoryService.GetAllCategoriesAsync();
-        model.Manufacturers = await _manufacturerService.GetAllManufacturersAsync();
-
-        return View("Update", model);
+        TempData["AlertProductMessage"] = "Продуктът е променен успешно!";
+        return RedirectToAction("ListProducts", "Product");
     }
 
     [HttpGet]
@@ -230,7 +224,8 @@ public class ProductController : Controller
     public async Task<IActionResult> DeleteProduct([FromForm] ProductViewModel productViewModel)
     {
         await _productService.DeleteProductAsync(productViewModel.Id);
+        TempData["AlertProductMessage"] = "Продуктът е изтрит успешно!";
 
-        return RedirectToAction("Index", "Product");
+        return RedirectToAction("ListProducts", "Product");
     }
 }

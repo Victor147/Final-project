@@ -17,7 +17,8 @@ public static class SecurityExtensions
             options.Password.RequireUppercase = true;
             options.Password.RequireLowercase = true;
             options.Password.RequiredUniqueChars = 0;
-        }).AddEntityFrameworkStores<EcommerceDbContext>();
+        }).AddEntityFrameworkStores<EcommerceDbContext>()
+            .AddDefaultTokenProviders();
     }
 
     public static void UseSecurity(this WebApplication application)

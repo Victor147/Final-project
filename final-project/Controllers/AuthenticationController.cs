@@ -1,7 +1,9 @@
-﻿using System.Net.Security;
-using AutoMapper;
+﻿using AutoMapper;
 using final_project.Data.Entities;
+using final_project.Helpers;
 using final_project.Models;
+using final_project.Services.EmailService;
+using final_project.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,13 +16,15 @@ public class AuthenticationController : Controller
     private readonly UserManager<User> _userManager;
     private readonly RoleManager<Role> _roleManager;
     private readonly SignInManager<User> _signInManager;
+    private readonly IEmailSender _emailService;
 
-    public AuthenticationController(IMapper mapper, UserManager<User> userManager, RoleManager<Role> roleManager, SignInManager<User> signInManager)
+    public AuthenticationController(IMapper mapper, UserManager<User> userManager, RoleManager<Role> roleManager, SignInManager<User> signInManager, IEmailSender emailService)
     {
         _mapper = mapper;
         _userManager = userManager;
         _roleManager = roleManager;
         _signInManager = signInManager;
+        _emailService = emailService;
     }
 
     [HttpGet]
@@ -161,6 +165,51 @@ public class AuthenticationController : Controller
         }
 
         return View("UpdateProfile", model);
+    }
+
+    [HttpGet]
+    public IActionResult ForgotPassword()
+    {
+        
+        return View();
+    }
+
+    [HttpPost]
+    [AllowAnonymous]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            var user = await _userManager.FindByNameAsync(model.Username);
+            if (user == null)
+            {
+                //не съществува
+                return View("ForgotPassword");
+            }
+
+            string token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var callbackUrl = Url.Action("ResetPassword", "Authentication", new { userId = user.Id, token = token },
+                protocol: Request.Scheme);
+
+            MessageHelper helper = new MessageHelper
+            {
+                Name = user.FirstName,
+                To = user.Email,
+                Subject = "Промяна на паролата",
+                Content = callbackUrl
+            };
+            
+            _emailService.SendEmail(helper);
+        }
+
+        return View("ForgotPassword", model);
+    }
+
+    [HttpGet]
+    public IActionResult ResetPassword()
+    {
+        return View();
     }
 
     public async Task<IActionResult> Logout()

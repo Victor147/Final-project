@@ -42,11 +42,11 @@
                     </div>
                     <div class="d-flex justify-content-between mb-3">
                         <div>
-                            <a href="#" class="text-decoration-none color-log-reg hover-underline">Забравена парола?</a>
+                            <a asp-controller="Authentication" asp-action="ForgotPassword" class="text-decoration-none color-log-reg hover-underline">Забравена парола?</a>
                         </div>
                         <div>
                             <div class="text-navbar">Нямате профил?</div>
-                            @Html.ActionLink("Създайте нов", "Register", "Authentication", new { beforePath = Model.BeforePath == null ? "" : Model.BeforePath }, new { @class = "text-decoration-none color-log-reg hover-underline" })
+                            @Html.ActionLink("Създайте нов", "Register", "Authentication", new { beforePath = Model.BeforePath == null ? "" : Model.BeforePath }, new { @class = "text-decoration-none color-log-reg hover-underline submitBtn" })
                         </div>
                     </div>
                     <div class="text-center mt-4">
@@ -59,3 +59,8 @@
         <div class="col"></div>
     </div>
 </div>
+
+@section Scripts
+{
+    
+}
