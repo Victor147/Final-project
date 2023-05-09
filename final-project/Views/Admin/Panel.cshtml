@@ -2,11 +2,38 @@
     ViewData["Title"] = "Администраторски панел";
 }
 
-<div class="container my-5">
-    <div class="text-center">
-        <div>@Html.ActionLink("Управление на продукти", "ListProducts", "Product", new { }, new { @class = "btn btn-secondary mb-3" })</div>
-        <div>@Html.ActionLink("Управление на производители", "Index", "Manufacturer", new { }, new { @class = "btn btn-secondary mb-3" })</div>
-        <div>@Html.ActionLink("Управление на категории", "Index", "Category", new { }, new { @class = "btn btn-secondary mb-3" })</div>
-        <div>@Html.ActionLink("Управление на поръчки", "Orders", "Admin", new { }, new { @class = "btn btn-secondary mb-3" })</div>
+<div class="container-fluid my-5">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            @if (TempData["StatusOrderMessage"] != null)
+            {
+                <div class="alert alert-success mb-5" id="message">
+                    @TempData["StatusOrderMessage"]
+                </div>
+            }
+            <h2 class="text-center mb-5">Администраторски панел</h2>
+            <div class="text-center">
+                <div>@Html.ActionLink("Управление на продукти", "ListProducts", "Product", new { }, new { @class = "btn btn-secondary mb-3" })</div>
+                <div>@Html.ActionLink("Управление на производители", "Index", "Manufacturer", new { }, new { @class = "btn btn-secondary mb-3" })</div>
+                <div>@Html.ActionLink("Управление на категории", "Index", "Category", new { }, new { @class = "btn btn-secondary mb-3" })</div>
+                <div>@Html.ActionLink("Управление на поръчки", "Orders", "Admin", new { }, new { @class = "btn btn-secondary mb-3" })</div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+    function hideMessage(){
+        let alert = document.getElementById('message');
+
+        setTimeout(() => {
+            alert.style.display = 'none';
+        }, 5000);
+    }
+
+    hideMessage();
+    </script>
+}

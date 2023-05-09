@@ -1,61 +1,62 @@
-﻿@using final_project.Data.Entities
-@model IEnumerable<final_project.Data.Entities.Order>
+﻿@model final_project.ViewModels.ReturnPaginatedOrdersViewModel
 
 @{
     ViewData["Title"] = "Завършени поръчки";
 }
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10">
-            <h2 class="text-center my-5">Вашите завършени поръчки</h2>
-            <table class="table text-center">
-                <thead>
-                <tr>
-                    <th scope="col">Дата</th>
-                    <th scope="col">Адрес</th>
-                    <th scope="col">Град</th>
-                    <th scope="col">Доставчик</th>
-                    <th scope="col">Детайли за продуктите</th>
-                    <th scope="col">Статус</th>
-                    <th scope="col">Обща цена</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach (var order in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(item => order.OrderDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(item => order.Address)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(item => order.Town)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(item => order.Courier)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Детайли", "OrderDetails", "Order", new { orderId = order.Id })
-                        </td>
-                        @if (order.OrderStatus == OrderStatusEnum.Received)
-                        {
-                            <td>
-                                Получена
-                            </td>
-                        }
-                        <td>
-                            @Html.DisplayFor(item => order.TotalCost)
-                            <span> лв.</span>
-                        </td>
-                    </tr>
-                }
-                </tbody>
-            </table>
-        </div>
-        <div class="col-1"></div>
+@if (Model.Orders.Count() == 0)
+{
+    <h2 class="text-center my-5">Нямате активни поръчки</h2>
+    <div class="text-center">
+        @Html.ActionLink("Обратно към профила Ви", "Profile", "Profile", new { }, new { @class = "btn btn-primary my-5" })
     </div>
-</div>
+}
+else
+{
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h2 class="text-center my-5">Завършени поръчки</h2>
+                <table class="table text-center">
+                    <thead>
+                    <tr>
+                        <th scope="col">Дата, на която е направена поръчката</th>
+                        <th scope="col">Детайли за поръчката</th>
+                        <th scope="col">Статус</th>
+                        <th scope="col">Обща цена</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var order in Model.Orders)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(item => order.OrderDate)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Информация", "OrderInformation", "Order", new { orderId = order.Id }, new { @class = "" })
+                            </td>
+                            <td>
+                                Завършена
+                            </td>
+                            <td>
+                                @Html.DisplayFor(item => order.TotalCost)
+                                <span> лв.</span>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-center my-4">
+                    <partial name="_Pagination" model="Model.PaginationProperties"/>
+                </div>
+                <div class="text-center">
+                    @Html.ActionLink("Обратно към профила Ви", "Profile", "Profile", new { }, new { @class = "btn btn-primary my-5" })
+                </div>
+            </div>
+
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+}

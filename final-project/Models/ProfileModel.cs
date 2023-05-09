@@ -20,6 +20,7 @@ public class ProfileModel
     public string Address { get; set; }
     
     [DisplayName("Имейл: ")]
+    [RegularExpression(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$", ErrorMessage = "Имейлът не е валиден!")]
     [Required(ErrorMessage = "Имейлът е задължителен!")]
     public string Email { get; set; }
 }

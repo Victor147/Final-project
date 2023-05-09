@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using final_project.Data.Entities;
+using final_project.Helpers;
 using final_project.Models;
 using final_project.Services.OrderService;
+using final_project.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -22,25 +24,58 @@ public class ProfileController : Controller
     }
 
     [Authorize(Roles = "User")]
-    public async Task<IActionResult> ActiveUserOrders()
+    public async Task<IActionResult> ActiveUserOrders(int page = 1, int perPage = 8)
     {
         var username = HttpContext.User.Identity!.Name;
         var user = await _userManager.FindByNameAsync(username);
 
-        var orders = await _orderService.GetAllUnfinishedOrdersForUserAsync(user.Id);
+        var model = await _orderService.GetAllUnfinishedOrdersForUserAsync(user.Id);
+
+        var orders = model.ToList()
+            .Skip((page - 1) * perPage)
+            .Take(perPage);
         
-        return View(orders);
+        ViewData["QueryParameters"] = new Dictionary<string, string>
+        {
+            { "Page", page.ToString() },
+            { "PerPage", perPage.ToString() }
+        };
+
+        return View(new ReturnPaginatedOrdersViewModel()
+        {
+            Orders = orders,
+            PaginationProperties = PaginationHelper.CalculateProperties(page, 
+                model.Count, 
+                perPage)
+        });
+        
     }
     
     [Authorize(Roles = "User")]
-    public async Task<IActionResult> FinishedUserOrders()
+    public async Task<IActionResult> FinishedUserOrders(int page = 1, int perPage = 8)
     {
         var username = HttpContext.User.Identity!.Name;
         var user = await _userManager.FindByNameAsync(username);
 
-        var orders = await _orderService.GetAllFinishedOrdersForUserAsync(user.Id);
+        var model = await _orderService.GetAllFinishedOrdersForUserAsync(user.Id);
         
-        return View(orders);
+        var orders = model.ToList()
+            .Skip((page - 1) * perPage)
+            .Take(perPage);
+        
+        ViewData["QueryParameters"] = new Dictionary<string, string>
+        {
+            { "Page", page.ToString() },
+            { "PerPage", perPage.ToString() }
+        };
+
+        return View(new ReturnPaginatedOrdersViewModel()
+        {
+            Orders = orders,
+            PaginationProperties = PaginationHelper.CalculateProperties(page,
+                model.Count,
+                perPage)
+        });
     }
 
     [Authorize(Roles = "User")]

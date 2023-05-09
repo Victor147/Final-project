@@ -21,7 +21,7 @@ public class OrderService : IOrderService
 
     public async Task<Order> ReadOrderAsync(int id)
     {
-        var order = await _context.Orders.FindAsync(id);
+        var order = await _context.Orders.Include(or => or.User).FirstOrDefaultAsync(or => or.Id == id);
 
         return order!;
     }

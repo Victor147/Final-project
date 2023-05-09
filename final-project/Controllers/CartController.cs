@@ -83,6 +83,8 @@ public class CartController : Controller
                 Product = product,
                 Quantity = 1
             });
+
+            TempData["ProductCartMessage"] = "Продуктът е добавен успешно!";
         }
         else
         {
@@ -91,6 +93,8 @@ public class CartController : Controller
             if (index != -1)
             {
                 cart.Items[index].Quantity++;
+                
+                TempData["ProductCartMessage"] = "Количеството на избрания продукт е увеличено!";
             }
             else
             {
@@ -99,6 +103,8 @@ public class CartController : Controller
                     Product = product,
                     Quantity = 1
                 });
+                
+                TempData["ProductCartMessage"] = "Продуктът е добавен успешно!";
             }
         }
         

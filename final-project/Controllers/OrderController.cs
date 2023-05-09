@@ -54,6 +54,7 @@ public class OrderController : Controller
             Town = model.DeliveryInformation.Town,
             Courier = model.DeliveryInformation.Courier,
             IsPaid = false,
+            PhoneNumber = model.DeliveryInformation.PhoneNumber,
             OrderStatus = OrderStatusEnum.Processing
         };
 
@@ -87,13 +88,11 @@ public class OrderController : Controller
                 _session.Set($"cart_{user.Id}", session);
                 ViewBag.total = "0.00";
             }
-            else
-            {
-                //return error page
-            }
         }
 
-        return RedirectToAction("Index", "Product");
+        TempData["OrderSuccessfulMessage"] = "Поръчката е приета. Очаквайте позвъняване за потвърждение и следете секцията Активни поръчки, за да може да сте уведомени кога ще бъде изпратена!";
+        
+        return RedirectToAction("ActiveUserOrders", "Profile");
     }
 
     [HttpPost]
@@ -111,6 +110,7 @@ public class OrderController : Controller
             Town = model.DeliveryInformation.Town,
             Courier = model.DeliveryInformation.Courier,
             IsPaid = true,
+            PhoneNumber = model.DeliveryInformation.PhoneNumber,
             OrderStatus = OrderStatusEnum.Processing
         };
 
@@ -135,10 +135,6 @@ public class OrderController : Controller
 
                 await _productService.UpdateProductQuantityAsync(product);
             }
-            else
-            {
-                //return error page
-            }
         }
         
         model = new CartModel
@@ -157,6 +153,8 @@ public class OrderController : Controller
     public async Task<IActionResult> UpdatePaymentStatus(int orderId)
     {
         await _orderService.UpdatePaymentStatusAsync(orderId);
+        
+        TempData["StatusOrderMessage"] = $"Заплащането на поръчка №{orderId} е потвърдено!";
 
         return RedirectToAction("Panel", "Admin");
     }
@@ -166,6 +164,8 @@ public class OrderController : Controller
     {
         await _orderService.SendOrderAsync(orderId);
 
+        TempData["StatusOrderMessage"] = $"Поръчка №{orderId} е изпратена!";
+
         return RedirectToAction("Panel", "Admin");
     }
 
@@ -173,7 +173,9 @@ public class OrderController : Controller
     public async Task<IActionResult> FinishOrder(int orderId)
     {
         await _orderService.FinishOrderAsync(orderId);
-
+        
+        TempData["StatusOrderMessage"] = $"Поръчка №{orderId} е изпълнена и е достигнала до потребителя!";
+        
         return RedirectToAction("Panel", "Admin");
     }
     
@@ -184,5 +186,13 @@ public class OrderController : Controller
         var orderDetails = await _orderDetailsService.GetAllOrdersDetailByOrderIdAsync(orderId);
 
         return View(orderDetails);
+    }
+    
+    [Authorize(Roles = "Admin, User")]
+    public async Task<IActionResult> OrderInformation(int orderId)
+    {
+        var order = await _orderService.ReadOrderAsync(orderId);
+
+        return View(order);
     }
 }

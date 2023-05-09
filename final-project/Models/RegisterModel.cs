@@ -14,12 +14,13 @@ public class RegisterModel
     [Required(ErrorMessage = "Фамилията е задължителна!")]
     [DisplayName("Фамилия")]
     public string LastName { get; set; }
-    
+
     [Required(ErrorMessage = "Адресът е задължителен!")]
     [DisplayName("Адрес")]
     public string Address { get; set; }
-    
+
     [Required(ErrorMessage = "Имейлът е задължителен!")]
+    [RegularExpression(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$", ErrorMessage = "Имейлът не е валиден!")]
     [DisplayName("Имейл")]
     public string Email { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace final_project.Data.Entities
 {
@@ -20,6 +21,8 @@ namespace final_project.Data.Entities
         public string Courier { get; set; }
         
         public bool IsPaid { get; set; }
+
+        public string PhoneNumber { get; set; }
         
         public OrderStatusEnum OrderStatus { get; set; }
 

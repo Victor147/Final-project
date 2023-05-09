@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="RD-223.8617.53">
+    <data-source name="@DESKTOP-54NFRM2" uuid="51a64a8a-13d6-49dd-886d-8e0c586d3e28">
+      <database-info product="Microsoft SQL Server" version="12.00.2269" jdbc-version="4.2" driver-name="JetBrains JDBC Driver for SQL Server" driver-version="1.0" dbms="MSSQL" exact-version="12.0.2269" exact-driver-version="1.0">
+        <extra-name-characters>$#@</extra-name-characters>
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>victor</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="database" qname="ecommerceDb">
+            <node kind="schema" qname="dbo" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+  </component>
+</project>

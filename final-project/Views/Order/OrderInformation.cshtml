@@ -1,0 +1,48 @@
+﻿@model final_project.Data.Entities.Order
+
+@{
+    ViewData["Title"] = "Информация за поръчка";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h2 class="text-center my-5">Информация за поръчка</h2>
+            <div class="my- text-center">
+                <span>Потребител: </span>
+                <strong>@Html.DisplayFor(item => Model.User.UserName)</strong>
+            </div>
+            <div class="my-2 text-center">
+                <span>Дата, на която е направена поръчката: </span>
+                <strong>@Html.DisplayFor(item => Model.OrderDate)</strong>
+            </div>
+            <div class="my-2 text-center">
+                <span>Адрес за доставка: </span>
+                <strong>@Html.DisplayFor(item => Model.Address)</strong>
+            </div>
+            <div class="my-2 text-center">
+                <span>Град за доставка: </span>
+                <strong>@Html.DisplayFor(item => Model.Town)</strong>
+            </div>
+            <div class="my-2 text-center">
+                <span>Доставчик: </span>
+                <strong>@Html.DisplayFor(item => Model.Courier)</strong>
+            </div>
+            <div class="my-2 text-center">
+                <span>Детайли за продуктите: </span>
+                <strong>@Html.ActionLink("Детайли", "OrderDetails", "Order", new { orderId = Model.Id })</strong>
+            </div>
+            <div class="my-2 text-center">
+                <span>Обща цена на поръчката: </span>
+                <strong>
+                    @Html.DisplayFor(item => Model.TotalCost)<span> лв.</span>
+                </strong>
+            </div>
+            <div class="my-2 text-center">
+                <a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-primary my-4">Върнете се към поръчките</a>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

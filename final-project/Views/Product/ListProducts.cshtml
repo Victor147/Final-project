@@ -6,8 +6,8 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
             @if (TempData["AlertProductMessage"] != null)
             {
                 <div class="alert alert-success mt-4" id="message">
@@ -22,12 +22,7 @@
                 <thead>
                 <tr>
                     <th>Име</th>
-                    <th>Описание</th>
                     <th>Налично количество</th>
-                    <th>Цена</th>
-                    <th>Снимка</th>
-                    <th>Производител</th>
-                    <th>Категория</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -36,17 +31,7 @@
                 {
                     <tr>
                         <td>@Html.DisplayFor(item => product.Name)</td>
-                        <td>@Html.DisplayFor(item => product.Description)</td>
                         <td>@Html.DisplayFor(item => product.Stock)</td>
-                        <td>
-                            @Html.DisplayFor(item => product.Price)
-                            <span> лв.</span>
-                        </td>
-                        <td>
-                            <a href="@Html.DisplayFor(item => product.Image)">Снимка</a>
-                        </td>
-                        <td>@Html.DisplayFor(item => product.Manufacturer.Name)</td>
-                        <td>@Html.DisplayFor(item => product.Category.Name)</td>
                         <td>
                             <a href="/Product/Read/@product.Id" class="btn btn-success">
                                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -69,7 +54,7 @@
                 @Html.ActionLink("Обратно към панела", "Panel", "Admin", new { }, new { @class = "btn btn-primary my-3" })
             </div>
         </div>
-        <div class="col-md-1"></div>
+        <div class="col-md-2"></div>
     </div>
 </div>
 
