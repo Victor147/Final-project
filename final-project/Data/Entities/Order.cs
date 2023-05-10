@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using final_project.Data.Entities.Enums;
 
 namespace final_project.Data.Entities
 {

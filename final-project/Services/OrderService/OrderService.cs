@@ -1,4 +1,5 @@
 ﻿using final_project.Data.Entities;
+using final_project.Data.Entities.Enums;
 using final_project.Data.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,6 +31,7 @@ public class OrderService : IOrderService
     {
         var fromDb = await ReadOrderAsync(id);
         fromDb.IsPaid = true;
+        fromDb.OrderStatus = OrderStatusEnum.Processing;
 
         _context.Orders.Update(fromDb);
         await _context.SaveChangesAsync();

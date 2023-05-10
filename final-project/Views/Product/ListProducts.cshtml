@@ -3,60 +3,72 @@
 @{
     ViewData["Title"] = "Продукти";
 }
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            @if (TempData["AlertProductMessage"] != null)
-            {
-                <div class="alert alert-success mt-4" id="message">
-                    @TempData["AlertProductMessage"]
-                </div>
-            }
-            <h2 class="text-center mt-5 mb-4">Продукти</h2>
-            <div class="text-center">
-                <a asp-action="Create" asp-controller="Product" class="btn btn-info text-navbar mb-3">Създаване на нов продукт</a>
-            </div>
-            <table class="table text-center">
-                <thead>
-                <tr>
-                    <th>Име</th>
-                    <th>Налично количество</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach (var product in Model.Products)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(item => product.Name)</td>
-                        <td>@Html.DisplayFor(item => product.Stock)</td>
-                        <td>
-                            <a href="/Product/Read/@product.Id" class="btn btn-success">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </a>
-                            <a href="/Product/Update/@product.Id" class="btn btn-warning">
-                                <i class="fa-solid fa-pen"></i>
-                            </a>
-                            <a href="/Product/Delete/@product.Id" class="btn btn-danger rounded">
-                                <i class="fa-regular fa-trash-can"></i>
-                            </a>
-                        </td>
-                    </tr>
-                }
-                </tbody>
-            </table>
-            <div class="d-flex justify-content-center my-4">
-                <partial name="_Pagination" model="Model.PaginationProperties"/>
-            </div>
-            <div class="text-center">
-                @Html.ActionLink("Обратно към панела", "Panel", "Admin", new { }, new { @class = "btn btn-primary my-3" })
-            </div>
-        </div>
-        <div class="col-md-2"></div>
+@if (Model.Products.Count() == 0)
+{
+    <h2 class="text-center my-5">Няма създадени продукти</h2>
+    <div class="text-center">
+        <a asp-controller="Product" asp-action="Create" class="btn btn-primary text-navbar mb-3">Създаване на нов продукт</a>
     </div>
-</div>
+    <div class="text-center">
+        @Html.ActionLink("Обратно към панела", "Panel", "Admin", "", new { @class = "btn btn-primary my-3" })
+    </div>
+}
+else
+{
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                @if (TempData["AlertProductMessage"] != null)
+                {
+                    <div class="alert alert-success mt-4" id="message">
+                        @TempData["AlertProductMessage"]
+                    </div>
+                }
+                <h2 class="text-center mt-5 mb-4">Продукти</h2>
+                <div class="text-center">
+                    <a asp-action="Create" asp-controller="Product" class="btn btn-info text-navbar mb-3">Създаване на нов продукт</a>
+                </div>
+                <table class="table text-center">
+                    <thead>
+                    <tr>
+                        <th>Име</th>
+                        <th>Налично количество</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var product in Model.Products)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(item => product.Name)</td>
+                            <td>@Html.DisplayFor(item => product.Stock)</td>
+                            <td>
+                                <a href="/Product/Read/@product.Id" class="btn btn-success">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </a>
+                                <a href="/Product/Update/@product.Id" class="btn btn-warning">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="/Product/Delete/@product.Id" class="btn btn-danger rounded">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-center my-4">
+                    <partial name="_Pagination" model="Model.PaginationProperties"/>
+                </div>
+                <div class="text-center">
+                    @Html.ActionLink("Обратно към панела", "Panel", "Admin", new { }, new { @class = "btn btn-primary my-3" })
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+}
 
 @section Scripts{
     <script>
@@ -71,3 +83,4 @@
     hideMessage();
     </script>
 }
+

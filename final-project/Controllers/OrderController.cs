@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using final_project.Data.Entities;
+using final_project.Data.Entities.Enums;
 using final_project.Helpers;
 using final_project.Models;
 using final_project.Services.OrderDetailService;
@@ -55,7 +56,7 @@ public class OrderController : Controller
             Courier = model.DeliveryInformation.Courier,
             IsPaid = false,
             PhoneNumber = model.DeliveryInformation.PhoneNumber,
-            OrderStatus = OrderStatusEnum.Processing
+            OrderStatus = OrderStatusEnum.Waiting
         };
 
         await _orderService.CreateOrderAsync(order);
@@ -146,7 +147,9 @@ public class OrderController : Controller
         _session.Set($"cart_{user.Id}", model);
         ViewBag.total = "0.00";
 
-        return RedirectToAction("Index", "Home");
+        TempData["OrderSuccessfulMessage"] = "Поръчката е заплатена. Следете секцията Активни поръчки, за да знаете кога ще бъде изпратена!";
+        
+        return RedirectToAction("ActiveUserOrders", "Profile");
     }
 
     [Authorize(Roles = "Admin")]

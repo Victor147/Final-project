@@ -4,57 +4,70 @@
     ViewData["Title"] = "Производители";
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            @if (TempData["AlertManufacturerMessage"] != null)
-            {
-                <div class="alert alert-success mt-4" id="message">
-                    @TempData["AlertManufacturerMessage"]
-                </div>
-            }
-            <h2 class="text-center mt-5 mb-4">Производители</h2>
-            <div class="text-center">
-                <a asp-controller="Manufacturer" asp-action="Create" class="btn btn-info text-navbar mb-3">Създаване на нов производител</a>
-            </div>
-            <table class="table text-center">
-                <thead>
-                <tr>
-                    <th>Име</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach (var manufacturer in Model.Manufacturers)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(item => manufacturer.Name)</td>
-                        <td>
-                            <a href="/Manufacturer/Read/@manufacturer.Id" class="btn btn-success">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </a>
-                            <a href="/Manufacturer/Update/@manufacturer.Id" class="btn btn-warning">
-                                <i class="fa-solid fa-pen"></i>
-                            </a>
-                            <a href="/Manufacturer/Delete/@manufacturer.Id" class="btn btn-danger">
-                                <i class="fa-regular fa-trash-can"></i>
-                            </a>
-                        </td>
-                    </tr>
-                }
-                </tbody>
-            </table>
-            <div class="d-flex justify-content-center my-4">
-                <partial name="_Pagination" model="Model.PaginationProperties"/>
-            </div>
-            <div class="text-center">
-                @Html.ActionLink("Обратно към панела", "Panel", "Admin", "", new { @class = "btn btn-primary my-3" })
-            </div>
-        </div>
-        <div class="col-md-2"></div>
+@if (Model.Manufacturers.Count() == 0)
+{
+    <h2 class="text-center my-5">Няма създадени производители</h2>
+    <div class="text-center">
+        <a asp-controller="Manufacturer" asp-action="Create" class="btn btn-primary text-navbar mb-3">Създаване на нов производител</a>
     </div>
-</div>
+    <div class="text-center">
+        @Html.ActionLink("Обратно към панела", "Panel", "Admin", "", new { @class = "btn btn-primary my-3" })
+    </div>
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                @if (TempData["AlertManufacturerMessage"] != null)
+                {
+                    <div class="alert alert-success mt-4" id="message">
+                        @TempData["AlertManufacturerMessage"]
+                    </div>
+                }
+                <h2 class="text-center mt-5 mb-4">Производители</h2>
+                <div class="text-center">
+                    <a asp-controller="Manufacturer" asp-action="Create" class="btn btn-info text-navbar mb-3">Създаване на нов производител</a>
+                </div>
+                <table class="table text-center">
+                    <thead>
+                    <tr>
+                        <th>Име</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var manufacturer in Model.Manufacturers)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(item => manufacturer.Name)</td>
+                            <td>
+                                <a href="/Manufacturer/Read/@manufacturer.Id" class="btn btn-success">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </a>
+                                <a href="/Manufacturer/Update/@manufacturer.Id" class="btn btn-warning">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <a href="/Manufacturer/Delete/@manufacturer.Id" class="btn btn-danger">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-center my-4">
+                    <partial name="_Pagination" model="Model.PaginationProperties"/>
+                </div>
+                <div class="text-center">
+                    @Html.ActionLink("Обратно към панела", "Panel", "Admin", "", new { @class = "btn btn-primary my-3" })
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+}
 
 @section Scripts{
     <script>

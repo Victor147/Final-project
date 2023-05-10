@@ -158,6 +158,9 @@ public class ProductController : Controller
         model.Categories = await _categoryService.GetAllCategoriesAsync();
         model.Manufacturers = await _manufacturerService.GetAllManufacturersAsync();
 
+        ModelState.AddModelError("Stock", "Количеството е задължително!");
+        ModelState.AddModelError("Price", "Цената е задължителна!");
+        
         return View("Create", model);
     }
 

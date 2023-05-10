@@ -1,4 +1,5 @@
 ﻿@using final_project.Data.Entities
+@using final_project.Data.Entities.Enums
 @model final_project.ViewModels.ReturnPaginatedOrdersViewModel
 
 @{
@@ -46,6 +47,11 @@ else
                             </td>
                             @switch (order.OrderStatus)
                             {
+                                case OrderStatusEnum.Waiting:
+                                    <td>
+                                        Изчаква потвърждение
+                                    </td>
+                                    break;
                                 case OrderStatusEnum.Processing:
                                     <td>
                                         Обработва се

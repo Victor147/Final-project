@@ -1,7 +1,7 @@
 ﻿using final_project.Data.Initialization;
 using final_project.Data.Persistence;
 using final_project.Services.CategoryService;
-using final_project.Services.Cloudinary;
+using final_project.Services.CloudinaryService;
 using final_project.Services.EmailService;
 using final_project.Services.ManufacturerService;
 using final_project.Services.OrderDetailService;

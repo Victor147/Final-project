@@ -11,7 +11,8 @@
             <form method="post" asp-controller="Category" asp-action="CreateCategory">
                 <h2 class="text-center mt-5 mb-4">Създаване на категория</h2>
                 <div class="from-group my-4">
-                    <label for="name">Име на категорията: </label>
+                    <label for="name">Име на категорията </label>
+                    <span class="text-danger">*</span>
                     <input type="text" asp-for="Name" id="name" class="form-control" placeholder="Въведете име на категорията"/>
                     <p class="mt-1">
                         <span asp-validation-for="Name" class="text-danger"></span>

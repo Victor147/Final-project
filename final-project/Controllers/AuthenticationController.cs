@@ -134,7 +134,7 @@ public class AuthenticationController : Controller
                 return RedirectToAction("Index", "Home");
             }
 
-            ModelState.AddModelError("Message", "Невалидна информация!");
+            ModelState.AddModelError("Password", "Грешна парола, опитайте отново!");
         }
 
         return View("Login", viewModel);

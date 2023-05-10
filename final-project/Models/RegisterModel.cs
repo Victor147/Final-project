@@ -21,6 +21,7 @@ public class RegisterModel
 
     [Required(ErrorMessage = "Имейлът е задължителен!")]
     [RegularExpression(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$", ErrorMessage = "Имейлът не е валиден!")]
+    [EmailAvailable]
     [DisplayName("Имейл")]
     public string Email { get; set; }
 
