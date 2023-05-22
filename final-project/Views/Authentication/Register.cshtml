@@ -8,6 +8,12 @@
     <div class="row row-cols-1 row-cols-xl-3">
         <div class="col"></div>
         <div class="col">
+            @if (TempData["RegisterMessage"] != null)
+            {
+                <div class="alert alert-danger mb-5" id="message">
+                    @TempData["RegisterMessage"]
+                </div>
+            }
             <form method="post" asp-controller="Authentication" asp-action="Register">
                 <div class="log-reg-bgcolor px-5 py-4 rounded-huge">
                     <img src="/img/logo.png" alt="logo" class="card-img-top-custom">
@@ -86,3 +92,18 @@
         <div class="col"></div>
     </div>
 </div>
+
+@section Scripts
+{
+    <script>
+        function hideMessage(){
+                let alert = document.getElementById('message');
+
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 5000);
+            }
+
+            hideMessage();
+    </script>
+}

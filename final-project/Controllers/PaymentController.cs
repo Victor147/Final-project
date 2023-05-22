@@ -86,6 +86,8 @@ public class PaymentController : Controller
         
         _session.Set($"cart_{user.Id}", session);
 
+        TempData["PaymentMessage"] = "Плащането е неуспешно! Опитайте отново да завършите поръчката!";
+        
         return RedirectToAction("Index", "Cart");
     }
 }

@@ -25,6 +25,12 @@ else
                         @TempData["ProductCartMessage"]
                     </div>
                 }
+                @if (TempData["PaymentMessage"] != null)
+                {
+                    <div class="alert alert-danger mt-4" id="message">
+                        @TempData["PaymentMessage"]
+                    </div>
+                }
                 <h2 class="text-center mt-4 mb-3">Продукти в количката</h2>
                 <table class="table text-center">
                     <thead>

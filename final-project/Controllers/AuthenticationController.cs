@@ -40,6 +40,8 @@ public class AuthenticationController : Controller
             });
         }
 
+        TempData["RegisterMessage"] = "Изисква се регистрация или вписване, за да можете да добавите продукт!";
+
         return View(new RegisterModel
         {
             BeforePath = beforePath
@@ -188,7 +190,6 @@ public class AuthenticationController : Controller
             var user = await _userManager.FindByNameAsync(model.Username);
             if (user == null)
             {
-                //не съществува
                 return View("ForgotPassword");
             }
 
@@ -225,7 +226,7 @@ public class AuthenticationController : Controller
         {
             Token = token
         };
-        
+
         return View(model);
     }
 
@@ -254,9 +255,10 @@ public class AuthenticationController : Controller
                 return RedirectToAction("ResetPasswordSuccess");
             }
         }
+
         return View("ResetPassword", model);
     }
-    
+
     [HttpGet]
     public IActionResult ResetPasswordSuccess()
     {

@@ -6,43 +6,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56ff1d17-8e34-4e3c-8a02-b007449711b9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.final-project/.idea/dataSources/51a64a8a-13d6-49dd-886d-8e0c586d3e28.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.final-project/.idea/dataSources/51a64a8a-13d6-49dd-886d-8e0c586d3e28.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.final-project/.idea/dataSources/51a64a8a-13d6-49dd-886d-8e0c586d3e28/storage_v2/_src_/database/ecommerceDb.3i4D9A/schema/dbo.sYMBAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.final-project/.idea/dataSources/51a64a8a-13d6-49dd-886d-8e0c586d3e28/storage_v2/_src_/database/ecommerceDb.3i4D9A/schema/dbo.sYMBAA.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.final-project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.final-project/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/Controllers/AuthenticationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Controllers/AuthenticationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Controllers/OrderController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Controllers/OrderController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Controllers/ProductController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Controllers/ProductController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Data/Entities/Order.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Data/Entities/Order.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Data/Entities/OrderStatusEnum.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Data/Entities/Enums/OrderStatusEnum.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Extensions/GlobalExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Extensions/GlobalExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Models/RegisterModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Models/RegisterModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Services/Cloudinary/IImageUploader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Services/CloudinaryService/IImageUploader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Services/Cloudinary/ImageUploader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Services/CloudinaryService/ImageUploader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Services/OrderService/OrderService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Services/OrderService/OrderService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Services/ProductService/ProductService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Services/ProductService/ProductService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Authentication/ForgotPassword.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Authentication/ForgotPassword.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Authentication/Login.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Authentication/Login.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final-project/Controllers/PaymentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Controllers/PaymentController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/Views/Authentication/Register.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Authentication/Register.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Authentication/ResetPassword.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Authentication/ResetPassword.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Category/Create.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Category/Create.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Category/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Category/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Category/Update.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Category/Update.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Manufacturer/Create.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Manufacturer/Create.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Manufacturer/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Manufacturer/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Manufacturer/Update.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Manufacturer/Update.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Order/Index.cshtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Product/Create.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Product/Create.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Product/Delete.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Product/Delete.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Product/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Product/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Product/ListProducts.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Product/ListProducts.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Product/Read.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Product/Read.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Product/Update.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Product/Update.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Profile/ActiveUserOrders.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Profile/ActiveUserOrders.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Shared/_Layout.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final-project/Views/Cart/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Cart/Index.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final-project/Views/Order/OrderInformation.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Order/OrderInformation.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/bin/Debug/net6.0/final-project.dll" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/bin/Debug/net6.0/final-project.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/bin/Debug/net6.0/final-project.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/bin/Debug/net6.0/final-project.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.dll" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/ref/final-project.dll" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/ref/final-project.dll" afterDir="false" />
@@ -140,6 +111,8 @@
       <workItem from="1683571847702" duration="4908000" />
       <workItem from="1683609286101" duration="15590000" />
       <workItem from="1683693521509" duration="4966000" />
+      <workItem from="1684734371934" duration="3380000" />
+      <workItem from="1684743833033" duration="1331000" />
     </task>
     <servers />
   </component>
