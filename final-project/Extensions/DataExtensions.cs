@@ -9,10 +9,11 @@ namespace final_project.Extensions
     {
         public static void AddPersistence(this WebApplicationBuilder builder)
         {
-            var connectionStringBuilder = new SqlConnectionStringBuilder(builder.Configuration.GetConnectionString("DefaultConnection"));
-            connectionStringBuilder.UserID = builder.Configuration["DbUser"];
-            connectionStringBuilder.Password = builder.Configuration["DbPassword"];
-            
+            // var connectionStringBuilder = new SqlConnectionStringBuilder(builder.Configuration.GetConnectionString("DefaultConnection"));
+            var connectionStringBuilder = new SqlConnectionStringBuilder("Data Source=SQL6030.site4now.net;Initial Catalog=db_a99ca8_ecommercedb;User Id=db_a99ca8_ecommercedb_admin;Password=MyRootPass1234");
+            // connectionStringBuilder.UserID = builder.Configuration["DbUser"];
+            // connectionStringBuilder.Password = builder.Configuration["DbPassword"];
+
             builder.Services.AddDbContext<EcommerceDbContext>(opt =>
             opt.UseSqlServer(connectionStringBuilder.ConnectionString));
         }
