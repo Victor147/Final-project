@@ -6,7 +6,7 @@
 
 @if (Model.Orders.Count() == 0)
 {
-    <h2 class="text-center my-5">Нямате активни поръчки</h2>
+    <h2 class="text-center my-5">Нямате завършени поръчки</h2>
     <div class="text-center">
         @Html.ActionLink("Обратно към профила Ви", "Profile", "Profile", new { }, new { @class = "btn btn-primary my-5" })
     </div>

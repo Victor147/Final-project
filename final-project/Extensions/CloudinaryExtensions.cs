@@ -14,7 +14,7 @@ public static class CloudinaryExtensions
         builder.Services.AddSingleton<Cloudinary, Cloudinary>(sp => new Cloudinary(
             new Account(
                 "djrtvdowo",
-               "ZTNEFz1WntFLR_110ag7ZmzxqzU",
-                "465147964623319")));
+                "465147964623319",
+                "ZTNEFz1WntFLR_110ag7ZmzxqzU")));
     }
 }

@@ -64,6 +64,7 @@ public class ProductService : IProductService
             fromDb.Image = result.Uri.ToString();
         }
         fromDb.ManufacturerId = model.ManufacturerId;
+        fromDb.CategoryId = model.CategoryId;
 
         _context.Products.Update(fromDb);
         await _context.SaveChangesAsync();

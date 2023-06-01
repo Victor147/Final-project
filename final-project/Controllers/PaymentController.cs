@@ -59,8 +59,8 @@ public class PaymentController : Controller
         {
             LineItems = lineItems,
             Mode = "payment",
-            SuccessUrl = $"https://localhost:7255/Payment/Success?username={model.User.Username}",
-            CancelUrl = $"https://localhost:7255/Payment/Failure?username={model.User.Username}",
+            SuccessUrl = $"https://thecuecorner.azurewebsites.net/Payment/Success?username={model.User.Username}",
+            CancelUrl = $"https://thecuecorner.azurewebsites.net/Payment/Failure?username={model.User.Username}",
         };
 
         var service = new SessionService();

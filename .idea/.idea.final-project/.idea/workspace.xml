@@ -8,24 +8,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56ff1d17-8e34-4e3c-8a02-b007449711b9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/final-project20230523070821.yml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.final-project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.final-project/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/final-project.metadata.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/final-project.metadata.v2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/final-project.projects.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/final-project.projects.v2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vs/final-project/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/final-project/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/final-project/FileContentIndex/1c93e34d-8746-4ef5-9c16-81fdec2387c5.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/final-project/FileContentIndex/5e42f1bf-0040-4423-86fc-0fd84cc765f5.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/final-project/FileContentIndex/9a01b5a2-d25e-458e-bdca-85ba5e79bf7e.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/final-project/FileContentIndex/d77bd6d3-f468-40cf-bfa6-d0948446b2aa.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/final-project/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/final-project/v17/.suo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/Extensions/CloudinaryExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Extensions/CloudinaryExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/Extensions/DataExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Extensions/DataExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/bin/Debug/net6.0/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/bin/Debug/net6.0/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final-project/Properties/PublishProfiles/TheCueCorner - Web Deploy.pubxml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Properties/PublishProfiles/TheCueCorner - Web Deploy.pubxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final-project/Properties/PublishProfiles/TheCueCorner - Web Deploy.pubxml.user" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Properties/PublishProfiles/TheCueCorner - Web Deploy.pubxml.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final-project/Views/Profile/FinishedUserOrders.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/Views/Profile/FinishedUserOrders.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/bin/Debug/net6.0/final-project.dll" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/bin/Debug/net6.0/final-project.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/bin/Debug/net6.0/final-project.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/bin/Debug/net6.0/final-project.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final-project/bin/Release/net6.0/final-project.dll" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/bin/Release/net6.0/final-project.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final-project/bin/Release/net6.0/final-project.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/bin/Release/net6.0/final-project.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/final-project.csproj.user" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/final-project.csproj.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.MvcApplicationPartsAssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.MvcApplicationPartsAssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.dll" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/final-project.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/ref/final-project.dll" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/ref/final-project.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/refint/final-project.dll" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Debug/net6.0/refint/final-project.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final-project/obj/Release/net6.0/PubTmp/Out/final-project.dll" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Release/net6.0/PubTmp/Out/final-project.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final-project/obj/Release/net6.0/PubTmp/Out/final-project.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Release/net6.0/PubTmp/Out/final-project.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final-project/obj/Release/net6.0/final-project.dll" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Release/net6.0/final-project.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final-project/obj/Release/net6.0/final-project.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/Release/net6.0/final-project.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project/obj/staticwebassets.pack.sentinel" beforeDir="false" afterPath="$PROJECT_DIR$/final-project/obj/staticwebassets.pack.sentinel" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,6 +69,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -138,6 +145,8 @@
       <workItem from="1684743833033" duration="1331000" />
       <workItem from="1684907234476" duration="123000" />
       <workItem from="1685019479021" duration="222000" />
+      <workItem from="1685369383463" duration="273000" />
+      <workItem from="1685370445853" duration="2747000" />
     </task>
     <servers />
   </component>
@@ -148,24 +157,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/final-project/Extensions/DataExtensions.cs</url>
-          <line>10</line>
-          <properties documentPath="D:\final-project\final-project\Extensions\DataExtensions.cs" initialLine="10" containingFunctionPresentation="method 'AddPersistence'">
-            <startOffsets>
-              <option value="320" />
-            </startOffsets>
-            <endOffsets>
-              <option value="321" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
